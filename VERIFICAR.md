@@ -4,7 +4,7 @@ Todo lo que el sitio marca como `[verificar]` o que todavía no está confirmado
 Los números se mantienen entre fases (el 9 ya está resuelto). Cuando resolvamos uno, pasa a «Resueltos» con su fuente.
 
 Para ver los marcadores que quedan en las páginas:
-`python3 herramientas/revisar_enlaces.py --verificar` (hoy son 24 marcas para 16 ítems).
+`python3 herramientas/revisar_enlaces.py --verificar` (hoy son 24 marcas para 15 ítems).
 
 ## Abiertos
 
@@ -12,7 +12,6 @@ Para ver los marcadores que quedan en las páginas:
 
 | # | Ítem | Dónde aparece | Qué hace falta |
 |---|---|---|---|
-| 1 | URL definitiva del sitio (hoy `https://USUARIO.github.io/mendoza-mesh/`) | `canonical`, `og:url` y `og:image` de las 11 páginas, `robots.txt` y `sitemap.xml` | Usuario y repositorio de GitHub, o dominio propio. Después: `python3 herramientas/cambiar_url.py <url>` |
 | 2 | Titular del copyright («Comunidad Mendoza Mesh») | `LICENSE`, `LICENSE-contenido.md` | Confirmar el nombre de la comunidad, la persona o la organización |
 | 14 | Dirección de contacto (hoy `mendozamesh@example.org`, un dominio de ejemplo) | `comunidad.html` (formulario y aviso de privacidad) | Una dirección real. Ver «Editar contenido» en el README |
 | 15 | Canales propios de Mendoza Mesh | `comunidad.html` («Grupos y sitios») | Enlaces a los grupos de la comunidad (Telegram, WhatsApp, etc.), si existen |
@@ -72,3 +71,4 @@ Para ver los marcadores que quedan en las páginas:
 | Región ANZ según la comunidad | MeshArg: «Región: ANZ, en todo el país». Sigue abierta en el ítem 6 por tu pedido de verificar con ENACOM | https://github.com/Meshtastic-Argentina/docu |
 | Versiones del firmware | «Beta» son las versiones recomendadas (hoy 2.7.26) y «Alpha», las de prueba (2.8.x). El preset Medium Turbo existe solo desde la 2.8: la tabla lo aclara, y Configurar recomienda la última Beta | https://github.com/meshtastic/firmware/releases y la documentación 2.7 |
 | Grupo de Argentina en el directorio oficial | El directorio de grupos locales de Meshtastic enlaza a «Meshtastic Argentina Community» (MeshArg) | https://meshtastic.org/docs/community/local-groups/ |
+| URL definitiva del sitio | https://juliocesarmarquez.github.io/mendoza-mesh/ (repositorio público juliocesarmarquez/mendoza-mesh), aplicada con `herramientas/cambiar_url.py` | Decisión tuya, 20/11/2026 |

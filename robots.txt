@@ -3,4 +3,4 @@ Allow: /
 Disallow: /ingesta/
 Disallow: /herramientas/
 
-Sitemap: https://USUARIO.github.io/mendoza-mesh/sitemap.xml
+Sitemap: https://juliocesarmarquez.github.io/mendoza-mesh/sitemap.xml

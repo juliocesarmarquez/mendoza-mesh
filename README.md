@@ -5,7 +5,8 @@
 Sitio didáctico en castellano sobre **LoRa** y **Meshtastic®** para principiantes, makers y
 radioaficionados de Cuyo (Mendoza, San Juan y San Luis), Argentina.
 
-Es un sitio estático (HTML, CSS y JavaScript sin frameworks) pensado para publicarse en GitHub Pages.
+Es un sitio estático (HTML, CSS y JavaScript sin frameworks) publicado en GitHub Pages:
+**https://juliocesarmarquez.github.io/mendoza-mesh/**
 
 > **Estado:** las cuatro fases están terminadas. Antes de publicar, revisá la lista de
 > [pendientes](#antes-de-publicar) y [`VERIFICAR.md`](VERIFICAR.md).
