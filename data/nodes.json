@@ -1,0 +1,102 @@
+{
+ "generado": "2026-11-20T12:00:00Z",
+ "fuente": "DATOS DE EJEMPLO: cuatro nodos ficticios para mostrar cómo funciona el mapa. La primera ejecución de ingesta/ingesta.py los reemplaza.",
+ "aviso": "Solo aparecen nodos que reportan su posición al MQTT. Ubicaciones redondeadas.",
+ "ejemplo": true,
+ "decimales": 2,
+ "inactivo_tras_horas": 24,
+ "recorte": { "lat_min": -37.7, "lat_max": -28.0, "lon_min": -70.7, "lon_max": -64.3 },
+ "nodos": [
+  {
+   "id": "!ee000001",
+   "ejemplo": true,
+   "nombre_largo": "EJEMPLO Cliente Ciudad",
+   "nombre_corto": "EJ1",
+   "rol": "CLIENT",
+   "hardware": "HELTEC_V3",
+   "lat": -32.89,
+   "lon": -68.83,
+   "altitud": 750,
+   "provincia": "Mendoza",
+   "posicion_actualizada": "2026-11-20T11:40:00Z",
+   "ultimo_contacto": "2026-11-20T11:52:00Z",
+   "telemetria": { "bateria": 82, "voltaje": 4.01, "uso_canal": 6.4, "uso_aire_tx": 0.8, "fecha": "2026-11-20T11:52:00Z" },
+   "vecinos": [ { "id": "!ee000002", "snr": 7.5 } ],
+   "vecinos_fecha": "2026-11-20T11:30:00Z"
+  },
+  {
+   "id": "!ee000002",
+   "ejemplo": true,
+   "nombre_largo": "EJEMPLO Router en cerro",
+   "nombre_corto": "EJ2",
+   "rol": "ROUTER",
+   "hardware": "RAK4631",
+   "lat": -32.86,
+   "lon": -68.93,
+   "altitud": 1450,
+   "provincia": "Mendoza",
+   "posicion_actualizada": "2026-11-20T09:00:00Z",
+   "ultimo_contacto": "2026-11-20T11:58:00Z",
+   "telemetria": { "bateria": 95, "voltaje": 4.12, "uso_canal": 9.1, "uso_aire_tx": 2.3, "fecha": "2026-11-20T11:00:00Z" },
+   "vecinos": [ { "id": "!ee000001", "snr": 8.0 }, { "id": "!ee000003", "snr": -12.5 } ],
+   "vecinos_fecha": "2026-11-20T11:00:00Z"
+  },
+  {
+   "id": "!ee000003",
+   "ejemplo": true,
+   "nombre_largo": "EJEMPLO Sensor San Juan",
+   "nombre_corto": "EJ3",
+   "rol": "SENSOR",
+   "hardware": "SEEED_SOLAR_NODE",
+   "lat": -31.54,
+   "lon": -68.53,
+   "altitud": 640,
+   "provincia": "San Juan",
+   "posicion_actualizada": "2026-11-20T08:15:00Z",
+   "ultimo_contacto": "2026-11-20T11:45:00Z",
+   "telemetria": { "bateria": 64, "voltaje": 3.86, "uso_canal": 3.2, "uso_aire_tx": 0.4, "fecha": "2026-11-20T11:45:00Z" },
+   "vecinos": [ { "id": "!ee000002", "snr": -11.0 } ],
+   "vecinos_fecha": "2026-11-20T10:45:00Z"
+  },
+  {
+   "id": "!ee000004",
+   "ejemplo": true,
+   "nombre_largo": "EJEMPLO Cliente San Luis (inactivo)",
+   "nombre_corto": "EJ4",
+   "rol": "CLIENT",
+   "hardware": "TBEAM",
+   "lat": -33.3,
+   "lon": -66.34,
+   "altitud": 720,
+   "provincia": "San Luis",
+   "posicion_actualizada": "2026-11-17T18:20:00Z",
+   "ultimo_contacto": "2026-11-17T18:20:00Z",
+   "telemetria": { "bateria": 12, "voltaje": 3.41, "uso_canal": null, "uso_aire_tx": null, "fecha": "2026-11-17T18:20:00Z" }
+  }
+ ],
+ "waypoints": [
+  {
+   "id": 1,
+   "ejemplo": true,
+   "nombre": "EJEMPLO Punto de encuentro",
+   "descripcion": "Waypoint ficticio para mostrar la capa de waypoints.",
+   "lat": -32.89,
+   "lon": -68.87,
+   "vence": null,
+   "creado_por": "!ee000001",
+   "fecha": "2026-11-20T10:00:00Z"
+  }
+ ],
+ "traceroutes": [
+  {
+   "ejemplo": true,
+   "origen": "!ee000001",
+   "destino": "!ee000003",
+   "ruta": [ "!ee000002" ],
+   "snr_ida": [ 7.5, -12.5 ],
+   "ruta_vuelta": [ "!ee000002" ],
+   "snr_vuelta": [ -11.0, 8.0 ],
+   "fecha": "2026-11-20T11:20:00Z"
+  }
+ ]
+}

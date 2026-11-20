@@ -1,0 +1,29 @@
+# Servicio systemd para correr la ingesta sin parar en un servidor propio
+# (por ejemplo, una Raspberry Pi). Ver README.md, «Ingesta en un servidor propio».
+#
+# Instalación:
+#   sudo cp ingesta/mendoza-mesh-ingesta.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now mendoza-mesh-ingesta
+#   journalctl -u mendoza-mesh-ingesta -f      # ver el registro
+#
+# Ajustá User y las rutas a tu instalación.
+[Unit]
+Description=Mendoza Mesh: ingesta MQTT del mapa de Cuyo
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=pi
+WorkingDirectory=/home/pi/mendoza-mesh
+ExecStart=/home/pi/mendoza-mesh/.venv/bin/python ingesta/ingesta.py --daemon
+Restart=on-failure
+RestartSec=30
+# Para un broker propio, descomentá y completá (o usá EnvironmentFile=):
+# Environment=MQTT_HOST=mqtt.ejemplo.org
+# Environment=MQTT_USUARIO=usuario
+# Environment=MQTT_CLAVE=clave
+
+[Install]
+WantedBy=multi-user.target

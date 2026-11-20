@@ -1,0 +1,641 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Glosario LoRa y Meshtastic · Mendoza Mesh</title>
+  <meta name="description" content="Más de 25 términos de LoRa, radio y Meshtastic explicados en castellano simple: SF, hop, PSK, MQTT, zona de Fresnel, dBm y más.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/glosario.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Glosario LoRa y Meshtastic · Mendoza Mesh">
+  <meta property="og:description" content="Más de 25 términos de LoRa, radio y Meshtastic explicados en castellano simple: SF, hop, PSK, MQTT, zona de Fresnel, dBm y más.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/glosario.html">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/glosario.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html">Meshtastic</a></li>
+          <li><a href="configurar.html">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html">Laboratorio</a></li>
+          <li><a href="glosario.html" aria-current="page">Glosario</a></li>
+          <li><a href="preguntas.html">Preguntas</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+    <div class="contenedor encabezado-pagina">
+      <p class="antetitulo">Para consultar</p>
+      <h1>Glosario</h1>
+      <p class="entradilla">Las palabras de radio, LoRa y Meshtastic que aparecen en el sitio, explicadas en castellano simple. Si una no se entiende, buscala acá.</p>
+    </div>
+
+    <div class="contenedor pagina">
+      <div class="prosa">
+        <div class="buscador" id="buscador-glosario" role="search" hidden>
+          <label for="buscar-termino">Buscar un término</label>
+          <input type="search" id="buscar-termino" name="q" autocomplete="off" spellcheck="false" aria-describedby="estado-busqueda" placeholder="Por ejemplo: salto, SNR, antena">
+          <p class="buscador__estado" id="estado-busqueda" role="status" aria-live="polite"></p>
+        </div>
+
+        <nav class="indice-letras" aria-label="Índice alfabético">
+          <ul>
+            <li><a href="#letra-a">A</a></li>
+            <li><a href="#letra-b">B</a></li>
+            <li><a href="#letra-c">C</a></li>
+            <li><a href="#letra-d">D</a></li>
+            <li><a href="#letra-e">E</a></li>
+            <li><a href="#letra-f">F</a></li>
+            <li><a href="#letra-g">G</a></li>
+            <li><a href="#letra-i">I</a></li>
+            <li><a href="#letra-l">L</a></li>
+            <li><a href="#letra-m">M</a></li>
+            <li><a href="#letra-n">N</a></li>
+            <li><a href="#letra-o">O</a></li>
+            <li><a href="#letra-p">P</a></li>
+            <li><a href="#letra-r">R</a></li>
+            <li><a href="#letra-s">S</a></li>
+            <li><a href="#letra-t">T</a></li>
+            <li><a href="#letra-w">W</a></li>
+            <li><a href="#letra-z">Z</a></li>
+          </ul>
+        </nav>
+
+        <div class="glosario" id="lista-glosario">
+          <section class="glosario__grupo" aria-labelledby="letra-a">
+            <h2 class="glosario__letra" id="letra-a">A</h2>
+            <dl>
+              <div class="termino">
+                <dt id="aes"><dfn>AES</dfn> <span class="original">(<span lang="en">Advanced Encryption Standard</span>)</span></dt>
+                <dd>
+                  <p>Un método de cifrado estándar y muy usado en todo el mundo, también en el wifi y en los bancos.</p>
+                  <p>Meshtastic cifra cada canal con AES de 128 o de 256 bits, según el largo de la clave del canal.</p>
+                  <p class="relacionados">Relacionado: <a href="#psk">PSK</a>, <a href="#cifrado">Cifrado</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="ancho-de-banda"><dfn>Ancho de banda</dfn> <span class="original">(<span lang="en">bandwidth, BW</span>)</span></dt>
+                <dd>
+                  <p>Qué tan ancha es la porción de frecuencias que ocupa la señal, como el ancho de un carril de una ruta.</p>
+                  <p>En LoRa se usan valores como 125, 250 o 500 kHz. Más ancho da más velocidad y menos alcance: cada vez que se duplica, se pierden casi 3 dB de <a href="#presupuesto-de-enlace">presupuesto de enlace</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#preset">Preset</a>, <a href="#sf">Factor de dispersión (SF)</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-b">
+            <h2 class="glosario__letra" id="letra-b">B</h2>
+            <dl>
+              <div class="termino">
+                <dt id="bluetooth"><dfn>Bluetooth</dfn></dt>
+                <dd>
+                  <p>Conexión inalámbrica de corto alcance entre tu celular y el nodo. Por ahí la app manda y recibe los mensajes.</p>
+                  <p>Al emparejar se usa un PIN. En equipos sin pantalla, el PIN fijo de fábrica es 123456, y la documentación recomienda cambiarlo.</p>
+                  <p class="relacionados">Relacionado: <a href="#nodo">Nodo</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-c">
+            <h2 class="glosario__letra" id="letra-c">C</h2>
+            <dl>
+              <div class="termino">
+                <dt id="canal"><dfn>Canal</dfn> <span class="original">(<span lang="en">channel</span>)</span></dt>
+                <dd>
+                  <p>Un grupo de conversación con nombre y clave propios, como un grupo de chat.</p>
+                  <p>Cada nodo puede tener hasta 8 canales. Para hablar en un canal, los nodos necesitan el mismo nombre y la misma clave (<a href="#psk">PSK</a>).</p>
+                  <p class="relacionados">Relacionado: <a href="#canal-primario">Canal primario y canal secundario</a>, <a href="#psk">PSK</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="canal-primario"><dfn>Canal primario y canal secundario</dfn> <span class="original">(<span lang="en">primary / secondary channel</span>)</span></dt>
+                <dd>
+                  <p>El canal primario es el canal 0. Viene con la clave pública predeterminada y su nombre define la frecuencia en la que transmite el nodo.</p>
+                  <p>Los canales secundarios (del 1 al 7) llevan su propia clave y no cambian la frecuencia. Por eso los grupos privados van en canales secundarios.</p>
+                  <p class="relacionados">Relacionado: <a href="#canal">Canal</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="cifrado"><dfn>Cifrado</dfn> <span class="original">(<span lang="en">encryption</span>)</span></dt>
+                <dd>
+                  <p>Transformar un mensaje para que solo pueda leerlo quien tiene la clave.</p>
+                  <p>Meshtastic cifra el contenido de los mensajes, pero no el encabezado (quién envía y a quién), porque los nodos lo necesitan para retransmitir.</p>
+                  <p class="relacionados">Relacionado: <a href="#aes">AES</a>, <a href="#psk">PSK</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="cliente"><dfn>Cliente</dfn> <span class="original">(<span lang="en">client</span>)</span></dt>
+                <dd>
+                  <p>Tiene dos sentidos. Como rol (CLIENT), es el comportamiento predeterminado de un nodo personal: envía, recibe y retransmite si nadie más lo hizo.</p>
+                  <p>También se llama cliente a la app o al programa que se conecta al nodo, como la app del celular.</p>
+                  <p class="relacionados">Relacionado: <a href="#router">Router</a>, <a href="#nodo">Nodo</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-d">
+            <h2 class="glosario__letra" id="letra-d">D</h2>
+            <dl>
+              <div class="termino">
+                <dt id="dbi"><dfn>dBi</dfn></dt>
+                <dd>
+                  <p>Unidad para la <a href="#ganancia-de-antena">ganancia de una antena</a>. Compara la antena con una ideal que irradia igual hacia todos lados (isotrópica).</p>
+                  <p class="relacionados">Relacionado: <a href="#ganancia-de-antena">Ganancia de antena</a>, <a href="#dbm">dBm</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="dbm"><dfn>dBm</dfn></dt>
+                <dd>
+                  <p>Unidad de potencia en decibeles respecto de 1 milivatio: 0 dBm es 1 mW, 20 dBm son 100 mW y 30 dBm son 1 W. Sumar 3 dB es, más o menos, duplicar la potencia.</p>
+                  <p>La señal que llega a un receptor es muy débil y se expresa en números negativos, como −110 dBm.</p>
+                  <p class="relacionados">Relacionado: <a href="#rssi">RSSI</a>, <a href="#dbi">dBi</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-e">
+            <h2 class="glosario__letra" id="letra-e">E</h2>
+            <dl>
+              <div class="termino">
+                <dt id="enacom"><dfn>ENACOM</dfn> <span class="original">(<span lang="en">Ente Nacional de Comunicaciones</span>)</span></dt>
+                <dd>
+                  <p>El organismo que regula el uso del espectro radioeléctrico en Argentina. Define, entre otras cosas, qué bandas son de uso compartido y con qué condiciones técnicas.</p>
+                  <p class="relacionados">Relacionado: <a href="#ism">ISM (bandas ISM)</a>, <a href="#region">Región</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="espectro-ensanchado"><dfn>Espectro ensanchado</dfn> <span class="original">(<span lang="en">spread spectrum</span>)</span></dt>
+                <dd>
+                  <p>Técnica que reparte la señal en un rango de frecuencias más ancho del necesario. Así resiste mejor el ruido y las interferencias.</p>
+                  <p>LoRa usa una variante basada en chirps, tonos que suben de frecuencia de forma continua (CSS).</p>
+                  <p class="relacionados">Relacionado: <a href="#lora">LoRa</a>, <a href="#sf">Factor de dispersión (SF)</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-f">
+            <h2 class="glosario__letra" id="letra-f">F</h2>
+            <dl>
+              <div class="termino">
+                <dt id="sf"><dfn>Factor de dispersión (SF)</dfn> <span class="original">(<span lang="en">spreading factor</span>)</span></dt>
+                <dd>
+                  <p>Cuánto se «estira» cada parte del mensaje en el tiempo, como hablar más despacio para que te entiendan de lejos.</p>
+                  <p>En LoRa va de 7 a 12 (5 y 6 en chips más nuevos). Cada paso duplica el <a href="#tiempo-en-el-aire">tiempo en el aire</a> y suma unos 2,5 dB de <a href="#presupuesto-de-enlace">presupuesto de enlace</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#preset">Preset</a>, <a href="#ancho-de-banda">Ancho de banda</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="firmware"><dfn>Firmware</dfn></dt>
+                <dd>
+                  <p>El programa que vive dentro del equipo y lo hace funcionar. Meshtastic es, sobre todo, un firmware para placas LoRa.</p>
+                  <p class="relacionados">Relacionado: <a href="#flashear">Flashear</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="flashear"><dfn>Flashear</dfn> <span class="original">(<span lang="en">to flash</span>)</span></dt>
+                <dd>
+                  <p>Instalar o actualizar el <a href="#firmware">firmware</a> de una placa. La forma recomendada es el Web Flasher oficial, desde Chrome o Edge.</p>
+                  <p>Algunas placas nRF52 se actualizan arrastrando un archivo UF2, como si copiaras un archivo a un pendrive.</p>
+                  <p class="relacionados">Relacionado: <a href="#firmware">Firmware</a>, <a href="#microcontrolador">Microcontrolador</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="frecuencia"><dfn>Frecuencia</dfn> <span class="original">(<span lang="en">frequency</span>)</span></dt>
+                <dd>
+                  <p>Cuántas veces por segundo oscila una onda de radio. Se mide en hercios: 1 MHz es un millón de oscilaciones por segundo.</p>
+                  <p>En Argentina, Meshtastic usa la banda de 915 a 928 MHz.</p>
+                  <p class="relacionados">Relacionado: <a href="#ism">ISM (bandas ISM)</a>, <a href="#region">Región</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-g">
+            <h2 class="glosario__letra" id="letra-g">G</h2>
+            <dl>
+              <div class="termino">
+                <dt id="ganancia-de-antena"><dfn>Ganancia de antena</dfn> <span class="original">(<span lang="en">antenna gain</span>)</span></dt>
+                <dd>
+                  <p>Cuánto concentra una antena la energía en ciertas direcciones. Se mide en <a href="#dbi">dBi</a>.</p>
+                  <p>Una antena de más ganancia no crea energía, la redistribuye: manda más hacia el horizonte y menos hacia arriba y abajo. Sirve en un cerro mirando al valle, pero puede rendir peor si el otro nodo está muy por encima o por debajo.</p>
+                  <p class="relacionados">Relacionado: <a href="#dbi">dBi</a>, <a href="#linea-de-vista">Línea de vista</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="gps"><dfn>GPS</dfn> <span class="original">(<span lang="en">Global Positioning System</span>)</span></dt>
+                <dd>
+                  <p>Sistema de satélites que le permite a un equipo saber dónde está. Algunos nodos traen GPS y pueden compartir su posición con la malla, si vos lo activás.</p>
+                  <p class="relacionados">Relacionado: <a href="#waypoint">Waypoint</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-i">
+            <h2 class="glosario__letra" id="letra-i">I</h2>
+            <dl>
+              <div class="termino">
+                <dt id="id-de-nodo"><dfn>ID de nodo</dfn> <span class="original">(<span lang="en">node ID</span>)</span></dt>
+                <dd>
+                  <p>El número que identifica a cada nodo. Suele mostrarse en hexadecimal con un signo de exclamación adelante, por ejemplo !a1b2c3d4.</p>
+                  <p>Se calcula a partir de la clave pública del nodo. Si borrás las claves y reinstalás, el nodo aparece como uno nuevo.</p>
+                  <p class="relacionados">Relacionado: <a href="#nodo">Nodo</a>, <a href="#nombre-corto-y-largo">Nombre corto y nombre largo</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="inundacion-gestionada"><dfn>Inundación gestionada</dfn> <span class="original">(<span lang="en">managed flooding</span>)</span></dt>
+                <dd>
+                  <p>La forma en que Meshtastic hace avanzar los mensajes. Cada nodo que recibe un mensaje lo retransmite, salvo que escuche que otro ya lo hizo.</p>
+                  <p>Los nodos que reciben la señal más débil (suelen ser los más lejanos) esperan menos antes de retransmitir. Así el mensaje avanza más rápido.</p>
+                  <p class="relacionados">Relacionado: <a href="#salto">Salto</a>, <a href="#limite-de-saltos">Límite de saltos</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="ism"><dfn>ISM (bandas ISM)</dfn> <span class="original">(<span lang="en">Industrial, Scientific and Medical</span>)</span></dt>
+                <dd>
+                  <p>Bandas de frecuencias de uso compartido que no requieren una licencia individual, siempre que se respeten límites de potencia y otras condiciones.</p>
+                  <p>En Argentina, la banda de 915 a 928 MHz es de uso compartido sin autorización, según ENACOM.</p>
+                  <p class="relacionados">Relacionado: <a href="#enacom">ENACOM</a>, <a href="#frecuencia">Frecuencia</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-l">
+            <h2 class="glosario__letra" id="letra-l">L</h2>
+            <dl>
+              <div class="termino">
+                <dt id="limite-de-saltos"><dfn>Límite de saltos</dfn> <span class="original">(<span lang="en">hop limit</span>)</span></dt>
+                <dd>
+                  <p>Cuántas veces puede retransmitirse un mensaje. Cada nodo que lo retransmite le resta uno; cuando llega a cero, nadie lo repite más.</p>
+                  <p>El valor predeterminado es 3 y el máximo es 7. Es el equivalente en Meshtastic del <a href="#ttl">TTL</a> de otras redes.</p>
+                  <p class="relacionados">Relacionado: <a href="#salto">Salto</a>, <a href="#ttl">TTL</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="linea-de-vista"><dfn>Línea de vista</dfn> <span class="original">(<span lang="en">line of sight, LOS</span>)</span></dt>
+                <dd>
+                  <p>Cuando entre dos antenas no hay nada que tape el camino: si desde una pudieras ver la otra con un largavista.</p>
+                  <p>A grandes distancias, la curvatura de la Tierra también tapa. Por eso la altura de las antenas importa tanto. Podés estimarlo con la calculadora del <a href="laboratorio.html">Laboratorio</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#zona-de-fresnel">Zona de Fresnel</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="lora"><dfn>LoRa</dfn> <span class="original">(<span lang="en">long range</span>)</span></dt>
+                <dd>
+                  <p>Una técnica de radio de largo alcance y bajo consumo, creada por Semtech, que manda pocos datos muy lejos.</p>
+                  <p>Es una modulación de <a href="#espectro-ensanchado">espectro ensanchado</a> basada en chirps. LoRa® es una marca de Semtech. Ver <a href="lora.html">¿Qué es LoRa?</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#lorawan">LoRaWAN</a>, <a href="#sf">Factor de dispersión (SF)</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="lorawan"><dfn>LoRaWAN</dfn></dt>
+                <dd>
+                  <p>Un protocolo de red que usa LoRa para conectar sensores a internet a través de antenas centrales (gateways) y servidores.</p>
+                  <p>Meshtastic no usa LoRaWAN: los nodos se hablan directamente entre ellos, sin infraestructura central.</p>
+                  <p class="relacionados">Relacionado: <a href="#lora">LoRa</a>, <a href="#malla">Malla</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-m">
+            <h2 class="glosario__letra" id="letra-m">M</h2>
+            <dl>
+              <div class="termino">
+                <dt id="malla"><dfn>Malla</dfn> <span class="original">(<span lang="en">mesh</span>)</span></dt>
+                <dd>
+                  <p>Una red sin centro, en la que cada equipo puede pasar los mensajes de los demás. Si un nodo falta, el mensaje puede buscar otro camino.</p>
+                  <p>Ver <a href="meshtastic.html">Meshtastic y la red en malla</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#nodo">Nodo</a>, <a href="#inundacion-gestionada">Inundación gestionada</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="mensaje-directo"><dfn>Mensaje directo</dfn> <span class="original">(<span lang="en">direct message, DM</span>)</span></dt>
+                <dd>
+                  <p>Un mensaje de un nodo a otro, que solo puede leer el destinatario.</p>
+                  <p>Se cifra con una clave que comparten solo el emisor y el destinatario. Además, el destinatario confirma que lo recibió.</p>
+                  <p class="relacionados">Relacionado: <a href="#canal">Canal</a>, <a href="#cifrado">Cifrado</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="meshtastic"><dfn>Meshtastic</dfn></dt>
+                <dd>
+                  <p>Un proyecto de código abierto que convierte placas LoRa económicas en una red de mensajería en malla, sin internet ni red celular.</p>
+                  <p>Meshtastic® es una marca registrada de Meshtastic LLC.</p>
+                  <p class="relacionados">Relacionado: <a href="#malla">Malla</a>, <a href="#firmware">Firmware</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="microcontrolador"><dfn>Microcontrolador</dfn> <span class="original">(<span lang="en">MCU</span>)</span></dt>
+                <dd>
+                  <p>El pequeño procesador que hace de cerebro del nodo.</p>
+                  <p>Los más comunes en Meshtastic son el ESP32, que tiene wifi y Bluetooth, y el nRF52, que solo tiene Bluetooth pero consume mucho menos. Por eso el nRF52 es ideal para equipos a batería o con panel solar.</p>
+                  <p class="relacionados">Relacionado: <a href="#nodo">Nodo</a>, <a href="#firmware">Firmware</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="mqtt"><dfn>MQTT</dfn> <span class="original">(<span lang="en">Message Queuing Telemetry Transport</span>)</span></dt>
+                <dd>
+                  <p>Un sistema liviano de mensajes por internet. Funciona como un tablero de anuncios (el broker): unos equipos publican y otros leen.</p>
+                  <p>En Meshtastic, un nodo con internet puede subir al broker lo que escucha por radio. Así funcionan mapas como el de <a href="mapa.html">Cuyo</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#pasarela">Pasarela</a>, <a href="#ok-to-mqtt">OK to MQTT</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-n">
+            <h2 class="glosario__letra" id="letra-n">N</h2>
+            <dl>
+              <div class="termino">
+                <dt id="nodo"><dfn>Nodo</dfn> <span class="original">(<span lang="en">node</span>)</span></dt>
+                <dd>
+                  <p>Cada equipo de la red: una radio LoRa con un <a href="#microcontrolador">microcontrolador</a> y una antena, y a veces GPS, pantalla y batería.</p>
+                  <p class="relacionados">Relacionado: <a href="#malla">Malla</a>, <a href="#id-de-nodo">ID de nodo</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="nombre-corto-y-largo"><dfn>Nombre corto y nombre largo</dfn> <span class="original">(<span lang="en">short name / long name</span>)</span></dt>
+                <dd>
+                  <p>Los nombres que elegís para tu nodo y que ven los demás. El largo admite hasta 39 caracteres simples y el corto hasta 4.</p>
+                  <p>Las letras con tilde y los emojis ocupan más lugar, así que entran menos.</p>
+                  <p class="relacionados">Relacionado: <a href="#id-de-nodo">ID de nodo</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-o">
+            <h2 class="glosario__letra" id="letra-o">O</h2>
+            <dl>
+              <div class="termino">
+                <dt id="ok-to-mqtt"><dfn>OK to MQTT</dfn></dt>
+                <dd>
+                  <p>Un ajuste con el que indicás que estás de acuerdo con que tus mensajes se suban a internet por MQTT. Viene desactivado.</p>
+                  <p>Según la documentación, no es una protección criptográfica sino un pedido de cortesía, que respeta el firmware oficial. Está disponible desde el firmware 2.5.</p>
+                  <p class="relacionados">Relacionado: <a href="#mqtt">MQTT</a>, <a href="#pasarela">Pasarela</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-p">
+            <h2 class="glosario__letra" id="letra-p">P</h2>
+            <dl>
+              <div class="termino">
+                <dt id="pasarela"><dfn>Pasarela</dfn> <span class="original">(<span lang="en">gateway</span>)</span></dt>
+                <dd>
+                  <p>Un nodo conectado a internet que hace de puente entre la malla de radio y un servidor <a href="#mqtt">MQTT</a>.</p>
+                  <p>Puede subir lo que escucha (uplink) y bajar mensajes de internet a la radio (downlink), según cómo esté configurado cada canal.</p>
+                  <p class="relacionados">Relacionado: <a href="#mqtt">MQTT</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="preset"><dfn>Preset</dfn> <span class="original">(<span lang="en">modem preset</span>)</span></dt>
+                <dd>
+                  <p>Una combinación lista de ajustes de radio: <a href="#sf">factor de dispersión</a>, <a href="#ancho-de-banda">ancho de banda</a> y <a href="#tasa-de-codificacion">tasa de codificación</a>.</p>
+                  <p>Dos nodos solo se escuchan si usan el mismo preset. El predeterminado es Long Fast.</p>
+                  <p class="relacionados">Relacionado: <a href="#region">Región</a>, <a href="#sf">Factor de dispersión (SF)</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="presupuesto-de-enlace"><dfn>Presupuesto de enlace</dfn> <span class="original">(<span lang="en">link budget</span>)</span></dt>
+                <dd>
+                  <p>Cuánta señal se puede «perder» en el camino entre dos equipos sin que deje de entenderse. Se mide en dB: cuanto más alto, más alcance posible.</p>
+                  <p>Depende de la potencia, las antenas y el preset. Los obstáculos y la distancia se van comiendo ese presupuesto.</p>
+                  <p class="relacionados">Relacionado: <a href="#sf">Factor de dispersión (SF)</a>, <a href="#dbm">dBm</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="psk"><dfn>PSK</dfn> <span class="original">(<span lang="en">Pre-Shared Key</span>)</span></dt>
+                <dd>
+                  <p>La clave compartida de un <a href="#canal">canal</a>. Solo los nodos que la tienen pueden leer sus mensajes.</p>
+                  <p>El canal primario predeterminado usa la clave AQ==, que es pública. Una clave propia puede ser de 128 o 256 bits.</p>
+                  <p class="relacionados">Relacionado: <a href="#aes">AES</a>, <a href="#canal">Canal</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-r">
+            <h2 class="glosario__letra" id="letra-r">R</h2>
+            <dl>
+              <div class="termino">
+                <dt id="region"><dfn>Región</dfn> <span class="original">(<span lang="en">LoRa region</span>)</span></dt>
+                <dd>
+                  <p>El ajuste que le dice al nodo qué banda de frecuencias puede usar legalmente. Mientras no la configures, el nodo no transmite.</p>
+                  <p>Según la documentación oficial, para Argentina corresponde ANZ (915–928 MHz). Ver <a href="configurar.html">Cómo configurar un nodo</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#ism">ISM (bandas ISM)</a>, <a href="#enacom">ENACOM</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="router"><dfn>Router</dfn></dt>
+                <dd>
+                  <p>Un rol para nodos de infraestructura, como uno en un cerro o una torre: siempre retransmite una vez y tiene prioridad en el enrutamiento.</p>
+                  <p>Conviene coordinarlo con la comunidad: un router mal ubicado puede sumar tráfico sin mejorar la cobertura.</p>
+                  <p class="relacionados">Relacionado: <a href="#cliente">Cliente</a>, <a href="#nodo">Nodo</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="rssi"><dfn>RSSI</dfn> <span class="original">(<span lang="en">Received Signal Strength Indicator</span>)</span></dt>
+                <dd>
+                  <p>Qué tan fuerte llegó una señal, en <a href="#dbm">dBm</a>. Cuanto más cerca de cero, más fuerte: −70 dBm es una señal fuerte y −120 dBm, muy débil.</p>
+                  <p>Las apps califican la calidad del enlace con el <a href="#snr">SNR</a> más que con el RSSI.</p>
+                  <p class="relacionados">Relacionado: <a href="#snr">SNR</a>, <a href="#dbm">dBm</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-s">
+            <h2 class="glosario__letra" id="letra-s">S</h2>
+            <dl>
+              <div class="termino">
+                <dt id="salto"><dfn>Salto</dfn> <span class="original">(<span lang="en">hop</span>)</span></dt>
+                <dd>
+                  <p>Cada vez que un nodo intermedio retransmite un mensaje. Si A le manda a C pasando por B, el mensaje llegó a 1 salto.</p>
+                  <p>Ver el diagrama en <a href="meshtastic.html">Meshtastic y la red en malla</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#limite-de-saltos">Límite de saltos</a>, <a href="#inundacion-gestionada">Inundación gestionada</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="snr"><dfn>SNR</dfn> <span class="original">(<span lang="en">Signal-to-Noise Ratio</span>)</span></dt>
+                <dd>
+                  <p>Cuánto se destaca la señal sobre el ruido de fondo, en dB. Cuanto más alto, más clara.</p>
+                  <p>LoRa puede entender señales con SNR negativo, es decir, más débiles que el ruido.</p>
+                  <p class="relacionados">Relacionado: <a href="#rssi">RSSI</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-t">
+            <h2 class="glosario__letra" id="letra-t">T</h2>
+            <dl>
+              <div class="termino">
+                <dt id="tasa-de-codificacion"><dfn>Tasa de codificación</dfn> <span class="original">(<span lang="en">coding rate, CR</span>)</span></dt>
+                <dd>
+                  <p>Cuánta información extra se agrega para corregir errores, como repetir una palabra cuando hay ruido.</p>
+                  <p>Se escribe 4/5, 4/6, 4/7 o 4/8. Más redundancia da más confiabilidad, pero menos velocidad.</p>
+                  <p class="relacionados">Relacionado: <a href="#preset">Preset</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="telemetria"><dfn>Telemetría</dfn> <span class="original">(<span lang="en">telemetry</span>)</span></dt>
+                <dd>
+                  <p>Datos que un nodo envía sobre sí mismo o sobre su entorno: batería, voltaje, temperatura, humedad y otros.</p>
+                  <p class="relacionados">Relacionado: <a href="#nodo">Nodo</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="tiempo-en-el-aire"><dfn>Tiempo en el aire</dfn> <span class="original">(<span lang="en">airtime</span>)</span></dt>
+                <dd>
+                  <p>Cuánto tarda un mensaje en transmitirse. Mientras un nodo transmite, ocupa el canal y gasta energía.</p>
+                  <p>Los presets lentos usan más tiempo en el aire por mensaje. Por eso, en una malla muy concurrida, conviene un preset más rápido.</p>
+                  <p class="relacionados">Relacionado: <a href="#sf">Factor de dispersión (SF)</a>, <a href="#preset">Preset</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="traceroute"><dfn>Traceroute</dfn></dt>
+                <dd>
+                  <p>Una consulta que muestra el camino que siguió un mensaje por la malla, nodo por nodo y en los dos sentidos, con el <a href="#snr">SNR</a> de cada salto.</p>
+                  <p class="relacionados">Relacionado: <a href="#salto">Salto</a>.</p>
+                </dd>
+              </div>
+              <div class="termino">
+                <dt id="ttl"><dfn>TTL</dfn> <span class="original">(<span lang="en">Time To Live</span>)</span></dt>
+                <dd>
+                  <p>En muchas redes, un contador que limita cuántas veces se puede reenviar un paquete. Así ningún paquete circula para siempre.</p>
+                  <p>En Meshtastic se llama <a href="#limite-de-saltos">límite de saltos</a>.</p>
+                  <p class="relacionados">Relacionado: <a href="#limite-de-saltos">Límite de saltos</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-w">
+            <h2 class="glosario__letra" id="letra-w">W</h2>
+            <dl>
+              <div class="termino">
+                <dt id="waypoint"><dfn>Waypoint</dfn></dt>
+                <dd>
+                  <p>Un punto de referencia con nombre que se comparte en el mapa de la malla, como un refugio o un punto de encuentro.</p>
+                  <p class="relacionados">Relacionado: <a href="#gps">GPS</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+          <section class="glosario__grupo" aria-labelledby="letra-z">
+            <h2 class="glosario__letra" id="letra-z">Z</h2>
+            <dl>
+              <div class="termino">
+                <dt id="zona-de-fresnel"><dfn>Zona de Fresnel</dfn> <span class="original">(<span lang="en">Fresnel zone</span>)</span></dt>
+                <dd>
+                  <p>Un espacio con forma de pelota de rugby alrededor de la línea recta entre dos antenas. Para un buen enlace no alcanza con verse: ese espacio también tiene que estar bastante despejado.</p>
+                  <p>Como regla práctica, se busca que al menos el 60 % de la primera zona esté libre. Por ejemplo, a 10 km y en 915 MHz, su radio en el punto medio es de unos 29 m.</p>
+                  <p class="relacionados">Relacionado: <a href="#linea-de-vista">Línea de vista</a>.</p>
+                </dd>
+              </div>
+            </dl>
+          </section>
+        </div>
+        <p class="sin-resultados" id="sin-resultados" hidden>No encontramos ese término. Probá con otra palabra o <a href="comunidad.html">sugerinos que lo agreguemos</a>.</p>
+
+        <section class="para-saber-mas" aria-labelledby="titulo-psm">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/docs/terms/">Glosario oficial de Meshtastic</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://www.semtech.com/lora/what-is-lora">Qué es LoRa, en el sitio de Semtech</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://www.enacom.gob.ar/bandas-de-uso-compartido-sin-autorizacion_p680">Bandas de uso compartido sin autorización, ENACOM</a></span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

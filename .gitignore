@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+.venv/
+# Grabaciones de mensajes MQTT para depurar (pueden contener datos de terceros)
+*.jsonl
+ingesta.log
+# Sistema
+.DS_Store

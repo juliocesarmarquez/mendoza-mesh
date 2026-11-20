@@ -1,0 +1,6 @@
+{
+  "_comentario": "Nodos que pidieron no aparecer en el mapa. Agregá una entrada por nodo con su ID (el que empieza con !). La ingesta no guarda nada de estos nodos y los oculta de vecinos y traceroutes. Ver README.md.",
+  "nodos": [
+    { "id": "!00000000", "pedido": "2026-11-20", "nota": "Entrada de ejemplo: reemplazala o borrala." }
+  ]
+}

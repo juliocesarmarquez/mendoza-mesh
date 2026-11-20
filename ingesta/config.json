@@ -1,0 +1,24 @@
+{
+  "_comentario": "Configuración de la ingesta del mapa de Cuyo. Ver README.md. Las variables de entorno MQTT_HOST, MQTT_PUERTO, MQTT_USUARIO, MQTT_CLAVE y MQTT_TEMAS reemplazan estos valores.",
+  "broker": {
+    "host": "mqtt.meshtastic.org",
+    "puerto": 1883,
+    "usuario": "meshdev",
+    "clave": "large4cats",
+    "tls": false
+  },
+  "temas": ["msh/ANZ/#"],
+  "recorte": { "lat_min": -37.7, "lat_max": -28.0, "lon_min": -70.7, "lon_max": -64.3 },
+  "decimales": 2,
+  "intervalo_escritura_min": 10,
+  "inactivo_tras_horas": 24,
+  "olvidar_tras_dias": 7,
+  "max_traceroutes": 100,
+  "respetar_ok_to_mqtt": true,
+  "conservar_ejemplos": false,
+  "archivos": {
+    "nodos": "data/nodes.json",
+    "excluidos": "data/excluidos.json",
+    "provincias": "data/provincias-cuyo.geojson"
+  }
+}

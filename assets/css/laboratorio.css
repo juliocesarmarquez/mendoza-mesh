@@ -1,0 +1,135 @@
+/* ==========================================================================
+   Mendoza Mesh: laboratorio (simulador, calculadora y quiz)
+   ========================================================================== */
+.lab-bloque { max-width: 54rem; margin-top: var(--esp-8); }
+.lab-bloque > h2 { margin-bottom: var(--esp-3); }
+.lab-bloque > p { max-width: var(--medida); margin-bottom: var(--esp-4); }
+.lab-bloque .aviso { margin-bottom: var(--esp-5); }
+
+/* --- Simulador ------------------------------------------------------------------ */
+.simulador {
+  background: var(--superficie);
+  border: 1px solid var(--linea-suave);
+  border-radius: var(--radio);
+  padding: var(--esp-4) var(--esp-5) var(--esp-5);
+}
+@media (max-width: 40rem) { .simulador { padding: var(--esp-3); } }
+.sim-controles { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-2) var(--esp-3); font-size: 1rem; }
+.sim-controles label { font-weight: 700; }
+.sim-controles select {
+  min-height: 2.5rem;
+  padding: 0.3rem var(--esp-3);
+  background: var(--fondo);
+  color: var(--texto);
+  border: 2px solid var(--borde);
+  border-radius: var(--radio-chico);
+}
+.sim-controles .boton-chico { margin: 0; }
+.sim-lienzo { width: 100%; height: auto; margin-top: var(--esp-3); }
+.sim-suelo { stroke: var(--borde); stroke-width: 2; }
+.sim-cerro { fill: var(--superficie-2); stroke: var(--borde); stroke-width: 2; stroke-linejoin: round; }
+.sim-enlace { stroke: var(--borde); stroke-width: 2.5; stroke-dasharray: 7 6; transition: stroke 0.3s, stroke-width 0.3s; }
+.sim-enlace--activo { stroke: var(--vino); stroke-width: 5; stroke-dasharray: none; }
+.sim-nodo { cursor: pointer; outline: none; }
+.sim-nodo circle { fill: var(--superficie); stroke: var(--azul); stroke-width: 4; }
+.sim-nodo:hover circle { fill: var(--superficie-2); }
+.sim-nodo:focus-visible circle { stroke: var(--foco); stroke-width: 6; }
+.sim-nodo__letra { font: 700 22px var(--fuente-texto); fill: var(--texto); text-anchor: middle; dominant-baseline: central; pointer-events: none; }
+.sim-nodo__estado { font: 700 16px var(--fuente-texto); fill: var(--texto); text-anchor: middle; pointer-events: none; paint-order: stroke; stroke: var(--superficie); stroke-width: 5px; stroke-linejoin: round; }
+.sim-nodo__estado--derecha { text-anchor: end; }
+.sim-nodo.es-origen circle { fill: var(--vino); stroke: var(--vino); }
+.sim-nodo.es-origen .sim-nodo__letra { fill: var(--sobre-vino); }
+.sim-nodo.es-retransmite circle { fill: var(--azul); stroke: var(--azul); }
+.sim-nodo.es-retransmite .sim-nodo__letra { fill: var(--fondo); }
+.sim-nodo.es-recibido circle { fill: var(--verde); stroke: var(--verde); }
+.sim-nodo.es-recibido .sim-nodo__letra { fill: var(--fondo); }
+.sim-nodo.es-fuera circle,
+.sim-nodo.es-sin-saltos circle { fill: var(--superficie); stroke: var(--texto-suave); stroke-dasharray: 5 4; }
+.sim-onda { fill: none; stroke: var(--vino); stroke-width: 3; pointer-events: none; transform-box: fill-box; transform-origin: center; }
+@media (prefers-reduced-motion: no-preference) {
+  .sim-onda { animation: sim-onda 1s ease-out forwards; }
+}
+@keyframes sim-onda { from { transform: scale(1); opacity: 0.9; } to { transform: scale(4.5); opacity: 0; } }
+.sim-estado { margin-top: var(--esp-3); font-weight: 700; }
+.sim-registro { margin: var(--esp-2) 0 var(--esp-4); padding-left: 1.4em; font-size: 1rem; }
+.sim-registro:empty { display: none; }
+.sim-registro li + li { margin-top: var(--esp-1); }
+.sim-muestra--retransmite { background: var(--azul); }
+.sim-muestra--fuera { background: var(--superficie); border: 2px dashed var(--texto-suave); }
+
+/* --- Calculadora ------------------------------------------------------------------ */
+.calc {
+  background: var(--superficie);
+  border: 1px solid var(--linea-suave);
+  border-radius: var(--radio);
+  padding: var(--esp-5);
+}
+.calc-campos {
+  display: grid;
+  gap: var(--esp-4) var(--esp-5);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 14rem), 1fr));
+  margin-bottom: var(--esp-5);
+}
+/* Los estilos de .campo están en base.css */
+.calc-errores { margin-top: var(--esp-4); padding: var(--esp-3) var(--esp-4) var(--esp-3) 2.2rem; border-left: 4px solid var(--vino); background: var(--superficie-2); border-radius: var(--radio-chico); }
+.calc-resultado { margin-top: var(--esp-5); }
+.calc-resultado:empty { margin: 0; }
+.calc-veredicto {
+  padding: var(--esp-3) var(--esp-4);
+  border-radius: var(--radio-chico);
+  border-left: 6px solid var(--verde);
+  background: var(--superficie);
+  border-top: 1px solid var(--linea-suave);
+  border-right: 1px solid var(--linea-suave);
+  border-bottom: 1px solid var(--linea-suave);
+}
+.calc-veredicto--regular { border-left-color: var(--ocre-fondo); }
+.calc-veredicto--malo { border-left-color: var(--vino); }
+.calc-datos { display: grid; grid-template-columns: minmax(10rem, auto) 1fr; gap: var(--esp-2) var(--esp-4); margin-top: var(--esp-4); }
+.calc-datos dt { font-weight: 700; }
+.calc-datos dd { margin: 0; }
+@media (max-width: 40rem) {
+  .calc { padding: var(--esp-4); }
+  .calc-datos { grid-template-columns: 1fr; }
+  .calc-datos dd { margin-bottom: var(--esp-2); }
+}
+.calc-formulas { margin-top: var(--esp-5); max-width: var(--medida); }
+.calc-formulas summary { cursor: pointer; font-weight: 700; color: var(--vino); }
+.calc-formulas ul { margin-top: var(--esp-3); padding-left: 1.3em; }
+.calc-formulas li + li { margin-top: var(--esp-2); }
+
+/* --- Quiz ------------------------------------------------------------------------------ */
+.quiz { display: grid; gap: var(--esp-5); }
+.quiz fieldset {
+  margin: 0;
+  padding: var(--esp-4) var(--esp-5) var(--esp-5);
+  background: var(--superficie);
+  border: 1px solid var(--linea-suave);
+  border-radius: var(--radio);
+  min-width: 0;
+}
+.quiz legend { float: left; width: 100%; padding: 0; margin-bottom: var(--esp-3); font-weight: 700; font-size: 1.125rem; }
+.quiz legend + * { clear: left; }
+.quiz-num { color: var(--ocre); }
+.quiz label {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--esp-3);
+  padding: var(--esp-2) var(--esp-3);
+  margin-top: var(--esp-2);
+  border: 1px solid var(--linea-suave);
+  border-radius: var(--radio-chico);
+  cursor: pointer;
+}
+.quiz label:hover { background: var(--superficie-2); }
+.quiz input[type="radio"] { width: 1.2rem; height: 1.2rem; margin-top: 0.25rem; accent-color: var(--vino); flex: none; }
+.quiz-opcion--correcta { border: 2px solid var(--verde) !important; }
+.quiz-opcion--correcta::after { content: "✓ correcta"; margin-left: auto; color: var(--verde); font-weight: 700; white-space: nowrap; }
+.quiz-opcion--elegida { border: 2px dashed var(--vino) !important; }
+.quiz-opcion--elegida::after { content: "✗ tu respuesta"; margin-left: auto; color: var(--vino); font-weight: 700; white-space: nowrap; }
+.quiz .quiz-comprobar { margin-top: var(--esp-3); }
+.quiz-respuesta { margin-top: var(--esp-3); }
+.quiz-respuesta:empty { margin: 0; }
+.quiz-respuesta--bien strong { color: var(--verde); }
+.quiz-respuesta--mal strong { color: var(--vino); }
+.quiz-puntaje { font-size: 1.125rem; }

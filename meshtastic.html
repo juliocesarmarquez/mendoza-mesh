@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meshtastic y la red en malla · Mendoza Mesh</title>
+  <meta name="description" content="Cómo funciona una malla Meshtastic: nodos, retransmisión, saltos, roles, canales cifrados y presets, con un diagrama paso a paso.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/meshtastic.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Meshtastic y la red en malla · Mendoza Mesh">
+  <meta property="og:description" content="Cómo funciona una malla Meshtastic: nodos, retransmisión, saltos, roles, canales cifrados y presets, con un diagrama paso a paso.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/meshtastic.html">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html" aria-current="page">Meshtastic</a></li>
+          <li><a href="configurar.html">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html">Laboratorio</a></li>
+          <li><a href="glosario.html">Glosario</a></li>
+          <li><a href="preguntas.html">Preguntas</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+    <div class="contenedor encabezado-pagina">
+      <p class="antetitulo">Paso 2 de la ruta</p>
+      <h1>Meshtastic y la red en malla</h1>
+      <p class="entradilla">Qué es un nodo, cómo viaja un mensaje de nodo en nodo y qué hay que configurar para que todos se entiendan.</p>
+    </div>
+
+    <div class="contenedor pagina">
+      <div class="prosa">
+        <nav class="indice-pagina" aria-labelledby="titulo-indice">
+          <h2 id="titulo-indice">En esta página</h2>
+          <ol>
+            <li><a href="#idea-simple">La idea simple</a></li>
+            <li><a href="#nodos">Nodos</a></li>
+            <li><a href="#retransmision">Retransmisión y saltos</a></li>
+            <li><a href="#roles">Roles de los nodos</a></li>
+            <li><a href="#canales">Canales y cifrado</a></li>
+            <li><a href="#presets">Presets: velocidad o alcance</a></li>
+          </ol>
+        </nav>
+
+        <aside class="nota-campo" aria-labelledby="idea-simple">
+          <h2 id="idea-simple">La idea simple: un aviso que se repite en el barrio</h2>
+          <p>Imaginá que alguien grita un aviso en una esquina. Cada vecino que lo escucha lo repite una sola vez, y solo si nadie cerca lo repitió antes. Así el aviso recorre el barrio sin que todos griten a la vez. Además, el aviso lleva un contador: cada vez que alguien lo repite, el contador baja, y cuando llega a cero nadie lo repite más.</p>
+          <p class="firma">Meshtastic® es el programa que hace que pequeños equipos LoRa se comporten como esos vecinos.</p>
+        </aside>
+
+        <h2 id="nodos">Nodos</h2>
+        <p>Un <a href="glosario.html#nodo">nodo</a> es un equipo con una radio <a href="glosario.html#lora">LoRa</a>, un pequeño procesador (<a href="glosario.html#microcontrolador">microcontrolador</a>) y una antena. Algunos suman <a href="glosario.html#gps">GPS</a>, pantalla o batería. Tiene instalado el <a href="glosario.html#firmware">firmware</a> de Meshtastic, el programa que maneja la radio.</p>
+        <p>Desde el celular lo usás con la app oficial, conectada por Bluetooth o por cable USB. Los equipos con chip ESP32 también se pueden conectar por wifi.</p>
+        <p>Cada nodo tiene un <a href="glosario.html#id-de-nodo">ID</a> único y dos nombres que elegís vos, uno largo y uno corto, que los demás ven en la lista de nodos y en el mapa.</p>
+
+        <h2 id="retransmision">Retransmisión y saltos</h2>
+        <p>Meshtastic usa <a href="glosario.html#inundacion-gestionada">inundación gestionada</a>. Cuando un nodo recibe un mensaje, espera un instante. Si escucha que otro nodo ya lo retransmitió, no hace nada; si no, lo retransmite él. Los nodos más lejanos (los que reciben la señal más débil) esperan menos, así el mensaje avanza más rápido.</p>
+        <p>Cada mensaje lleva un <a href="glosario.html#limite-de-saltos">límite de saltos</a>. Cada nodo que lo retransmite le resta uno, y cuando llega a cero nadie lo retransmite más. En Meshtastic, un <a href="glosario.html#salto">salto</a> es eso: <strong>una retransmisión</strong>. El límite predeterminado es 3 y el máximo es 7. La documentación oficial insiste en que 3 alcanza para casi todos los casos.</p>
+
+        <figure class="diagrama" aria-labelledby="diagrama-titulo">
+          <svg viewBox="70 22 580 240" role="img" aria-labelledby="svg-titulo svg-desc">
+            <title id="svg-titulo">Un mensaje que va de A a C pasando por B</title>
+            <desc id="svg-desc">A y C están a los dos lados de un cerro y no se ven. B está en la cima. A transmite y B recibe; B retransmite y C recibe. El camino directo de A a C está tapado por el cerro.</desc>
+            <defs>
+              <marker id="punta-flecha" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="4" markerHeight="4" orient="auto-start-reverse">
+                <path class="d-punta" d="M0 0 10 5 0 10z"/>
+              </marker>
+            </defs>
+            <line class="d-suelo" x1="30" y1="250" x2="690" y2="250"/>
+            <path class="d-cerro" d="M190 250 300 150l35 18 25-46 32 38 33-18 115 108z"/>
+            <path class="d-bloqueo" d="M138 205h444"/>
+            <path class="d-cruz" d="M348 193l24 24M372 193l-24 24"/>
+            <text class="d-texto-suave" x="360" y="240">sin línea de vista</text>
+            <path class="d-mastil" d="M360 122v-8"/>
+            <path class="d-flecha" d="M134 182Q220 104 328 92" marker-end="url(#punta-flecha)"/>
+            <path class="d-flecha" d="M392 92Q500 104 586 182" marker-end="url(#punta-flecha)"/>
+            <circle class="d-paso" cx="212" cy="100" r="19"/><text class="d-paso-num" x="212" y="100">1</text>
+            <circle class="d-paso" cx="508" cy="100" r="19"/><text class="d-paso-num" x="508" y="100">2</text>
+            <circle class="d-origen d-borde-nodo" cx="110" cy="205" r="26"/><text class="d-letra d-letra--vino" x="110" y="205">A</text>
+            <circle class="d-repetidor d-borde-nodo" cx="360" cy="88" r="26"/><text class="d-letra d-letra--fondo" x="360" y="88">B</text>
+            <circle class="d-destino d-borde-nodo" cx="610" cy="205" r="26"/><text class="d-letra d-letra--fondo" x="610" y="205">C</text>
+            <text class="d-texto" x="122" y="164">Origen</text>
+            <text class="d-texto" x="360" y="47">Repetidor</text>
+            <text class="d-texto" x="596" y="164">Destino</text>
+          </svg>
+          <figcaption>
+            <p id="diagrama-titulo">Un mensaje de A a C, paso a paso</p>
+            <ol>
+              <li><strong>A transmite</strong> el mensaje con un límite de 3 saltos. B, en la cima del cerro, lo recibe. C no lo escucha porque el cerro tapa la línea de vista.</li>
+              <li><strong>B retransmite</strong> el mensaje y le resta uno al límite, que queda en 2. Esa retransmisión es <strong>un salto</strong>. C lo recibe.</li>
+            </ol>
+            <p>El mensaje recorrió dos tramos de radio (A→B y B→C). Para Meshtastic llegó a <strong>1 salto</strong>, porque cuenta las retransmisiones y no los tramos.</p>
+            <ul class="leyenda" aria-label="Leyenda">
+              <li><span class="muestra muestra--origen" aria-hidden="true"></span>A: origen</li>
+              <li><span class="muestra muestra--repetidor" aria-hidden="true"></span>B: repetidor</li>
+              <li><span class="muestra muestra--destino" aria-hidden="true"></span>C: destino</li>
+              <li><span class="muestra muestra--paso" aria-hidden="true"></span>Orden de las transmisiones</li>
+              <li><span class="muestra muestra--bloqueo" aria-hidden="true"></span>Camino tapado por el cerro</li>
+            </ul>
+          </figcaption>
+        </figure>
+
+        <p>Los <a href="glosario.html#mensaje-directo">mensajes directos</a> (de un nodo a otro) empiezan igual. Desde el firmware 2.6, cuando la malla descubre qué nodo sirve de puente hacia el destino, los siguientes mensajes los retransmite solo ese nodo y no todos.</p>
+        <p>¿Querés verlo en movimiento? Probá el simulador de malla en el <a href="laboratorio.html">Laboratorio</a>.</p>
+
+        <h2 id="roles">Roles de los nodos</h2>
+        <p>El rol le dice al nodo cómo comportarse en la malla. Si recién empezás, dejá el rol predeterminado, <span class="etiqueta">CLIENT</span>. Estos son los roles más usados, según la documentación del firmware 2.8:</p>
+        <div class="tabla-caja" role="region" aria-labelledby="tabla-roles" tabindex="0">
+          <table>
+            <caption id="tabla-roles">Roles de los nodos y cuándo usar cada uno</caption>
+            <thead>
+              <tr><th scope="col">Rol</th><th scope="col">Qué hace</th><th scope="col">Cuándo usarlo</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row"><span class="etiqueta">CLIENT</span><br>cliente</th><td>Envía y recibe mensajes. Retransmite lo que escucha si ningún otro nodo lo hizo antes.</td><td>Es el predeterminado y el adecuado para casi todos los nodos personales.</td></tr>
+              <tr><th scope="row"><span class="etiqueta">CLIENT_MUTE</span><br>cliente silencioso</th><td>Participa de la malla, pero no retransmite los mensajes de otros.</td><td>Cuando hay varios nodos tuyos en el mismo lugar, para no sumar tráfico.</td></tr>
+              <tr><th scope="row"><span class="etiqueta">CLIENT_BASE</span><br>base personal</th><td>Siempre retransmite los mensajes de y hacia tus nodos favoritos. Con el resto se comporta como CLIENT.</td><td>Un nodo en el techo que ayuda a tus nodos de interior o peor ubicados.</td></tr>
+              <tr><th scope="row"><span class="etiqueta">ROUTER</span><br><a href="glosario.html#router">router</a></th><td>Nodo de infraestructura: siempre retransmite una vez y tiene prioridad en el enrutamiento.</td><td>Lugares con gran cobertura, como un cerro o una torre. Coordinalo con la comunidad antes de instalarlo.</td></tr>
+              <tr><th scope="row"><span class="etiqueta">ROUTER_LATE</span><br>router tardío</th><td>Siempre retransmite una vez, pero después de todos los demás.</td><td>Cubrir zonas sin señal o reforzar un grupo de nodos sin afectar al resto de la malla.</td></tr>
+              <tr><th scope="row"><span class="etiqueta">TRACKER</span><br>rastreador</th><td>Prioriza enviar su posición <abbr title="Sistema de posicionamiento global">GPS</abbr>.</td><td>Seguir personas, vehículos u objetos.</td></tr>
+              <tr><th scope="row"><span class="etiqueta">SENSOR</span><br>sensor</th><td>Prioriza enviar <a href="glosario.html#telemetria">telemetría</a> (datos de sensores).</td><td>Estaciones de medición, por ejemplo de temperatura en un viñedo.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tabla-nota">Hay otros roles para usos específicos: <span class="etiqueta">CLIENT_HIDDEN</span>, <span class="etiqueta">LOST_AND_FOUND</span>, <span class="etiqueta">TAK</span> y <span class="etiqueta">TAK_TRACKER</span>. <span class="obsoleto"><span class="etiqueta">REPEATER</span> está obsoleto desde el firmware 2.7.11 y <span class="etiqueta">ROUTER_CLIENT</span> desde el 2.3.15.</span></p>
+
+        <h2 id="canales">Canales y cifrado</h2>
+        <p>Un <a href="glosario.html#canal">canal</a> es como un grupo de chat con su propia clave. Cada nodo puede tener hasta 8 canales: el canal 0 es el <a href="glosario.html#canal-primario">primario</a> y los demás son secundarios.</p>
+        <ul>
+          <li><strong>El canal primario predeterminado es público.</strong> Su clave (<a href="glosario.html#psk">PSK</a>) es <code>AQ==</code> y está publicada, así que cualquiera puede leer lo que se manda ahí.</li>
+          <li><strong>Para un grupo privado, agregá un canal secundario</strong> con una clave nueva y compartila solo con quienes quieras. Los canales se cifran con <a href="glosario.html#aes">AES</a> de 128 o 256 bits.</li>
+          <li><strong>No renombres el canal primario para hacerlo privado.</strong> Su nombre define la frecuencia en la que transmite el nodo: si lo cambiás, tu nodo queda aislado del resto de la malla.</li>
+          <li><strong>Los mensajes directos usan otra clave</strong>, que solo comparten el emisor y el destinatario.</li>
+        </ul>
+        <p>Un límite importante: el encabezado de cada mensaje (quién lo manda y a quién) no se cifra, porque los nodos lo necesitan para retransmitir. Y si alguien obtiene la clave de un canal, puede leer los mensajes que haya guardado antes. Por eso la documentación recomienda no poner canales privados en nodos que quedan solos, como un router en un cerro, y cambiar las claves cada tanto.</p>
+
+        <h2 id="presets">Presets: velocidad o alcance</h2>
+        <p>Un <a href="glosario.html#preset">preset</a> agrupa tres ajustes de la radio: el <a href="glosario.html#sf">factor de dispersión</a>, el <a href="glosario.html#ancho-de-banda">ancho de banda</a> y la <a href="glosario.html#tasa-de-codificacion">tasa de codificación</a>. <strong>Dos nodos solo se escuchan si usan la misma <a href="glosario.html#region">región</a> y el mismo preset.</strong> Con presets distintos no hay un enlace más lento: no hay enlace.</p>
+        <div class="tabla-caja" role="region" aria-labelledby="tabla-presets" tabindex="0">
+          <table>
+            <caption id="tabla-presets">Presets de uso general, del más rápido al de más alcance</caption>
+            <thead>
+              <tr><th scope="col">Preset</th><th scope="col">SF</th><th scope="col">Ancho de banda</th><th scope="col">Velocidad</th><th scope="col">Presupuesto de enlace</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Short Turbo</th><td class="num">7</td><td class="num">500 kHz</td><td class="num">21,88 kbps</td><td class="num">140 dB</td></tr>
+              <tr><th scope="row">Short Fast</th><td class="num">7</td><td class="num">250 kHz</td><td class="num">10,94 kbps</td><td class="num">143 dB</td></tr>
+              <tr><th scope="row">Short Slow</th><td class="num">8</td><td class="num">250 kHz</td><td class="num">6,25 kbps</td><td class="num">145,5 dB</td></tr>
+              <tr><th scope="row">Medium Turbo <small>(firmware 2.8)</small></th><td class="num">9</td><td class="num">500 kHz</td><td class="num">7,03 kbps</td><td class="num">145 dB</td></tr>
+              <tr><th scope="row">Medium Fast</th><td class="num">9</td><td class="num">250 kHz</td><td class="num">3,52 kbps</td><td class="num">148 dB</td></tr>
+              <tr><th scope="row">Medium Slow</th><td class="num">10</td><td class="num">250 kHz</td><td class="num">1,95 kbps</td><td class="num">150,5 dB</td></tr>
+              <tr><th scope="row">Long Turbo</th><td class="num">11</td><td class="num">500 kHz</td><td class="num">1,34 kbps</td><td class="num">150 dB</td></tr>
+              <tr><th scope="row">Long Fast <span class="etiqueta">predeterminado</span></th><td class="num">11</td><td class="num">250 kHz</td><td class="num">1,07 kbps</td><td class="num">153 dB</td></tr>
+              <tr><th scope="row">Long Moderate</th><td class="num">11</td><td class="num">125 kHz</td><td class="num">0,34 kbps</td><td class="num">156 dB</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tabla-nota">Fuente: documentación oficial de Meshtastic (versión 2.8). Medium Turbo no figura en la documentación de la 2.7, que hoy es la versión Beta recomendada. El presupuesto de enlace supone 22&nbsp;dBm de potencia y una antena de 0&nbsp;dBi. Los presets Turbo usan 500&nbsp;kHz, y ese ancho no está permitido en todas las regiones <span class="verificar">[verificar si se permite en Argentina]</span>.</p>
+        <p>Muchas comunidades grandes se pasaron a presets más rápidos para descongestionar la malla. Antes de elegir, averiguá cuál usa la red de tu zona. Según la comunidad Meshtastic Argentina, en Mendoza se usa Long Fast <span class="verificar">[verificar preset en San Juan y San Luis]</span>. Las apps de Android y Apple incluyen <span lang="en">Local Mesh Discovery</span>, una búsqueda que escucha cada preset y te muestra cuál tiene actividad cerca.</p>
+
+        <section class="para-saber-mas" aria-labelledby="titulo-psm">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/docs/overview/mesh-algo/">Algoritmo de la malla</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/configuration/radio/device/">Roles de los nodos</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/configuration/radio/channels/">Configuración de canales</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/overview/encryption/">Cifrado en Meshtastic</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/overview/radio-settings/">Ajustes de radio y presets</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/joining-your-local-mesh/">Cómo sumarse a la malla de tu zona</a> <span class="nota">(en inglés)</span></span></li>
+          </ul>
+        </section>
+
+        <nav class="paginador" aria-label="Ruta de aprendizaje">
+          <a href="lora.html"><span>Anterior</span><strong>¿Qué es LoRa?</strong></a>
+          <a class="paginador__siguiente" href="equipos.html"><span>Siguiente</span><strong>Equipos recomendados</strong></a>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Mendoza Mesh · LoRa y Meshtastic en Cuyo</title>
+  <meta name="description" content="Aprendé LoRa y Meshtastic desde cero y sumate a la red comunitaria de radio de Mendoza, San Juan y San Luis.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Mendoza Mesh · LoRa y Meshtastic en Cuyo">
+  <meta property="og:description" content="Aprendé LoRa y Meshtastic desde cero y sumate a la red comunitaria de radio de Mendoza, San Juan y San Luis.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html">Meshtastic</a></li>
+          <li><a href="configurar.html">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html">Laboratorio</a></li>
+          <li><a href="glosario.html">Glosario</a></li>
+          <li><a href="preguntas.html">Preguntas</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+
+    <!-- 1. Portada -->
+    <section class="portada" aria-labelledby="titulo-portada">
+      <div class="contenedor portada__rejilla">
+        <div class="portada__texto">
+          <p class="antetitulo">Red comunitaria LoRa · Mendoza, San Juan y San Luis</p>
+          <h1 id="titulo-portada">Mendoza <span>Mesh</span></h1>
+          <p class="portada__bajada">Mensajes por radio, sin internet ni señal de celular, en una red hecha por la comunidad de Cuyo.</p>
+          <div class="portada__acciones">
+            <a class="boton boton--primario" href="lora.html">
+              Empezá hoy
+              <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </a>
+            <a class="boton boton--secundario" href="mapa.html">Ver el mapa de Cuyo</a>
+          </div>
+          <p class="portada__dato">Para principiantes, makers y radioaficionados. Sin jerga sin explicar.</p>
+        </div>
+
+        <figure class="pantalla" aria-labelledby="pantalla-desc">
+          <div class="pantalla__equipo" aria-hidden="true">
+            <div class="pantalla__vidrio">
+              <p class="pantalla__barra"><span>MENDOZA MESH</span><span class="pantalla__senal"><i></i><i></i><i></i></span></p>
+              <p class="pantalla__de">De: EJEMPLO·Cerro</p>
+              <p class="pantalla__msg">«¿Me escuchan desde el valle?»</p>
+              <p class="pantalla__saltos">Llegó en <b>2 saltos</b></p>
+            </div>
+          </div>
+          <figcaption id="pantalla-desc">Ejemplo ilustrativo: un mensaje enviado desde un cerro llega al valle después de pasar por dos nodos.</figcaption>
+        </figure>
+      </div>
+
+      <svg class="portada__paisaje" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+        <g class="p-estrellas">
+          <circle class="p-estrella" cx="120" cy="60" r="1.6"/><circle class="p-estrella" cx="310" cy="96" r="1.2"/>
+          <circle class="p-estrella" cx="520" cy="44" r="1.5"/><circle class="p-estrella" cx="690" cy="88" r="1.1"/>
+          <circle class="p-estrella" cx="905" cy="52" r="1.6"/><circle class="p-estrella" cx="1010" cy="100" r="1.2"/>
+          <circle class="p-estrella" cx="1300" cy="70" r="1.5"/><circle class="p-estrella" cx="1400" cy="120" r="1.1"/>
+        </g>
+        <circle class="p-astro" cx="1150" cy="118" r="44"/>
+        <path class="p-lejano" d="M0 250 60 222l50 14 60-48 45 24 45-44 40 28 50-46 45 32 55-44 50 38 60-48 50 42 50-24 60 40 60-74 55 48 45-20 50 42 60-34 60 44 60-34 60 40 60-30 60 38 60-28 90 34v188H0z"/>
+        <path class="p-nieve" d="M780 112l12 10-6-1-5 6-6-5-8 6zM560 128l10 8-5-1-5 5-5-5-7 3zM450 138l10 8-5-1-5 5-5-4-6 1zM350 150l9 6h-5l-4 5-4-4-6 2zM880 140l10 8-5-1-5 4-4-5-5-2z"/>
+        <path class="p-medio" d="M0 292 80 252l60 20 70-54 50 28 70-42 50 32 60-24 60 38 70-42 70 38 60-20 60 36 70-44 70 38 60-24 70 34 70-38 60 28 70-20 70 30 70-20 70 16v138H0z"/>
+        <path class="p-cerca" d="M0 322c80-22 140-4 220-26s140 16 230 4 150 18 250 10 160-24 260-10 160-8 260-4 160 16 220 8v96H0z"/>
+        <path class="p-tierra" d="M0 340c300-8 1100-8 1440 0v60H0z"/>
+        <g fill="none" stroke-linecap="round">
+          <path class="p-vid-a" d="M0 350h1440" stroke-width="2.5" stroke-dasharray="10 7"/>
+          <path class="p-vid-b" d="M0 361h1440" stroke-width="3.5" stroke-dasharray="14 8"/>
+          <path class="p-vid-a" d="M0 374h1440" stroke-width="4.5" stroke-dasharray="18 9"/>
+          <path class="p-vid-b" d="M0 389h1440" stroke-width="6" stroke-dasharray="24 10"/>
+        </g>
+        <g>
+          <path class="p-enlace" d="M360 356 210 194"/>
+          <path class="p-enlace" d="M210 194q180-44 360-12"/>
+          <path class="p-enlace" d="M570 182q130-22 260 10"/>
+          <path class="p-enlace" d="M830 192q135-24 270 10"/>
+          <path class="p-enlace" d="M1100 202 980 352"/>
+          <path class="p-enlace" d="M830 192l150 160"/>
+          <path class="p-enlace" d="M570 182 360 356"/>
+        </g>
+        <g>
+          <path class="p-mastil" d="M210 218v-20M570 208v-22M830 218v-22M1100 228v-22"/>
+          <circle class="p-onda" cx="570" cy="182" r="10"/>
+          <circle class="p-onda p-onda--2" cx="570" cy="182" r="10"/>
+          <circle class="p-onda p-onda--3" cx="570" cy="182" r="10"/>
+          <circle class="p-nodo" cx="210" cy="194" r="7"/>
+          <circle class="p-nodo" cx="570" cy="182" r="8"/>
+          <circle class="p-nodo" cx="830" cy="192" r="7"/>
+          <circle class="p-nodo" cx="1100" cy="202" r="7"/>
+          <circle class="p-nodo" cx="360" cy="356" r="7"/>
+          <circle class="p-nodo" cx="980" cy="352" r="7"/>
+        </g>
+      </svg>
+    </section>
+
+    <!-- 2. ¿Qué es Mendoza Mesh? -->
+    <section class="seccion" aria-labelledby="titulo-que-es">
+      <div class="contenedor que-es">
+        <div class="prosa">
+          <p class="antetitulo">El proyecto</p>
+          <h2 id="titulo-que-es">¿Qué es Mendoza Mesh?</h2>
+          <p>Mendoza Mesh es una comunidad abierta que aprende, prueba y arma una red de radio en Cuyo con dos tecnologías. <strong>LoRa</strong> lleva mensajes cortos muy lejos gastando muy poca energía. <strong>Meshtastic®</strong> es un software de código abierto que convierte pequeños equipos de radio en una red de mensajería.</p>
+          <p>Cada participante tiene un <strong>nodo</strong>: un equipo de radio chico, que entra en la palma de la mano y se conecta al celular por Bluetooth o por cable. Cuando mandás un mensaje, tu nodo lo transmite. Los nodos que lo escuchan lo repiten, y así el mensaje puede llegar mucho más lejos que el alcance de un solo equipo.</p>
+          <p>En este sitio vas a encontrar explicaciones paso a paso, una guía para configurar tu primer nodo, un mapa de los nodos de la región y herramientas para practicar.</p>
+          <div class="detalle-tecnico">
+            <h3>El detalle técnico</h3>
+            <p>Es una red en malla (en inglés, <span lang="en">mesh</span>): no tiene una antena central ni un operador. Los nodos retransmiten los mensajes que reciben, con un límite de saltos para que no circulen para siempre. Lo explicamos en detalle en <a href="meshtastic.html">Meshtastic y la malla</a>.</p>
+          </div>
+        </div>
+
+        <aside class="nota-campo" aria-labelledby="titulo-analogia">
+          <h3 id="titulo-analogia">La analogía: el aviso que pasa de vecino en vecino</h3>
+          <p>Imaginá que querés avisarle algo a alguien que vive a diez cuadras y no tenés teléfono. Le pedís a tu vecino que le pase el aviso al suyo, y ese al siguiente. Nadie camina las diez cuadras, pero el aviso llega.</p>
+          <p>En una malla, cada nodo es ese vecino atento que escucha y pasa el mensaje.</p>
+          <p class="firma">Cuantos más vecinos atentos haya en el camino, más lejos llega el aviso.</p>
+        </aside>
+      </div>
+    </section>
+
+    <!-- 3. ¿Para quién es? -->
+    <section class="seccion seccion--alterna" aria-labelledby="titulo-para-quien">
+      <div class="contenedor">
+        <div class="seccion__encabezado">
+          <p class="antetitulo">Para quién es</p>
+          <h2 id="titulo-para-quien">Hay un lugar para cada experiencia</h2>
+          <p>No hace falta saber de radio ni de electrónica para empezar. Y si ya sabés, hay mucho para aportar.</p>
+        </div>
+        <ul class="rejilla lista-limpia">
+          <li class="tarjeta">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13c0-4.2 3-7 8-7 0 4.2-3 7-8 7z"/><path d="M12 13c0-3.6-2.6-6-7-6 0 3.6 2.6 6 7 6z"/><path d="M8 21h8"/></g></svg>
+            <h3>Principiantes curiosos</h3>
+            <p>Nunca tocaste una radio ni una placa electrónica. Empezamos desde cero, con analogías y definiendo cada palabra técnica.</p>
+          </li>
+          <li class="tarjeta">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.3-.4-.4-2.3z"/></g></svg>
+            <h3>Makers</h3>
+            <p>Te gusta soldar, imprimir cajas en 3D y programar. Vas a encontrar comparativas de placas, consejos de montaje y el código del mapa.</p>
+          </li>
+          <li class="tarjeta">
+            <svg class="tarjeta__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="1.4"/><path d="M12 10.4V21"/><path d="M8.5 21 12 10.4 15.5 21"/><path d="M9.6 17.2h4.8"/><path d="M7.6 4.6a6.2 6.2 0 0 1 8.8 0"/><path d="M9.6 6.8a3.3 3.3 0 0 1 4.8 0"/></g></svg>
+            <h3>Radioaficionados</h3>
+            <p>Ya conocés de propagación, antenas y línea de vista. Acá aplicás ese conocimiento a una red digital de baja potencia y ayudás a planificar los enlaces de la región.</p>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- 4. Ruta de aprendizaje -->
+    <section class="seccion" aria-labelledby="titulo-ruta">
+      <div class="contenedor">
+        <div class="seccion__encabezado">
+          <p class="antetitulo">Por dónde empezar</p>
+          <h2 id="titulo-ruta">Tu ruta en 5 pasos</h2>
+          <p>Seguí los hitos en orden, como en un sendero. Cada página empieza simple y después suma el detalle técnico.</p>
+        </div>
+        <ol class="ruta">
+          <li><a href="lora.html">Entendé LoRa</a><p>Cómo una radio chiquita llega tan lejos con tan poca energía.</p></li>
+          <li><a href="meshtastic.html">Conocé la malla</a><p>Nodos, saltos, roles y canales cifrados.</p></li>
+          <li><a href="equipos.html">Elegí tu equipo</a><p>Placas, antenas y accesorios que usa la comunidad.</p></li>
+          <li><a href="configurar.html">Configurá tu nodo</a><p>Seis pasos, con los errores más comunes.</p></li>
+          <li><a href="comunidad.html">Sumate a la red</a><p>Aparecé en el <a href="mapa.html">mapa</a> y conocé a la comunidad.</p></li>
+        </ol>
+        <p class="ruta-nota">¿Preferís aprender jugando? Probá el <a href="laboratorio.html">Laboratorio</a> con el simulador de malla y la calculadora de alcance. Si una palabra no se entiende, buscala en el <a href="glosario.html">Glosario</a>.</p>
+      </div>
+    </section>
+
+    <!-- 5. Usos -->
+    <section class="seccion seccion--alterna" aria-labelledby="titulo-usos">
+      <div class="contenedor">
+        <div class="seccion__encabezado">
+          <p class="antetitulo">Para qué sirve</p>
+          <h2 id="titulo-usos">Qué podés hacer con una malla</h2>
+        </div>
+        <ul class="usos">
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M4 5h16v11H9.5L5 19.5V16H4z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+            <p><strong>Mensajes sin señal</strong><span>Escribí y recibí mensajes de texto cortos entre nodos, sin internet ni red celular.</span></p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"><path d="M12 21s-6.5-5.8-6.5-11A6.5 6.5 0 0 1 18.5 10c0 5.2-6.5 11-6.5 11z"/><circle cx="12" cy="10" r="2.3"/></g></svg>
+            <p><strong>Salidas a la montaña</strong><span>Compartí tu posición con tu grupo durante un trekking, solo si querés.</span></p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 20.5 9 10l4 6 3-4 5 8.5z"/><path d="M9 10V3.5l4.5 1.6L9 6.7"/></g></svg>
+            <p><strong>Eventos al aire libre</strong><span>Coordiná carreras, ferias o encuentros donde la red celular no llega o se satura.</span></p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M10 14.3V5a2 2 0 0 1 4 0v9.3a4 4 0 1 1-4 0z"/><path d="M12 9v7.5"/></g></svg>
+            <p><strong>Sensores a distancia</strong><span>Enviá datos de sensores, como la temperatura de un viñedo o la batería de un nodo en un cerro.</span></p>
+          </li>
+          <li>
+            <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="8" cy="8" r="3"/><circle cx="17" cy="9.5" r="2.4"/><path d="M2.8 19.5a5.2 5.2 0 0 1 10.4 0"/><path d="M13.8 15.4a4.3 4.3 0 0 1 7.4 3.1"/></g></svg>
+            <p><strong>Aprender en comunidad</strong><span>Practicá radio, electrónica y redes con otras personas de la región.</span></p>
+          </li>
+        </ul>
+        <div class="aviso aviso--importante" role="note">
+          <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5"/><path d="M12 17.4v.1"/></g></svg>
+          <p><strong>Importante:</strong> una red comunitaria funciona gracias a los nodos que haya en el camino y no garantiza que cada mensaje llegue. No reemplaza a los servicios de emergencia oficiales ni a los equipos de comunicación que te exijan para una actividad de montaña.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Llamada a la acción -->
+    <section class="banda" aria-labelledby="titulo-banda">
+      <div class="contenedor banda__fila">
+        <div>
+          <h2 id="titulo-banda">¿Ya tenés un nodo? Sumalo a la red de Cuyo</h2>
+          <p>Conocé el mapa de la región, los próximos encuentros y los canales de la comunidad.</p>
+        </div>
+        <a class="boton" href="comunidad.html">Ir a Comunidad</a>
+      </div>
+    </section>
+
+    <!-- Para saber más -->
+    <section class="seccion" aria-labelledby="titulo-psm">
+      <div class="contenedor">
+        <div class="para-saber-mas">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/">Sitio oficial de Meshtastic</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/introduction/">Introducción oficial: qué es Meshtastic y cómo funciona</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/">Primeros pasos en la documentación oficial</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://github.com/meshtastic">Código fuente de Meshtastic en GitHub</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://www.semtech.com/lora">LoRa en el sitio de Semtech, la empresa que desarrolló la tecnología</a> <span class="nota">(en inglés)</span></span></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

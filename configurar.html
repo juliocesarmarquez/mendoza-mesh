@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Cómo configurar un nodo Meshtastic · Mendoza Mesh</title>
+  <meta name="description" content="Guía en seis pasos para configurar tu primer nodo: equipo y antena, firmware, app, región, canal y prueba de enlace, con errores comunes.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/configurar.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Cómo configurar un nodo Meshtastic · Mendoza Mesh">
+  <meta property="og:description" content="Guía en seis pasos para configurar tu primer nodo: equipo y antena, firmware, app, región, canal y prueba de enlace, con errores comunes.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/configurar.html">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html">Meshtastic</a></li>
+          <li><a href="configurar.html" aria-current="page">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html">Laboratorio</a></li>
+          <li><a href="glosario.html">Glosario</a></li>
+          <li><a href="preguntas.html">Preguntas</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+    <div class="contenedor encabezado-pagina">
+      <p class="antetitulo">Paso 4 de la ruta</p>
+      <h1>Cómo configurar un nodo</h1>
+      <p class="entradilla">Seis pasos para dejar funcionando tu primer nodo, con el error más común de cada uno para que no te pase.</p>
+    </div>
+
+    <div class="contenedor pagina">
+      <div class="prosa">
+        <div class="aviso aviso--peligro" role="note">
+          <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5"/><path d="M12 17.4v.1"/></g></svg>
+          <div>
+            <h2>Nunca enciendas el equipo sin la antena puesta</h2>
+            <p>La documentación oficial lo advierte: encender la radio sin antena puede dañar el chip de radio. Conectá la antena <strong>antes</strong> de enchufar el cable USB o la batería, incluso para instalar el firmware.</p>
+          </div>
+        </div>
+
+        <h2 id="que-necesitas">Qué necesitás</h2>
+        <ul>
+          <li>Una placa compatible con Meshtastic y su antena (ver <a href="equipos.html">Equipos recomendados</a>).</li>
+          <li>Un cable USB que transmita datos, no solo carga.</li>
+          <li>Una computadora con Chrome o Edge, para instalar el firmware.</li>
+          <li>Un celular Android o iPhone, para la app.</li>
+        </ul>
+
+        <h2 id="pasos">Los seis pasos</h2>
+        <ol class="pasos">
+          <li id="paso-1">
+            <h3>Elegí el equipo y la antena</h3>
+            <p>Elegí una placa compatible y una antena para la banda de 915&nbsp;MHz, la que se usa en Argentina. La antena tiene que corresponder a la frecuencia de la placa: una antena para otra banda rinde mucho menos.</p>
+            <aside class="error-comun" aria-label="Error común del paso 1">
+              <h4>Error común</h4>
+              <p>Comprar la versión de 433 u 868&nbsp;MHz de la placa o de la antena. Muchos modelos se venden en varias bandas: fijate que diga 915&nbsp;MHz antes de comprar.</p>
+            </aside>
+          </li>
+          <li id="paso-2">
+            <h3>Instalá el firmware</h3>
+            <p>Con la antena puesta, conectá la placa a la computadora y abrí el <a href="https://flasher.meshtastic.org/">Web Flasher oficial</a> en Chrome o Edge. Elegí tu modelo y la versión <strong>Beta</strong> más reciente: así llama Meshtastic a sus versiones recomendadas (las Alpha son de prueba). Algunas placas nRF52 también se pueden actualizar arrastrando un archivo <a href="glosario.html#flashear">UF2</a>.</p>
+            <aside class="error-comun" aria-label="Error común del paso 2">
+              <h4>Error común</h4>
+              <p>Usar un cable USB que solo carga. La placa se enciende, pero la computadora no la detecta. Si no aparece, probá primero con otro cable.</p>
+            </aside>
+          </li>
+          <li id="paso-3">
+            <h3>Instalá la app y conectá por Bluetooth</h3>
+            <p>Instalá la app oficial de Meshtastic desde la tienda de tu celular (ver la <a href="https://meshtastic.org/downloads/">página de descargas oficial</a>). Abrila, buscá tu nodo y emparejalo. Si el equipo tiene pantalla, te muestra un PIN al azar. Si no tiene, el PIN fijo de fábrica es <code>123456</code>.</p>
+            <aside class="error-comun" aria-label="Error común del paso 3">
+              <h4>Error común</h4>
+              <p>Dejar el PIN de fábrica <code>123456</code>. Cualquiera que esté cerca podría conectarse a tu nodo. La documentación recomienda cambiarlo en la configuración de Bluetooth.</p>
+            </aside>
+          </li>
+          <li id="paso-4">
+            <h3>Configurá nombres, región y preset</h3>
+            <p>Elegí un <a href="glosario.html#nombre-corto-y-largo">nombre largo</a> (hasta 39 caracteres simples) y uno corto (hasta 4). Después elegí la <a href="glosario.html#region">región</a>: mientras no la configures, el nodo no transmite. Según la tabla de regiones por país de la documentación oficial, para Argentina corresponde <span class="etiqueta">ANZ</span> (915–928&nbsp;MHz) <span class="verificar">[verificar en la documentación oficial y en la normativa de ENACOM]</span>. Por último, usá el mismo <a href="glosario.html#preset">preset</a> que la red de tu zona; el predeterminado es Long Fast.</p>
+            <aside class="error-comun" aria-label="Error común del paso 4">
+              <h4>Error común</h4>
+              <p>Elegir la región <span class="etiqueta">US</span> «porque también es de 915&nbsp;MHz». US abarca de 902 a 928&nbsp;MHz y deja al nodo en otra frecuencia: no vas a escuchar a quienes usan ANZ. Además, en Argentina el tramo de 902 a 915&nbsp;MHz no forma parte de la banda de uso compartido de 915 a 928&nbsp;MHz.</p>
+            </aside>
+          </li>
+          <li id="paso-5">
+            <h3>Creá o unite a un canal con clave</h3>
+            <p>El canal primario viene con la clave pública, así que cualquiera puede leerlo. Para un grupo privado, agregá un <a href="glosario.html#canal">canal</a> <strong>secundario</strong> con una clave aleatoria y compartilo con el código QR o el enlace que genera la app. Para unirte a un canal existente, escaneá el QR que te pase el grupo.</p>
+            <aside class="error-comun" aria-label="Error común del paso 5">
+              <h4>Error común</h4>
+              <p>Renombrar el canal primario o cambiarle la clave para hacerlo privado. El nombre del canal primario define la frecuencia, así que tu nodo se aísla del resto de la malla. Los grupos privados van en canales secundarios.</p>
+            </aside>
+          </li>
+          <li id="paso-6">
+            <h3>Probá el enlace y registrá el resultado</h3>
+            <p>Con otro nodo cerca, por ejemplo el de alguien de la comunidad, mandá un <a href="glosario.html#mensaje-directo">mensaje directo</a>: solo el destinatario confirma que lo recibió. Usá <a href="glosario.html#traceroute">traceroute</a> para ver el camino y anotá los datos en la planilla de abajo.</p>
+            <aside class="error-comun" aria-label="Error común del paso 6">
+              <h4>Error común</h4>
+              <p>Probar con un mensaje al canal y creer que llegó a todos. En un mensaje de canal, la confirmación solo indica que algún nodo cercano lo repitió, no que llegó a destino.</p>
+            </aside>
+          </li>
+        </ol>
+
+        <h2 id="planilla">Planilla para registrar tus pruebas</h2>
+        <p>Anotar cada prueba te ayuda a entender tu zona y le sirve a la comunidad para planificar dónde hacen falta nodos. Copiá esta planilla en un cuaderno o en una hoja de cálculo:</p>
+        <div class="tabla-caja" role="region" aria-labelledby="tabla-planilla" tabindex="0">
+          <table>
+            <caption id="tabla-planilla">Registro de prueba de enlace (completá una fila por prueba)</caption>
+            <thead>
+              <tr><th scope="col">Dato</th><th scope="col">Qué anotar</th><th scope="col">Ejemplo</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">Fecha y hora</th><td>Cuándo hiciste la prueba</td><td>20/11, 18:30</td></tr>
+              <tr><th scope="row">Lugares</th><td>Dónde estaba cada nodo, aproximado</td><td>Plaza de Godoy Cruz → Cerro de la Gloria</td></tr>
+              <tr><th scope="row">Distancia</th><td>En línea recta, medida en un mapa</td><td>6 km</td></tr>
+              <tr><th scope="row">Alturas</th><td>A qué altura del suelo estaba cada antena</td><td>1,5 m y 3 m</td></tr>
+              <tr><th scope="row">Preset y región</th><td>Los de los dos nodos (tienen que coincidir)</td><td>Long Fast, ANZ</td></tr>
+              <tr><th scope="row"><a href="glosario.html#snr">SNR</a> y <a href="glosario.html#rssi">RSSI</a></th><td>Los que muestra la app para el mensaje recibido</td><td>SNR 4,5 dB · RSSI −110 dBm</td></tr>
+              <tr><th scope="row">Saltos</th><td>Cuántas retransmisiones hubo (traceroute)</td><td>Directo (0 saltos)</td></tr>
+              <tr><th scope="row">Resultado</th><td>¿Llegó? ¿Hubo confirmación?</td><td>Llegó, con confirmación</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="tabla-nota">Los valores de la columna «Ejemplo» son ficticios: sirven para mostrar cómo completar la planilla.</p>
+
+        <section class="para-saber-mas" aria-labelledby="titulo-psm">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/">Primeros pasos</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/flashing-firmware/">Cómo instalar el firmware</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/initial-config/">Configuración inicial y región</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/configuration/region-by-country/">Región LoRa por país</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/configuration/radio/bluetooth/">Configuración de Bluetooth y PIN</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://www.enacom.gob.ar/bandas-de-uso-compartido-sin-autorizacion_p680">Bandas de uso compartido sin autorización, ENACOM</a></span></li>
+          </ul>
+        </section>
+
+        <nav class="paginador" aria-label="Ruta de aprendizaje">
+          <a href="equipos.html"><span>Anterior</span><strong>Equipos recomendados</strong></a>
+          <a class="paginador__siguiente" href="comunidad.html"><span>Siguiente</span><strong>Sumate a la red</strong></a>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

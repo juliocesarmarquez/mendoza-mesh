@@ -1,0 +1,330 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Laboratorio interactivo · Mendoza Mesh</title>
+  <meta name="description" content="Simulador de malla, calculadora de alcance orientativo y quiz para practicar cómo viajan los mensajes en una red Meshtastic.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/laboratorio.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Laboratorio interactivo · Mendoza Mesh">
+  <meta property="og:description" content="Simulador de malla, calculadora de alcance orientativo y quiz para practicar cómo viajan los mensajes en una red Meshtastic.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/laboratorio.html">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/laboratorio.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/simulador.js" defer></script>
+  <script src="assets/js/calculadora.js" defer></script>
+  <script src="assets/js/quiz.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html">Meshtastic</a></li>
+          <li><a href="configurar.html">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html" aria-current="page">Laboratorio</a></li>
+          <li><a href="glosario.html">Glosario</a></li>
+          <li><a href="preguntas.html">Preguntas</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+    <div class="contenedor encabezado-pagina">
+      <p class="antetitulo">Para practicar</p>
+      <h1>Laboratorio</h1>
+      <p class="entradilla">Tres herramientas para entender la malla jugando: un simulador para ver cómo viaja un mensaje, una calculadora de alcance orientativo y un quiz para repasar.</p>
+    </div>
+
+    <div class="contenedor pagina">
+      <div class="prosa">
+        <nav class="indice-pagina" aria-labelledby="titulo-indice">
+          <h2 id="titulo-indice">En esta página</h2>
+          <ol>
+            <li><a href="#titulo-simulador">Simulador de malla</a></li>
+            <li><a href="#titulo-calculadora">Calculadora de alcance orientativo</a></li>
+            <li><a href="#titulo-quiz">Quiz: ¿cuánto sabés de la malla?</a></li>
+          </ol>
+        </nav>
+      </div>
+
+      <!-- Simulador -->
+      <section class="lab-bloque" aria-labelledby="titulo-simulador">
+        <h2 id="titulo-simulador">Simulador de malla</h2>
+        <p>Elegí un nodo (con un clic, o con Tab y Enter) para mandar un mensaje desde ahí. Vas a ver cómo se propaga ronda por ronda, cuántos saltos hace y qué nodos quedan sin recibirlo. Cambiá el límite de saltos para ver qué pasa.</p>
+        <p id="simulador-sin-js" class="aviso">El simulador necesita JavaScript.</p>
+        <div id="simulador" class="simulador" hidden>
+          <div class="sim-controles">
+            <label for="sim-limite">Límite de saltos</label>
+            <select id="sim-limite">
+              <option value="0">0 (sin retransmisiones)</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3" selected>3 (predeterminado)</option>
+              <option value="7">7 (máximo)</option>
+            </select>
+            <button type="button" id="sim-reiniciar" class="boton-chico">Reiniciar</button>
+          </div>
+          <svg class="sim-lienzo" viewBox="0 0 640 360" role="group" aria-labelledby="sim-svg-titulo">
+            <title id="sim-svg-titulo">Malla de seis nodos. F está detrás de un cerro.</title>
+            <line class="sim-suelo" x1="0" y1="345" x2="640" y2="345"/>
+            <path class="sim-cerro" d="M455 345 525 170l30 45 20-25 50 155z"/>
+            <g class="sim-enlaces">
+              <line class="sim-enlace" data-enlace="AB" x1="70" y1="260" x2="180" y2="140"/>
+              <line class="sim-enlace" data-enlace="AC" x1="70" y1="260" x2="215" y2="300"/>
+              <line class="sim-enlace" data-enlace="BC" x1="180" y1="140" x2="215" y2="300"/>
+              <line class="sim-enlace" data-enlace="BD" x1="180" y1="140" x2="345" y2="215"/>
+              <line class="sim-enlace" data-enlace="CD" x1="215" y1="300" x2="345" y2="215"/>
+              <line class="sim-enlace" data-enlace="DE" x1="345" y1="215" x2="470" y2="110"/>
+            </g>
+            <g class="sim-nodos">
+              <g class="sim-nodo" data-nodo="A" tabindex="0" role="button" aria-label="Nodo A. Enviar un mensaje desde A."><circle cx="70" cy="260" r="22"/><text class="sim-nodo__letra" x="70" y="260">A</text><text class="sim-nodo__estado" x="70" y="304"></text></g>
+              <g class="sim-nodo" data-nodo="B" tabindex="0" role="button" aria-label="Nodo B. Enviar un mensaje desde B."><circle cx="180" cy="140" r="22"/><text class="sim-nodo__letra" x="180" y="140">B</text><text class="sim-nodo__estado" x="180" y="96"></text></g>
+              <g class="sim-nodo" data-nodo="C" tabindex="0" role="button" aria-label="Nodo C. Enviar un mensaje desde C."><circle cx="215" cy="300" r="22"/><text class="sim-nodo__letra" x="215" y="300">C</text><text class="sim-nodo__estado" x="250" y="338"></text></g>
+              <g class="sim-nodo" data-nodo="D" tabindex="0" role="button" aria-label="Nodo D. Enviar un mensaje desde D."><circle cx="345" cy="215" r="22"/><text class="sim-nodo__letra" x="345" y="215">D</text><text class="sim-nodo__estado" x="345" y="259"></text></g>
+              <g class="sim-nodo" data-nodo="E" tabindex="0" role="button" aria-label="Nodo E. Enviar un mensaje desde E."><circle cx="470" cy="110" r="22"/><text class="sim-nodo__letra" x="470" y="110">E</text><text class="sim-nodo__estado" x="470" y="66"></text></g>
+              <g class="sim-nodo" data-nodo="F" tabindex="0" role="button" aria-label="Nodo F. Enviar un mensaje desde F."><circle cx="600" cy="300" r="22"/><text class="sim-nodo__letra" x="600" y="300">F</text><text class="sim-nodo__estado sim-nodo__estado--derecha" x="622" y="258"></text></g>
+            </g>
+          </svg>
+          <p id="sim-estado" class="sim-estado" role="status">Elegí un nodo para enviar un mensaje.</p>
+          <ol id="sim-registro" class="sim-registro" aria-label="Registro de la simulación"></ol>
+          <ul class="leyenda" aria-label="Leyenda del simulador">
+            <li><span class="muestra muestra--origen" aria-hidden="true"></span>Origen</li>
+            <li><span class="muestra sim-muestra--retransmite" aria-hidden="true"></span>Retransmite</li>
+            <li><span class="muestra muestra--destino" aria-hidden="true"></span>Recibió el mensaje</li>
+            <li><span class="muestra sim-muestra--fuera" aria-hidden="true"></span>No le llegó</li>
+            <li><span class="muestra muestra--bloqueo" aria-hidden="true"></span>Enlace de radio posible</li>
+          </ul>
+          <p class="tabla-nota">Simplificación: en la malla real, un nodo no repite el mensaje si escucha que otro vecino ya lo hizo (inundación gestionada). Acá todos los que reciben retransmiten, para que se vea cada salto.</p>
+        </div>
+      </section>
+
+      <!-- Calculadora -->
+      <section class="lab-bloque" aria-labelledby="titulo-calculadora">
+        <h2 id="titulo-calculadora">Calculadora de alcance orientativo</h2>
+        <p>Cargá la altura de las dos antenas, la potencia y la distancia. La calculadora te dice si hay línea de vista aproximada considerando la curvatura de la Tierra, cuánto espacio libre hace falta alrededor del enlace y cuánto margen de señal queda.</p>
+        <div class="aviso aviso--importante" role="note">
+          <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.5 2.5 20h19z"/><path d="M12 10v4.5"/><path d="M12 17.4v.1"/></g></svg>
+          <p><strong>Es una estimación.</strong> Supone terreno plano, sin cerros, edificios ni árboles, y antenas bien instaladas. En Cuyo el relieve manda: para un enlace real, revisá el perfil del terreno y probalo en el lugar.</p>
+        </div>
+        <form id="calculadora" class="calc">
+          <div class="calc-campos">
+            <div class="campo">
+              <label for="calc-h1">Altura de la antena A</label>
+              <div class="campo__con-unidad"><input type="number" id="calc-h1" min="0" max="5000" step="0.5" value="10" inputmode="decimal" aria-describedby="calc-h1-ayuda" required><span>m</span></div>
+              <p class="campo__ayuda" id="calc-h1-ayuda">Sobre el suelo, no sobre el nivel del mar.</p>
+            </div>
+            <div class="campo">
+              <label for="calc-h2">Altura de la antena B</label>
+              <div class="campo__con-unidad"><input type="number" id="calc-h2" min="0" max="5000" step="0.5" value="2" inputmode="decimal" aria-describedby="calc-h2-ayuda" required><span>m</span></div>
+              <p class="campo__ayuda" id="calc-h2-ayuda">Por ejemplo, 1,5 m si lo llevás en la mano.</p>
+            </div>
+            <div class="campo">
+              <label for="calc-distancia">Distancia entre los nodos</label>
+              <div class="campo__con-unidad"><input type="number" id="calc-distancia" min="0.1" max="500" step="0.1" value="15" inputmode="decimal" aria-describedby="calc-distancia-ayuda" required><span>km</span></div>
+              <p class="campo__ayuda" id="calc-distancia-ayuda">En línea recta, medida en un mapa.</p>
+            </div>
+            <div class="campo">
+              <label for="calc-potencia">Potencia de transmisión</label>
+              <select id="calc-potencia" aria-describedby="calc-potencia-ayuda">
+                <option value="14">14 dBm (25 mW)</option>
+                <option value="17">17 dBm (50 mW)</option>
+                <option value="20">20 dBm (100 mW)</option>
+                <option value="22" selected>22 dBm (158 mW)</option>
+                <option value="27">27 dBm (500 mW)</option>
+                <option value="30">30 dBm (1 W)</option>
+              </select>
+              <p class="campo__ayuda" id="calc-potencia-ayuda">La potencia permitida depende de la normativa <span class="verificar">[verificar límite de ENACOM]</span>.</p>
+            </div>
+            <div class="campo">
+              <label for="calc-ganancia">Ganancia de cada antena</label>
+              <div class="campo__con-unidad"><input type="number" id="calc-ganancia" min="0" max="15" step="0.5" value="2" inputmode="decimal" aria-describedby="calc-ganancia-ayuda" required><span>dBi</span></div>
+              <p class="campo__ayuda" id="calc-ganancia-ayuda">Se usa el mismo valor para las dos antenas.</p>
+            </div>
+            <div class="campo">
+              <label for="calc-preset">Preset</label>
+              <select id="calc-preset">
+                <option value="SHORT_FAST">Short Fast</option>
+                <option value="MEDIUM_FAST">Medium Fast</option>
+                <option value="LONG_FAST" selected>Long Fast (predeterminado)</option>
+                <option value="LONG_MODERATE">Long Moderate</option>
+              </select>
+            </div>
+          </div>
+          <button type="submit" class="boton boton--primario">Calcular</button>
+          <ul id="calc-errores" class="calc-errores" role="alert" hidden></ul>
+        </form>
+        <div id="calc-resultado" class="calc-resultado" role="status" aria-live="polite"></div>
+        <details class="calc-formulas">
+          <summary>Cómo se calcula</summary>
+          <ul>
+            <li><strong>Horizonte radioeléctrico:</strong> 4,12 × (√h<sub>A</sub> + √h<sub>B</sub>) km, con las alturas en metros. Usa el factor k = 4/3 de la atmósfera estándar, que curva levemente las ondas de radio hacia el suelo.</li>
+            <li><strong>Zona de Fresnel en el punto medio:</strong> 8,66 × √(D / f) m, con D en km y f = 0,915 GHz. Se recomienda que al menos el 60 % esté despejado.</li>
+            <li><strong>Pérdida en espacio libre:</strong> 32,45 + 20 log<sub>10</sub>(915) + 20 log<sub>10</sub>(D) dB.</li>
+            <li><strong>Sensibilidad del preset:</strong> 22 dBm menos el presupuesto de enlace de la tabla oficial de Meshtastic, que supone 22 dBm y antenas de 0 dBi.</li>
+          </ul>
+        </details>
+      </section>
+
+      <!-- Quiz -->
+      <section class="lab-bloque" aria-labelledby="titulo-quiz">
+        <h2 id="titulo-quiz">Quiz: ¿cuánto sabés de la malla?</h2>
+        <p>Cinco preguntas sobre lo que viste en <a href="meshtastic.html">Meshtastic y la malla</a>. Elegí una opción y tocá «Comprobar».</p>
+        <form id="quiz" class="quiz">
+          <fieldset data-correcta="b">
+            <legend><span class="quiz-num">1.</span> Dos nodos están cerca, pero uno usa el preset Long Fast y el otro Medium Fast. ¿Qué pasa?</legend>
+            <label><input type="radio" name="p1" value="a"> Se escuchan, pero más lento.</label>
+            <label><input type="radio" name="p1" value="b"> No se escuchan: necesitan el mismo preset.</label>
+            <label><input type="radio" name="p1" value="c"> Se escuchan solo si están a menos de 1 km.</label>
+            <button type="button" class="boton-chico quiz-comprobar" hidden>Comprobar</button>
+            <p class="quiz-respuesta" role="status"></p>
+            <p class="quiz-explicacion" hidden>Con presets distintos no hay un enlace más lento: no hay enlace. La región y el preset tienen que coincidir.</p>
+          </fieldset>
+          <fieldset data-correcta="b">
+            <legend><span class="quiz-num">2.</span> Un mensaje va de A a C pasando por B. ¿A cuántos saltos llegó, según Meshtastic?</legend>
+            <label><input type="radio" name="p2" value="a"> 0 saltos.</label>
+            <label><input type="radio" name="p2" value="b"> 1 salto.</label>
+            <label><input type="radio" name="p2" value="c"> 2 saltos.</label>
+            <button type="button" class="boton-chico quiz-comprobar" hidden>Comprobar</button>
+            <p class="quiz-respuesta" role="status"></p>
+            <p class="quiz-explicacion" hidden>Meshtastic cuenta las retransmisiones: B retransmitió una vez, así que es 1 salto, aunque el mensaje recorrió dos tramos de radio.</p>
+          </fieldset>
+          <fieldset data-correcta="b">
+            <legend><span class="quiz-num">3.</span> ¿Qué hace un nodo con rol CLIENT cuando recibe un mensaje para la malla?</legend>
+            <label><input type="radio" name="p3" value="a"> Lo retransmite siempre, al instante.</label>
+            <label><input type="radio" name="p3" value="b"> Espera un instante y no lo repite si escucha que otro nodo ya lo hizo.</label>
+            <label><input type="radio" name="p3" value="c"> Nunca lo retransmite: eso solo lo hacen los routers.</label>
+            <button type="button" class="boton-chico quiz-comprobar" hidden>Comprobar</button>
+            <p class="quiz-respuesta" role="status"></p>
+            <p class="quiz-explicacion" hidden>Es la inundación gestionada: cada nodo escucha antes de repetir, así el mensaje avanza sin que todos transmitan a la vez.</p>
+          </fieldset>
+          <fieldset data-correcta="c">
+            <legend><span class="quiz-num">4.</span> Querés armar un grupo privado con tus amigos. ¿Qué conviene hacer?</legend>
+            <label><input type="radio" name="p4" value="a"> Cambiarle el nombre al canal primario.</label>
+            <label><input type="radio" name="p4" value="b"> Cambiar la región del nodo.</label>
+            <label><input type="radio" name="p4" value="c"> Agregar un canal secundario con una clave nueva.</label>
+            <button type="button" class="boton-chico quiz-comprobar" hidden>Comprobar</button>
+            <p class="quiz-respuesta" role="status"></p>
+            <p class="quiz-explicacion" hidden>El nombre del canal primario define la frecuencia: si lo cambiás, tu nodo se aísla. Los grupos privados van en canales secundarios.</p>
+          </fieldset>
+          <fieldset data-correcta="b">
+            <legend><span class="quiz-num">5.</span> ¿Cuál es el límite de saltos predeterminado en Meshtastic?</legend>
+            <label><input type="radio" name="p5" value="a"> 1</label>
+            <label><input type="radio" name="p5" value="b"> 3</label>
+            <label><input type="radio" name="p5" value="c"> 7</label>
+            <button type="button" class="boton-chico quiz-comprobar" hidden>Comprobar</button>
+            <p class="quiz-respuesta" role="status"></p>
+            <p class="quiz-explicacion" hidden>El predeterminado es 3 y el máximo es 7. La documentación oficial dice que 3 alcanza para casi todos los casos.</p>
+          </fieldset>
+          <p id="quiz-puntaje" class="quiz-puntaje" role="status">Respondé las 5 preguntas para ver tu puntaje.</p>
+          <button type="button" id="quiz-reiniciar" class="boton boton--secundario" hidden>Volver a empezar</button>
+        </form>
+        <noscript><p class="aviso">Para comprobar las respuestas hace falta JavaScript. Las respuestas correctas son: 1-b, 2-b, 3-b, 4-c y 5-b.</p></noscript>
+      </section>
+
+      <div class="prosa">
+        <section class="para-saber-mas" aria-labelledby="titulo-psm">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/docs/overview/mesh-algo/">Algoritmo de la malla</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/overview/radio-settings/">Ajustes de radio, presets y presupuesto de enlace</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/overview/range-tests/">Pruebas de alcance registradas por la comunidad</a> <span class="nota">(en inglés)</span></span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

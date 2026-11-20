@@ -1,0 +1,188 @@
+/* ==========================================================================
+   Mendoza Mesh: variables de diseño (tokens)
+   Paleta inspirada en el paisaje de Cuyo: ocre, vino, verde viñedo y azul
+   cordillera. El contraste de cada par texto/fondo se comprueba con
+   herramientas/contraste.py. Si cambiás un color, volvé a correrlo.
+   ========================================================================== */
+
+/* --- Tipografías alojadas en el sitio (licencia SIL OFL 1.1) ------------ */
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fonts/atkinson-hyperlegible-latin-400-italic.woff2") format("woff2");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Atkinson Hyperlegible";
+  src: url("../fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Fraunces";
+  src: url("../fonts/fraunces-latin-600-normal.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --- Modo claro (por defecto) ------------------------------------------ */
+:root {
+  color-scheme: light;
+
+  /* Fondos */
+  --fondo: #FAF6EF;          /* arena */
+  --superficie: #FFFFFF;
+  --superficie-2: #F1E8DA;   /* adobe claro */
+
+  /* Texto */
+  --texto: #2A1F1A;
+  --texto-suave: #5C4B3F;
+
+  /* Paleta de Cuyo (aptos para texto sobre los tres fondos) */
+  --vino: #7A1F3D;           /* Malbec: enlaces y botón primario */
+  --vino-hover: #5E1830;
+  --ocre: #8A5212;
+  --verde: #3D6A2C;          /* viñedo */
+  --azul: #2B5677;           /* cordillera */
+
+  /* Rellenos de acento y su texto */
+  --sobre-vino: #FFFFFF;
+  --ocre-fondo: #E3A857;
+  --sobre-ocre: #2A1F1A;
+  --banda: #7A1F3D;          /* banda de llamada a la acción */
+  --sobre-banda: #FFFFFF;
+
+  /* Bordes y foco (componentes no textuales, mínimo 3:1) */
+  --borde: #8C7A68;
+  --foco: #1F5FA8;
+
+  /* Decorativos (no transmiten información) */
+  --linea-suave: #E4D8C6;
+  --curvas: rgb(43 86 119 / 0.09);
+  --sombra: 0 1px 2px rgb(42 31 26 / 0.06), 0 8px 24px -12px rgb(42 31 26 / 0.18);
+
+  /* Ilustración del paisaje */
+  --cielo-alto: #F7E7CC;
+  --cielo-bajo: #FAF6EF;
+  --astro: #E3A857;          /* sol */
+  --cerro-lejano: #B9CAD6;
+  --cerro-medio: #7C9BB3;
+  --cerro-cerca: #2B5677;
+  --nieve: #FFFFFF;
+  --vinedo-claro: #8FB06F;
+  --vinedo-oscuro: #3D6A2C;
+  --tierra: #D9B98C;
+  --nodo: #7A1F3D;
+  --nodo-borde: #FFFFFF;
+  --enlace-radio: #7A1F3D;
+
+  /* Tipografía */
+  --fuente-texto: "Atkinson Hyperlegible", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --fuente-titulos: "Fraunces", Georgia, "Times New Roman", serif;
+  --fuente-mono: ui-monospace, "SFMono-Regular", Menlo, Consolas, "Liberation Mono", monospace;
+
+  --tam-base: 1.125rem;      /* 18px */
+  --interlineado: 1.6;
+  --medida: 68ch;            /* ancho de línea cómodo para leer */
+
+  /* Espaciado y forma */
+  --esp-1: 0.25rem;
+  --esp-2: 0.5rem;
+  --esp-3: 0.75rem;
+  --esp-4: 1rem;
+  --esp-5: 1.5rem;
+  --esp-6: 2rem;
+  --esp-7: 3rem;
+  --esp-8: 4.5rem;
+  --radio: 10px;
+  --radio-chico: 6px;
+  --ancho-max: 72rem;
+}
+
+/* --- Modo oscuro: preferencia del sistema ------------------------------ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) {
+    color-scheme: dark;
+    --fondo: #12171F;          /* noche andina */
+    --superficie: #1B222C;
+    --superficie-2: #232C38;
+    --texto: #F3ECE2;
+    --texto-suave: #C7BBAC;
+    --vino: #F2A7BE;
+    --vino-hover: #F8C6D5;
+    --ocre: #E7AE62;
+    --verde: #A3CE86;
+    --azul: #93C4E8;
+    --sobre-vino: #12171F;
+    --ocre-fondo: #E7AE62;
+    --sobre-ocre: #12171F;
+    --banda: #4A1426;
+    --sobre-banda: #F3ECE2;
+    --borde: #6B7A8C;
+    --foco: #FFD27A;
+    --linea-suave: #2C3644;
+    --curvas: rgb(147 196 232 / 0.07);
+    --sombra: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 28px -14px rgb(0 0 0 / 0.6);
+    --cielo-alto: #0B1018;
+    --cielo-bajo: #12171F;
+    --astro: #F3ECE2;          /* luna */
+    --cerro-lejano: #2A3A4D;
+    --cerro-medio: #34506B;
+    --cerro-cerca: #4F7899;
+    --nieve: #C9D6E3;
+    --vinedo-claro: #3E5F33;
+    --vinedo-oscuro: #6E9A55;
+    --tierra: #2B2620;
+    --nodo: #F2A7BE;
+    --nodo-borde: #12171F;
+    --enlace-radio: #F2A7BE;
+  }
+}
+
+/* --- Modo oscuro elegido con el botón ---------------------------------- */
+:root[data-tema="oscuro"] {
+  color-scheme: dark;
+  --fondo: #12171F;
+  --superficie: #1B222C;
+  --superficie-2: #232C38;
+  --texto: #F3ECE2;
+  --texto-suave: #C7BBAC;
+  --vino: #F2A7BE;
+  --vino-hover: #F8C6D5;
+  --ocre: #E7AE62;
+  --verde: #A3CE86;
+  --azul: #93C4E8;
+  --sobre-vino: #12171F;
+  --ocre-fondo: #E7AE62;
+  --sobre-ocre: #12171F;
+  --banda: #4A1426;
+  --sobre-banda: #F3ECE2;
+  --borde: #6B7A8C;
+  --foco: #FFD27A;
+  --linea-suave: #2C3644;
+  --curvas: rgb(147 196 232 / 0.07);
+  --sombra: 0 1px 2px rgb(0 0 0 / 0.3), 0 10px 28px -14px rgb(0 0 0 / 0.6);
+  --cielo-alto: #0B1018;
+  --cielo-bajo: #12171F;
+  --astro: #F3ECE2;
+  --cerro-lejano: #2A3A4D;
+  --cerro-medio: #34506B;
+  --cerro-cerca: #4F7899;
+  --nieve: #C9D6E3;
+  --vinedo-claro: #3E5F33;
+  --vinedo-oscuro: #6E9A55;
+  --tierra: #2B2620;
+  --nodo: #F2A7BE;
+  --nodo-borde: #12171F;
+  --enlace-radio: #F2A7BE;
+}

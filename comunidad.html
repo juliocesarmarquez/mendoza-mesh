@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Comunidad · Mendoza Mesh</title>
+  <meta name="description" content="Encuentros, instalaciones de nodos y canales de la comunidad Mendoza Mesh. Sumá tu nodo al mapa de Cuyo.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/comunidad.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Comunidad · Mendoza Mesh">
+  <meta property="og:description" content="Encuentros, instalaciones de nodos y canales de la comunidad Mendoza Mesh. Sumá tu nodo al mapa de Cuyo.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/comunidad.html">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/comunidad.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html">Meshtastic</a></li>
+          <li><a href="configurar.html">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html">Laboratorio</a></li>
+          <li><a href="glosario.html">Glosario</a></li>
+          <li><a href="preguntas.html">Preguntas</a></li>
+          <li><a href="comunidad.html" aria-current="page">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+    <div class="contenedor encabezado-pagina">
+      <p class="antetitulo">Paso 5 de la ruta</p>
+      <h1>Comunidad</h1>
+      <p class="entradilla">Encuentros, instalaciones de nodos y canales para sumarte a la red de Cuyo. La malla crece con cada persona que se suma.</p>
+    </div>
+
+    <div class="contenedor pagina">
+      <div class="prosa">
+        <nav class="indice-pagina" aria-labelledby="titulo-indice">
+          <h2 id="titulo-indice">En esta página</h2>
+          <ol>
+            <li><a href="#agenda">Agenda</a></li>
+            <li><a href="#suma-tu-nodo">Sumá tu nodo</a></li>
+            <li><a href="#canales">Canales de la comunidad</a></li>
+          </ol>
+        </nav>
+
+        <h2 id="agenda">Agenda de encuentros e instalaciones</h2>
+        <div class="aviso aviso--importante" role="note">
+          <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.1"/></g></svg>
+          <p><strong>Agenda de ejemplo.</strong> Estas actividades son ficticias y muestran cómo se ve la agenda <span class="verificar">[verificar: reemplazar por las fechas reales]</span>.</p>
+        </div>
+      </div>
+
+      <ul class="agenda lista-limpia">
+        <li>
+          <article class="evento" aria-labelledby="evento-1">
+            <p class="evento__fecha"><time datetime="2026-12-05T10:00-03:00"><span class="evento__dia">5</span> <span class="evento__mes">dic</span></time></p>
+            <div>
+              <p class="evento__tipo evento__tipo--encuentro">Encuentro</p>
+              <h3 id="evento-1">EJEMPLO · Encuentro de iniciación</h3>
+              <p class="evento__datos">Sábado 5 de diciembre de 2026, 10&nbsp;h · Ciudad de Mendoza (lugar a confirmar)</p>
+              <p>Traé tu placa y tu antena: instalamos el firmware y configuramos el primer nodo entre todos.</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="evento" aria-labelledby="evento-2">
+            <p class="evento__fecha"><time datetime="2026-12-12T09:00-03:00"><span class="evento__dia">12</span> <span class="evento__mes">dic</span></time></p>
+            <div>
+              <p class="evento__tipo evento__tipo--instalacion">Instalación</p>
+              <h3 id="evento-2">EJEMPLO · Instalación de un nodo en altura</h3>
+              <p class="evento__datos">Sábado 12 de diciembre de 2026, 9&nbsp;h · Gran Mendoza (lugar a coordinar)</p>
+              <p>Salida para montar un nodo solar en un lugar alto, con permiso del responsable del sitio.</p>
+            </div>
+          </article>
+        </li>
+        <li>
+          <article class="evento" aria-labelledby="evento-3">
+            <p class="evento__fecha"><time datetime="2026-12-19T17:00-03:00"><span class="evento__dia">19</span> <span class="evento__mes">dic</span></time></p>
+            <div>
+              <p class="evento__tipo evento__tipo--taller">Taller</p>
+              <h3 id="evento-3">EJEMPLO · Taller de antenas</h3>
+              <p class="evento__datos">Sábado 19 de diciembre de 2026, 17&nbsp;h · San Juan (lugar a confirmar)</p>
+              <p>Cómo elegir, armar y probar una antena para 915&nbsp;MHz.</p>
+            </div>
+          </article>
+        </li>
+      </ul>
+
+      <div class="prosa">
+        <h2 id="suma-tu-nodo">Sumá tu nodo</h2>
+        <p>El <a href="mapa.html">mapa</a> se arma solo con los datos que llegan por MQTT. Este formulario sirve para tres cosas: contarle a la comunidad que tenés un nodo, aunque no use MQTT; pedir ayuda para que aparezca en el mapa; o pedir que lo quitemos.</p>
+
+        <div class="aviso" role="note" id="aviso-privacidad">
+          <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></g></svg>
+          <div>
+            <h3>Aviso de privacidad</h3>
+            <ul>
+              <li>El formulario <strong>no publica nada</strong>: prepara un correo que mandás vos, desde tu propio programa de correo, a <span class="correo-contacto">mendozamesh@example.org</span> <span class="verificar">[verificar dirección de contacto]</span>.</li>
+              <li>Usamos esos datos solo para coordinar la red de la comunidad. Podés pedir que los borremos escribiendo a la misma dirección.</li>
+              <li><strong>No pongas tu dirección ni coordenadas exactas</strong>: alcanza con la localidad o el barrio.</li>
+              <li>En el mapa público, las posiciones siempre se muestran redondeadas (unos 1&nbsp;km). Si pedís la exclusión, tu nodo deja de aparecer, también en los vecinos y traceroutes de otros nodos.</li>
+            </ul>
+          </div>
+        </div>
+
+        <form id="form-nodo" class="formulario" action="mailto:mendozamesh@example.org" method="post" enctype="text/plain" data-correo="mendozamesh@example.org">
+          <div id="form-errores" class="resumen-errores" role="alert" tabindex="-1" hidden></div>
+
+          <fieldset class="campo">
+            <legend>¿Para qué escribís? <span class="obligatorio">(obligatorio)</span></legend>
+            <label class="opcion"><input type="radio" name="motivo" value="Sumar mi nodo al registro de la comunidad" checked> Sumar mi nodo al registro de la comunidad</label>
+            <label class="opcion"><input type="radio" name="motivo" value="Pedir ayuda para que aparezca en el mapa"> Pedir ayuda para que aparezca en el mapa</label>
+            <label class="opcion"><input type="radio" name="motivo" value="Pedir que mi nodo no aparezca en el mapa"> Pedir que mi nodo no aparezca en el mapa</label>
+            <label class="opcion"><input type="radio" name="motivo" value="Corregir datos de mi nodo"> Corregir datos de mi nodo</label>
+          </fieldset>
+
+          <div class="form-rejilla">
+            <div class="campo">
+              <label for="f-id">ID del nodo <span class="obligatorio">(obligatorio)</span></label>
+              <input type="text" id="f-id" name="id" required pattern="!?[0-9a-fA-F]{8}" autocomplete="off" spellcheck="false" aria-describedby="f-id-ayuda f-id-error">
+              <p class="campo__ayuda" id="f-id-ayuda">Lo ves en la app: empieza con ! y tiene 8 letras o números, por ejemplo !a1b2c3d4.</p>
+              <p class="campo__error" id="f-id-error" hidden></p>
+            </div>
+            <div class="campo">
+              <label for="f-nombre-largo">Nombre largo del nodo</label>
+              <input type="text" id="f-nombre-largo" name="nombre_largo" maxlength="39" autocomplete="off">
+            </div>
+            <div class="campo">
+              <label for="f-nombre-corto">Nombre corto</label>
+              <input type="text" id="f-nombre-corto" name="nombre_corto" maxlength="4" autocomplete="off" aria-describedby="f-nombre-corto-ayuda">
+              <p class="campo__ayuda" id="f-nombre-corto-ayuda">Hasta 4 caracteres.</p>
+            </div>
+            <div class="campo">
+              <label for="f-provincia">Provincia <span class="obligatorio">(obligatorio)</span></label>
+              <select id="f-provincia" name="provincia" required aria-describedby="f-provincia-error">
+                <option value="">Elegí una opción</option>
+                <option>Mendoza</option>
+                <option>San Juan</option>
+                <option>San Luis</option>
+                <option>Otra</option>
+              </select>
+              <p class="campo__error" id="f-provincia-error" hidden></p>
+            </div>
+            <div class="campo">
+              <label for="f-localidad">Localidad o barrio <span class="obligatorio">(obligatorio)</span></label>
+              <input type="text" id="f-localidad" name="localidad" required maxlength="80" autocomplete="address-level2" aria-describedby="f-localidad-ayuda f-localidad-error">
+              <p class="campo__ayuda" id="f-localidad-ayuda">Por ejemplo, Godoy Cruz o Rivadavia. No pongas tu dirección.</p>
+              <p class="campo__error" id="f-localidad-error" hidden></p>
+            </div>
+            <div class="campo">
+              <label for="f-rol">Rol del nodo</label>
+              <select id="f-rol" name="rol">
+                <option>No sé</option>
+                <option>CLIENT</option>
+                <option>CLIENT_MUTE</option>
+                <option>CLIENT_BASE</option>
+                <option>ROUTER</option>
+                <option>ROUTER_LATE</option>
+                <option>TRACKER</option>
+                <option>SENSOR</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="f-ubicacion">¿Dónde está el nodo?</label>
+              <select id="f-ubicacion" name="ubicacion">
+                <option>Lo llevo encima</option>
+                <option>En casa, adentro</option>
+                <option>En un techo o mástil</option>
+                <option>En un cerro o lugar alto</option>
+              </select>
+            </div>
+            <div class="campo">
+              <label for="f-mqtt">¿Usa MQTT?</label>
+              <select id="f-mqtt" name="mqtt">
+                <option>No sé</option>
+                <option>Sí, con «OK to MQTT» activado</option>
+                <option>Sí, sin «OK to MQTT»</option>
+                <option>No</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="campo">
+            <label for="f-comentarios">Comentarios</label>
+            <textarea id="f-comentarios" name="comentarios" rows="4" maxlength="1500"></textarea>
+          </div>
+          <div class="campo">
+            <label for="f-firma">Nombre o apodo para responderte</label>
+            <input type="text" id="f-firma" name="firma" maxlength="60" autocomplete="nickname">
+          </div>
+
+          <div class="campo">
+            <label class="opcion"><input type="checkbox" id="f-acepto" name="acepto" value="Sí" required aria-describedby="f-acepto-error"> Leí el aviso de privacidad y acepto que la comunidad use estos datos para coordinar la red. <span class="obligatorio">(obligatorio)</span></label>
+            <p class="campo__error" id="f-acepto-error" hidden></p>
+          </div>
+
+          <button type="submit" class="boton boton--primario">Preparar el correo</button>
+        </form>
+
+        <div id="form-listo" class="form-listo" hidden tabindex="-1">
+          <h3>Tu correo está listo</h3>
+          <p>Se debería abrir tu programa de correo con el mensaje armado. Si no se abre, copiá este texto y mandalo a <span class="correo-contacto">mendozamesh@example.org</span>.</p>
+          <label for="f-vista">Texto del mensaje</label>
+          <textarea id="f-vista" rows="10" readonly></textarea>
+          <p><button type="button" id="f-copiar" class="boton boton--secundario">Copiar el texto</button> <span id="f-copiado" role="status"></span></p>
+        </div>
+
+        <h2 id="canales">Canales de la comunidad</h2>
+        <h3>En la malla</h3>
+        <p>La comunidad Meshtastic Argentina publica un canal secundario llamado <strong>MendozaMesh</strong> para Mendoza, con el preset Long Fast. La clave está en <a href="https://github.com/Meshtastic-Argentina">su página de GitHub</a>. Para sumarlo, agregalo como canal <strong>secundario</strong>, nunca en lugar del primario <span class="verificar">[verificar la relación entre ese canal y este proyecto]</span>.</p>
+
+        <h3>Grupos y sitios</h3>
+        <ul>
+          <li><strong>Canales propios de Mendoza Mesh:</strong> en preparación <span class="verificar">[verificar enlaces de los canales de la comunidad]</span>.</li>
+          <li><a href="https://mesharg.com.ar/">Comunidad Meshtastic Argentina (MeshArg)</a>: sitio web de la comunidad nacional.</li>
+          <li><a href="https://t.me/meshtastic_argentina">Grupo de Telegram de MeshArg</a>: tiene un hilo por provincia, donde se comparten presets y novedades de cada zona.</li>
+          <li><a href="https://github.com/Meshtastic-Argentina/docu">Documentación de MeshArg</a>: preguntas frecuentes en castellano, pensadas para Argentina.</li>
+          <li><a href="https://meshtastic.org/docs/community/local-groups/">Directorio oficial de grupos locales de Meshtastic</a> <span class="nota">(en inglés)</span>.</li>
+        </ul>
+
+        <h3>Otras formas de participar</h3>
+        <ul>
+          <li>Registrá tus pruebas de alcance con la <a href="configurar.html#planilla">planilla de Configurar</a> y compartilas.</li>
+          <li>Proponé lugares altos donde un nodo ayudaría a cubrir la región.</li>
+          <li>¿Falta un término en el <a href="glosario.html">Glosario</a> o encontraste un error? Escribinos con el formulario.</li>
+        </ul>
+
+        <section class="para-saber-mas" aria-labelledby="titulo-psm">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/joining-your-local-mesh/">Cómo sumarse a la malla de tu zona</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/community/local-groups/">Grupos locales de Meshtastic en el mundo</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/">Sitio oficial de Meshtastic</a> <span class="nota">(en inglés)</span></span></li>
+          </ul>
+        </section>
+
+        <nav class="paginador" aria-label="Ruta de aprendizaje">
+          <a href="configurar.html"><span>Anterior</span><strong>Cómo configurar un nodo</strong></a>
+          <a class="paginador__siguiente" href="mapa.html"><span>Siguiente</span><strong>Mapa de nodos de Cuyo</strong></a>
+        </nav>
+      </div>
+    </div>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

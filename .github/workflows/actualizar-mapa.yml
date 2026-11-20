@@ -1,0 +1,92 @@
+# Actualiza el mapa de nodos de Cuyo y publica el sitio en GitHub Pages.
+#
+# Cada 10 minutos: descarga el data/nodes.json publicado, escucha el MQTT unos
+# minutos con ingesta/ingesta.py y vuelve a publicar el sitio completo. No hace
+# commits, así que el historial del repositorio no se llena de actualizaciones.
+#
+# Requisitos (ver README.md):
+#   * Settings → Pages → Source: «GitHub Actions».
+#   * Repositorio público: en uno privado, 144 ejecuciones diarias agotan
+#     rápido los minutos gratuitos de Actions.
+#   * Opcional, para un broker propio: secrets MQTT_HOST, MQTT_USUARIO y
+#     MQTT_CLAVE, y la variable MQTT_TEMAS (temas separados por comas).
+#
+# Límites de GitHub: el intervalo mínimo es de 5 minutos, las ejecuciones
+# programadas pueden demorarse o descartarse en horas de mucha carga, y en un
+# repositorio público se desactivan tras 60 días sin actividad.
+name: Actualizar mapa y publicar sitio
+
+on:
+  schedule:
+    - cron: "3-59/10 * * * *"   # minutos 3, 13, 23…: evita el pico de cada hora en punto
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  actualizar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    environment:
+      name: github-pages
+      url: ${{ steps.publicar.outputs.page_url }}
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v7
+
+      - name: Preparar Python
+        uses: actions/setup-python@v7
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ingesta/requirements.txt
+
+      - name: Instalar dependencias de la ingesta
+        run: pip install -r ingesta/requirements.txt
+
+      - name: Probar la ingesta
+        run: python -m unittest discover -s ingesta/pruebas
+
+      - name: Configurar Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Retomar los datos ya publicados
+        run: |
+          if curl -fsSL "${{ steps.pages.outputs.base_url }}/data/nodes.json" -o /tmp/nodes.json \
+             && python -c "import json; json.load(open('/tmp/nodes.json'))"; then
+            mv /tmp/nodes.json data/nodes.json
+            echo "Se retomó el nodes.json publicado."
+          else
+            echo "No hay datos publicados todavía: se parte del archivo del repositorio."
+          fi
+
+      - name: Escuchar el MQTT
+        # Si el broker no responde, el sitio se publica igual con los datos anteriores.
+        continue-on-error: true
+        env:
+          MQTT_HOST: ${{ secrets.MQTT_HOST }}
+          MQTT_USUARIO: ${{ secrets.MQTT_USUARIO }}
+          MQTT_CLAVE: ${{ secrets.MQTT_CLAVE }}
+          MQTT_TEMAS: ${{ vars.MQTT_TEMAS }}
+          # Ejecución programada: 7 minutos. Push o ejecución manual: 1 minuto.
+          DURACION: ${{ github.event_name == 'schedule' && '420' || '60' }}
+        run: python ingesta/ingesta.py --duracion "$DURACION"
+
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - name: Publicar en GitHub Pages
+        id: publicar
+        uses: actions/deploy-pages@v5

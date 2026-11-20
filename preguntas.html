@@ -1,0 +1,216 @@
+<!doctype html>
+<html lang="es-AR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Preguntas frecuentes · Mendoza Mesh</title>
+  <meta name="description" content="Respuestas a las dudas más comunes de quienes empiezan con LoRa y Meshtastic en Cuyo.">
+  <link rel="canonical" href="https://USUARIO.github.io/mendoza-mesh/preguntas.html">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="Mendoza Mesh">
+  <meta property="og:locale" content="es_AR">
+  <meta property="og:title" content="Preguntas frecuentes · Mendoza Mesh">
+  <meta property="og:description" content="Respuestas a las dudas más comunes de quienes empiezan con LoRa y Meshtastic en Cuyo.">
+  <meta property="og:url" content="https://USUARIO.github.io/mendoza-mesh/preguntas.html">
+  <meta property="og:image" content="https://USUARIO.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Logo de Mendoza Mesh: nodos de radio enlazados sobre la cordillera">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#FAF6EF" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#12171F" media="(prefers-color-scheme: dark)">
+  <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png">
+  <link rel="preload" href="assets/fonts/atkinson-hyperlegible-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="assets/css/tokens.css">
+  <link rel="stylesheet" href="assets/css/base.css">
+  <script src="assets/js/tema.js"></script>
+  <script src="assets/js/nav.js" defer></script>
+</head>
+<body>
+  <a class="saltar" href="#contenido">Saltar al contenido</a>
+
+  <!-- cabecera:inicio -->
+  <header class="cabecera">
+    <div class="contenedor cabecera__fila">
+      <a class="marca" href="index.html">
+        <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+          <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+          <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+          <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+          <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+          <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+        </svg>
+        <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+      </a>
+      <button class="boton-menu" type="button" aria-expanded="false" aria-controls="nav-principal" hidden>
+        <svg class="icono-menu icono-menu__abrir" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M3 6h18M3 12h18M3 18h18" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <svg class="icono-menu icono-menu__cerrar" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M5 5l14 14M19 5 5 19" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/></svg>
+        <span class="boton-menu__texto">Menú</span>
+      </button>
+      <nav id="nav-principal" class="nav-principal" aria-label="Principal">
+        <ul>
+          <li><a href="index.html">Inicio</a></li>
+          <li><a href="lora.html">LoRa</a></li>
+          <li><a href="meshtastic.html">Meshtastic</a></li>
+          <li><a href="configurar.html">Configurar</a></li>
+          <li><a href="equipos.html">Equipos</a></li>
+          <li><a href="mapa.html">Mapa</a></li>
+          <li><a href="laboratorio.html">Laboratorio</a></li>
+          <li><a href="glosario.html">Glosario</a></li>
+          <li><a href="preguntas.html" aria-current="page">Preguntas</a></li>
+          <li><a href="comunidad.html">Comunidad</a></li>
+        </ul>
+      </nav>
+      <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="12" cy="12" r="8.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3.5a8.5 8.5 0 0 0 0 17z" fill="currentColor"/></svg>
+        <span class="visualmente-oculto">Modo oscuro</span>
+      </button>
+    </div>
+  </header>
+  <!-- cabecera:fin -->
+
+  <main id="contenido" tabindex="-1">
+    <div class="contenedor encabezado-pagina">
+      <p class="antetitulo">Dudas de quienes empiezan</p>
+      <h1>Preguntas frecuentes</h1>
+      <p class="entradilla">Las dudas más comunes de quienes empiezan, respondidas sin vueltas. Tocá una pregunta para ver la respuesta.</p>
+    </div>
+
+    <div class="contenedor pagina">
+      <div class="prosa">
+        <div class="faq">
+          <details id="licencia">
+            <summary>¿Necesito una licencia para usar Meshtastic?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Para el uso común, no.</strong> Meshtastic transmite en la banda de 915 a 928&nbsp;MHz, que en Argentina es de uso compartido y no requiere una autorización individual. Así lo establecen la Resolución 581/18 y las condiciones técnicas de la Resolución ENACOM 4653/19.</p>
+              <p>Lo que sí hay que respetar son esos límites técnicos <span class="verificar">[verificar potencia y condiciones técnicas]</span>: no le agregues amplificadores a tu nodo. Si tenés licencia de radioaficionado, Meshtastic ofrece un modo con licencia que habilita otras bandas, pero desactiva el cifrado y te obliga a transmitir tu indicativo.</p>
+            </div>
+          </details>
+
+          <details id="internet">
+            <summary>¿Necesito internet o señal de celular?</summary>
+            <div class="faq__respuesta">
+              <p><strong>No.</strong> Los mensajes viajan por radio, de nodo en nodo. El celular funciona como pantalla y teclado del nodo, conectado por Bluetooth, y no gasta datos móviles.</p>
+              <p>Internet es opcional: algunos nodos usan <a href="glosario.html#mqtt">MQTT</a> para unir redes lejanas o alimentar mapas como el de <a href="mapa.html">Cuyo</a>. La malla sigue funcionando aunque se caiga internet.</p>
+            </div>
+          </details>
+
+          <details id="alcance">
+            <summary>¿Hasta dónde llega un mensaje?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Depende sobre todo del terreno, la antena y la altura.</strong> En una ciudad con edificios, cada tramo suele ser corto. Con <a href="glosario.html#linea-de-vista">línea de vista</a> entre cerros, se llega a decenas de kilómetros. Además, cada nodo que retransmite estira el alcance de la malla.</p>
+              <p>La documentación oficial registra un récord en tierra de 331&nbsp;km, en condiciones excepcionales. Para una estimación de tu enlace, probá la <a href="laboratorio.html#titulo-calculadora">calculadora de alcance</a>.</p>
+            </div>
+          </details>
+
+          <details id="bateria">
+            <summary>¿Cuánto dura la batería?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Depende mucho de la placa y de cómo la configures.</strong> Las placas con chip nRF52 consumen mucho menos que las ESP32. También influyen la pantalla, el GPS, el wifi, el rol del nodo y cuántos mensajes pasan por él.</p>
+              <p>Para que dure más: apagá el wifi si no lo usás, dejá que la pantalla se apague sola, usá una batería más grande o sumá un panel solar. En las placas ESP32 también podés activar el modo de ahorro de energía.</p>
+            </div>
+          </details>
+
+          <details id="privacidad">
+            <summary>¿Mis mensajes son privados?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Depende del canal.</strong> El canal primario predeterminado es público: su clave está publicada, así que cualquiera puede leerlo, y una pasarela cercana puede subirlo a internet. En un <a href="glosario.html#canal-primario">canal secundario</a> con clave propia, solo leen los mensajes quienes tienen la clave. Los <a href="glosario.html#mensaje-directo">mensajes directos</a> se cifran con una clave que solo comparten el emisor y el destinatario.</p>
+              <p>Dos límites: quién envía y a quién se ve igual, aunque el contenido vaya cifrado. Y si alguien consigue la clave de un canal, puede leer mensajes que haya grabado antes. Con la posición, compartí solo la precisión que te parezca razonable.</p>
+            </div>
+          </details>
+
+          <details id="emergencias">
+            <summary>¿Sirve para emergencias en la montaña?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Puede ayudar, pero solo como complemento.</strong> Un mensaje llega únicamente si hay nodos en el camino, y la red no garantiza la entrega. No reemplaza a los servicios de emergencia ni a los equipos de comunicación que te exijan para una actividad de montaña.</p>
+              <p>Si lo llevás, salí con la batería cargada, mirá antes en el <a href="mapa.html">mapa</a> qué nodos hay en la zona y avisale a alguien tu recorrido.</p>
+            </div>
+          </details>
+
+          <details id="que-comprar">
+            <summary>¿Qué equipo compro para empezar?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Una placa compatible en la versión de 915&nbsp;MHz, con su antena.</strong> Para aprender, alcanza una económica con pantalla. Si querés GPS, buscá una que lo traiga. Si va a funcionar a batería o con panel solar, conviene una de bajo consumo (nRF52).</p>
+              <p>En <a href="equipos.html">Equipos recomendados</a> tenés una comparativa. Y recordá la regla de oro: nunca la enciendas sin la antena puesta.</p>
+            </div>
+          </details>
+
+          <details id="no-veo-a-nadie">
+            <summary>Configuré todo y no veo a nadie. ¿Qué hago?</summary>
+            <div class="faq__respuesta">
+              <p><strong>Casi siempre es un ajuste que no coincide.</strong> Revisá en este orden:</p>
+              <ol>
+                <li>La <a href="glosario.html#region">región</a>: en Argentina, ANZ.</li>
+                <li>El <a href="glosario.html#preset">preset</a>: tiene que ser el mismo que usa tu zona. Las apps incluyen una búsqueda que muestra qué preset tiene actividad cerca.</li>
+                <li>El canal primario: si le cambiaste el nombre o la clave, tu nodo quedó en otra frecuencia.</li>
+                <li>La antena: tiene que estar bien conectada y ser para 915&nbsp;MHz.</li>
+                <li>La ubicación: probá cerca de una ventana o en un techo.</li>
+              </ol>
+              <p>También puede pasar que no haya nodos cerca. Preguntá en <a href="comunidad.html">Comunidad</a>. Ojo: la lista de nodos de la app guarda los que escuchaste antes, así que un nodo que figura ahí no necesariamente está a tu alcance hoy.</p>
+            </div>
+          </details>
+        </div>
+
+        <section class="para-saber-mas" aria-labelledby="titulo-psm">
+          <h2 id="titulo-psm">Para saber más</h2>
+          <ul>
+            <li><span><a href="https://meshtastic.org/docs/faq/">Preguntas frecuentes oficiales de Meshtastic</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/getting-started/joining-your-local-mesh/">Cómo sumarse a la malla de tu zona</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://meshtastic.org/docs/configuration/radio/power/">Configuración de energía</a> <span class="nota">(en inglés)</span></span></li>
+            <li><span><a href="https://github.com/Meshtastic-Argentina/docu">Preguntas frecuentes de la comunidad Meshtastic Argentina</a></span></li>
+            <li><span><a href="https://www.enacom.gob.ar/bandas-de-uso-compartido-sin-autorizacion_p680">Bandas de uso compartido sin autorización, ENACOM</a></span></li>
+          </ul>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <!-- pie:inicio -->
+  <footer class="pie">
+    <div class="contenedor">
+      <div class="pie__rejilla">
+        <div class="pie__marca">
+          <a class="marca" href="index.html">
+            <svg class="marca__logo" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+              <path class="logo-cerro" d="M3 42 16 19l6 9 9-17 14 31z"/>
+              <path class="logo-nieve" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+              <path class="logo-linea" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+              <g class="logo-nodo" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+              <circle class="logo-nodo-central" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+            </svg>
+            <span class="marca__nombre">Mendoza <span>Mesh</span></span>
+          </a>
+          <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+        </div>
+        <nav aria-label="Aprender">
+          <h2>Aprender</h2>
+          <ul>
+            <li><a href="lora.html">¿Qué es LoRa?</a></li>
+            <li><a href="meshtastic.html">Meshtastic y la malla</a></li>
+            <li><a href="configurar.html">Configurar un nodo</a></li>
+            <li><a href="glosario.html">Glosario</a></li>
+            <li><a href="preguntas.html">Preguntas frecuentes</a></li>
+          </ul>
+        </nav>
+        <nav aria-label="Participar">
+          <h2>Participar</h2>
+          <ul>
+            <li><a href="equipos.html">Equipos recomendados</a></li>
+            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
+            <li><a href="laboratorio.html">Laboratorio</a></li>
+            <li><a href="comunidad.html">Comunidad</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="pie__legal">
+        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
+        <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
+        <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+      </div>
+    </div>
+  </footer>
+  <!-- pie:fin -->
+</body>
+</html>

@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" width="48" height="48" role="img" aria-labelledby="t">
+  <title id="t">Mendoza Mesh</title>
+  <style>
+    .c{fill:#7C9BB3}.n{fill:#FFFFFF}.l{stroke:#7A1F3D}.d{fill:#7A1F3D;stroke:#FAF6EF}.m{fill:#E3A857;stroke:#7A1F3D}
+    @media (prefers-color-scheme: dark){.c{fill:#34506B}.n{fill:#C9D6E3}.l{stroke:#F2A7BE}.d{fill:#F2A7BE;stroke:#12171F}.m{fill:#E7AE62;stroke:#F2A7BE}}
+  </style>
+  <path class="c" d="M3 42 16 19l6 9 9-17 14 31z"/>
+  <path class="n" d="M31 11l2.8 6.2-1.8-1-1.4 1.4-1-1.6-1.1-.2z"/>
+  <path class="l" fill="none" stroke-width="2.2" stroke-linecap="round" d="M24 37 16 19M24 37l7-26M24 37l16-6"/>
+  <g class="d" stroke-width="2"><circle cx="16" cy="19" r="3"/><circle cx="31" cy="11" r="3"/><circle cx="40" cy="31" r="3"/></g>
+  <circle class="m" cx="24" cy="37" r="5.5" stroke-width="2.5"/>
+</svg>
