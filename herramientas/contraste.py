@@ -23,7 +23,7 @@ from pathlib import Path
 RAIZ = Path(__file__).resolve().parent.parent
 TOKENS = RAIZ / "assets" / "css" / "tokens.css"
 
-FONDOS = ["fondo", "superficie", "superficie-2", "cielo-alto"]
+FONDOS = ["fondo", "superficie", "superficie-2", "cielo-alto", "vino-tenue"]
 TEXTOS = ["texto", "texto-suave", "vino", "vino-hover", "ocre", "verde", "azul"]
 
 # (primer plano, fondo, mínimo, uso)
@@ -38,6 +38,7 @@ PARES = [(t, f, 4.5, "texto") for t in TEXTOS for f in FONDOS] + [
     ("borde", "fondo", 3.0, "borde de control"),
     ("borde", "superficie", 3.0, "borde de control"),
     ("borde", "superficie-2", 3.0, "borde de control"),
+    ("borde", "vino-tenue", 3.0, "borde de control"),
     ("foco", "fondo", 3.0, "anillo de foco"),
     ("foco", "superficie", 3.0, "anillo de foco"),
     ("foco", "superficie-2", 3.0, "anillo de foco"),

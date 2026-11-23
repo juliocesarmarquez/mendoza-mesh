@@ -25,8 +25,10 @@
   <link rel="preload" href="assets/fonts/fraunces-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="assets/css/tokens.css">
   <link rel="stylesheet" href="assets/css/base.css">
+  <link rel="stylesheet" href="assets/css/portada.css">
   <script src="assets/js/tema.js"></script>
   <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/interfaz.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -75,9 +77,53 @@
 
     <!-- 1. Portada -->
     <section class="portada" aria-labelledby="titulo-portada">
+      <div class="escena escena--portada" data-escena="portada">
+        <svg class="escena__respaldo portada__paisaje" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
+          <g class="p-estrellas">
+            <circle class="p-estrella" cx="120" cy="60" r="1.6"/><circle class="p-estrella" cx="310" cy="96" r="1.2"/>
+            <circle class="p-estrella" cx="520" cy="44" r="1.5"/><circle class="p-estrella" cx="690" cy="88" r="1.1"/>
+            <circle class="p-estrella" cx="905" cy="52" r="1.6"/><circle class="p-estrella" cx="1010" cy="100" r="1.2"/>
+            <circle class="p-estrella" cx="1300" cy="70" r="1.5"/><circle class="p-estrella" cx="1400" cy="120" r="1.1"/>
+          </g>
+          <circle class="p-astro" cx="1150" cy="118" r="44"/>
+          <path class="p-lejano" d="M0 250 60 222l50 14 60-48 45 24 45-44 40 28 50-46 45 32 55-44 50 38 60-48 50 42 50-24 60 40 60-74 55 48 45-20 50 42 60-34 60 44 60-34 60 40 60-30 60 38 60-28 90 34v188H0z"/>
+          <path class="p-nieve" d="M780 112l12 10-6-1-5 6-6-5-8 6zM560 128l10 8-5-1-5 5-5-5-7 3zM450 138l10 8-5-1-5 5-5-4-6 1zM350 150l9 6h-5l-4 5-4-4-6 2zM880 140l10 8-5-1-5 4-4-5-5-2z"/>
+          <path class="p-medio" d="M0 292 80 252l60 20 70-54 50 28 70-42 50 32 60-24 60 38 70-42 70 38 60-20 60 36 70-44 70 38 60-24 70 34 70-38 60 28 70-20 70 30 70-20 70 16v138H0z"/>
+          <path class="p-cerca" d="M0 322c80-22 140-4 220-26s140 16 230 4 150 18 250 10 160-24 260-10 160-8 260-4 160 16 220 8v96H0z"/>
+          <path class="p-tierra" d="M0 340c300-8 1100-8 1440 0v60H0z"/>
+          <g fill="none" stroke-linecap="round">
+            <path class="p-vid-a" d="M0 350h1440" stroke-width="2.5" stroke-dasharray="10 7"/>
+            <path class="p-vid-b" d="M0 361h1440" stroke-width="3.5" stroke-dasharray="14 8"/>
+            <path class="p-vid-a" d="M0 374h1440" stroke-width="4.5" stroke-dasharray="18 9"/>
+            <path class="p-vid-b" d="M0 389h1440" stroke-width="6" stroke-dasharray="24 10"/>
+          </g>
+          <g>
+            <path class="p-enlace" d="M360 356 210 194"/>
+            <path class="p-enlace" d="M210 194q180-44 360-12"/>
+            <path class="p-enlace" d="M570 182q130-22 260 10"/>
+            <path class="p-enlace" d="M830 192q135-24 270 10"/>
+            <path class="p-enlace" d="M1100 202 980 352"/>
+            <path class="p-enlace" d="M830 192l150 160"/>
+            <path class="p-enlace" d="M570 182 360 356"/>
+          </g>
+          <g>
+            <path class="p-mastil" d="M210 218v-20M570 208v-22M830 218v-22M1100 228v-22"/>
+            <circle class="p-onda" cx="570" cy="182" r="10"/>
+            <circle class="p-onda p-onda--2" cx="570" cy="182" r="10"/>
+            <circle class="p-onda p-onda--3" cx="570" cy="182" r="10"/>
+            <circle class="p-nodo" cx="210" cy="194" r="7"/>
+            <circle class="p-nodo" cx="570" cy="182" r="8"/>
+            <circle class="p-nodo" cx="830" cy="192" r="7"/>
+            <circle class="p-nodo" cx="1100" cy="202" r="7"/>
+            <circle class="p-nodo" cx="360" cy="356" r="7"/>
+            <circle class="p-nodo" cx="980" cy="352" r="7"/>
+          </g>
+        </svg>
+      </div>
+
       <div class="contenedor portada__rejilla">
         <div class="portada__texto">
-          <p class="antetitulo">Red comunitaria LoRa · Mendoza, San Juan y San Luis</p>
+          <p class="portada__chip"><span class="portada__punto" aria-hidden="true"></span>Red comunitaria LoRa · Mendoza, San Juan y San Luis</p>
           <h1 id="titulo-portada">Mendoza <span>Mesh</span></h1>
           <p class="portada__bajada">Mensajes por radio, sin internet ni señal de celular, en una red hecha por la comunidad de Cuyo.</p>
           <div class="portada__acciones">
@@ -102,48 +148,6 @@
           <figcaption id="pantalla-desc">Ejemplo ilustrativo: un mensaje enviado desde un cerro llega al valle después de pasar por dos nodos.</figcaption>
         </figure>
       </div>
-
-      <svg class="portada__paisaje" viewBox="0 0 1440 400" preserveAspectRatio="xMidYMax slice" aria-hidden="true" focusable="false">
-        <g class="p-estrellas">
-          <circle class="p-estrella" cx="120" cy="60" r="1.6"/><circle class="p-estrella" cx="310" cy="96" r="1.2"/>
-          <circle class="p-estrella" cx="520" cy="44" r="1.5"/><circle class="p-estrella" cx="690" cy="88" r="1.1"/>
-          <circle class="p-estrella" cx="905" cy="52" r="1.6"/><circle class="p-estrella" cx="1010" cy="100" r="1.2"/>
-          <circle class="p-estrella" cx="1300" cy="70" r="1.5"/><circle class="p-estrella" cx="1400" cy="120" r="1.1"/>
-        </g>
-        <circle class="p-astro" cx="1150" cy="118" r="44"/>
-        <path class="p-lejano" d="M0 250 60 222l50 14 60-48 45 24 45-44 40 28 50-46 45 32 55-44 50 38 60-48 50 42 50-24 60 40 60-74 55 48 45-20 50 42 60-34 60 44 60-34 60 40 60-30 60 38 60-28 90 34v188H0z"/>
-        <path class="p-nieve" d="M780 112l12 10-6-1-5 6-6-5-8 6zM560 128l10 8-5-1-5 5-5-5-7 3zM450 138l10 8-5-1-5 5-5-4-6 1zM350 150l9 6h-5l-4 5-4-4-6 2zM880 140l10 8-5-1-5 4-4-5-5-2z"/>
-        <path class="p-medio" d="M0 292 80 252l60 20 70-54 50 28 70-42 50 32 60-24 60 38 70-42 70 38 60-20 60 36 70-44 70 38 60-24 70 34 70-38 60 28 70-20 70 30 70-20 70 16v138H0z"/>
-        <path class="p-cerca" d="M0 322c80-22 140-4 220-26s140 16 230 4 150 18 250 10 160-24 260-10 160-8 260-4 160 16 220 8v96H0z"/>
-        <path class="p-tierra" d="M0 340c300-8 1100-8 1440 0v60H0z"/>
-        <g fill="none" stroke-linecap="round">
-          <path class="p-vid-a" d="M0 350h1440" stroke-width="2.5" stroke-dasharray="10 7"/>
-          <path class="p-vid-b" d="M0 361h1440" stroke-width="3.5" stroke-dasharray="14 8"/>
-          <path class="p-vid-a" d="M0 374h1440" stroke-width="4.5" stroke-dasharray="18 9"/>
-          <path class="p-vid-b" d="M0 389h1440" stroke-width="6" stroke-dasharray="24 10"/>
-        </g>
-        <g>
-          <path class="p-enlace" d="M360 356 210 194"/>
-          <path class="p-enlace" d="M210 194q180-44 360-12"/>
-          <path class="p-enlace" d="M570 182q130-22 260 10"/>
-          <path class="p-enlace" d="M830 192q135-24 270 10"/>
-          <path class="p-enlace" d="M1100 202 980 352"/>
-          <path class="p-enlace" d="M830 192l150 160"/>
-          <path class="p-enlace" d="M570 182 360 356"/>
-        </g>
-        <g>
-          <path class="p-mastil" d="M210 218v-20M570 208v-22M830 218v-22M1100 228v-22"/>
-          <circle class="p-onda" cx="570" cy="182" r="10"/>
-          <circle class="p-onda p-onda--2" cx="570" cy="182" r="10"/>
-          <circle class="p-onda p-onda--3" cx="570" cy="182" r="10"/>
-          <circle class="p-nodo" cx="210" cy="194" r="7"/>
-          <circle class="p-nodo" cx="570" cy="182" r="8"/>
-          <circle class="p-nodo" cx="830" cy="192" r="7"/>
-          <circle class="p-nodo" cx="1100" cy="202" r="7"/>
-          <circle class="p-nodo" cx="360" cy="356" r="7"/>
-          <circle class="p-nodo" cx="980" cy="352" r="7"/>
-        </g>
-      </svg>
     </section>
 
     <!-- 2. ¿Qué es Mendoza Mesh? -->
@@ -183,16 +187,19 @@
             <svg class="tarjeta__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21v-8"/><path d="M12 13c0-4.2 3-7 8-7 0 4.2-3 7-8 7z"/><path d="M12 13c0-3.6-2.6-6-7-6 0 3.6 2.6 6 7 6z"/><path d="M8 21h8"/></g></svg>
             <h3>Principiantes curiosos</h3>
             <p>Nunca tocaste una radio ni una placa electrónica. Empezamos desde cero, con analogías y definiendo cada palabra técnica.</p>
+            <a class="tarjeta__enlace" href="lora.html">Empezá por LoRa</a>
           </li>
           <li class="tarjeta">
             <svg class="tarjeta__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a4 4 0 0 0-5.4 5.4L3.5 17.5a1.8 1.8 0 0 0 2.5 2.5l5.8-5.8a4 4 0 0 0 5.4-5.4l-2.5 2.5-2.3-.4-.4-2.3z"/></g></svg>
             <h3>Makers</h3>
             <p>Te gusta soldar, imprimir cajas en 3D y programar. Vas a encontrar comparativas de placas, consejos de montaje y el código abierto de este sitio.</p>
+            <a class="tarjeta__enlace" href="equipos.html">Compará las placas</a>
           </li>
           <li class="tarjeta">
             <svg class="tarjeta__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="1.4"/><path d="M12 10.4V21"/><path d="M8.5 21 12 10.4 15.5 21"/><path d="M9.6 17.2h4.8"/><path d="M7.6 4.6a6.2 6.2 0 0 1 8.8 0"/><path d="M9.6 6.8a3.3 3.3 0 0 1 4.8 0"/></g></svg>
             <h3>Radioaficionados</h3>
             <p>Ya conocés de propagación, antenas y línea de vista. Acá aplicás ese conocimiento a una red digital de baja potencia y ayudás a planificar los enlaces de la región.</p>
+            <a class="tarjeta__enlace" href="laboratorio.html#titulo-calculadora">Calculá un enlace</a>
           </li>
         </ul>
       </div>
@@ -297,6 +304,7 @@
             <span class="marca__nombre">Mendoza <span>Mesh</span></span>
           </a>
           <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+          <p class="pie__senal" aria-hidden="true">32°53′ S · 68°50′ O · 915–928 MHz</p>
         </div>
         <nav aria-label="Aprender">
           <h2>Aprender</h2>
@@ -321,6 +329,10 @@
       <div class="pie__legal">
         <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
         <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+        <a class="pie__arriba" href="#contenido">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Volver arriba
+        </a>
       </div>
     </div>
   </footer>

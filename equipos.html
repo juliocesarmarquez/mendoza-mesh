@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <script src="assets/js/tema.js"></script>
   <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/interfaz.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -72,24 +73,37 @@
   <!-- cabecera:fin -->
 
   <main id="contenido" tabindex="-1">
-    <div class="contenedor encabezado-pagina">
-      <p class="antetitulo">Paso 3 de la ruta</p>
-      <h1>Equipos recomendados</h1>
-      <p class="entradilla">Placas compatibles con Meshtastic que usa la comunidad, los accesorios que no pueden faltar y qué cambia entre un nodo en un cerro y uno en la ciudad.</p>
-    </div>
-
-    <div class="contenedor pagina">
-      <div class="prosa">
-        <nav class="indice-pagina" aria-labelledby="titulo-indice">
-          <h2 id="titulo-indice">En esta página</h2>
+    <div class="banda-pagina">
+      <div class="banda-pagina__fondo" aria-hidden="true">
+        <span class="banda-pagina__coordenadas">32°53′ S · 68°50′ O · 915–928 MHz</span>
+      </div>
+      <div class="contenedor banda-pagina__texto">
+        <p class="antetitulo">Paso 3 de la ruta</p>
+        <h1>Equipos recomendados</h1>
+        <p class="entradilla">Placas compatibles con Meshtastic que usa la comunidad, los accesorios que no pueden faltar y qué cambia entre un nodo en un cerro y uno en la ciudad.</p>
+        <nav class="mini-ruta" aria-label="Ruta de aprendizaje: paso 3 de 5">
           <ol>
-            <li><a href="#como-elegir">Cómo elegir</a></li>
-            <li><a href="#comparativa">Comparativa de placas</a></li>
-            <li><a href="#accesorios">Accesorios esenciales</a></li>
-            <li><a href="#cerro-o-ciudad">Router en un cerro o cliente en la ciudad</a></li>
+            <li class="mini-ruta__hecho"><a href="lora.html"><span class="mini-ruta__num" aria-hidden="true">1</span><span class="mini-ruta__nombre">LoRa</span></a></li>
+            <li class="mini-ruta__hecho"><a href="meshtastic.html"><span class="mini-ruta__num" aria-hidden="true">2</span><span class="mini-ruta__nombre">La malla</span></a></li>
+            <li><a href="equipos.html" aria-current="step"><span class="mini-ruta__num" aria-hidden="true">3</span><span class="mini-ruta__nombre">Tu equipo</span></a></li>
+            <li><a href="configurar.html"><span class="mini-ruta__num" aria-hidden="true">4</span><span class="mini-ruta__nombre">Configurar</span></a></li>
+            <li><a href="comunidad.html"><span class="mini-ruta__num" aria-hidden="true">5</span><span class="mini-ruta__nombre">Comunidad</span></a></li>
           </ol>
         </nav>
+      </div>
+    </div>
 
+    <div class="contenedor pagina pagina--con-indice">
+      <nav class="indice-pagina" aria-labelledby="titulo-indice">
+        <h2 id="titulo-indice">En esta página</h2>
+        <ol>
+          <li><a href="#como-elegir">Cómo elegir</a></li>
+          <li><a href="#comparativa">Comparativa de placas</a></li>
+          <li><a href="#accesorios">Accesorios esenciales</a></li>
+          <li><a href="#cerro-o-ciudad">Router en un cerro o cliente en la ciudad</a></li>
+        </ol>
+      </nav>
+      <div class="prosa">
         <aside class="nota-campo" aria-labelledby="como-elegir">
           <h2 id="como-elegir">La idea simple: elegir un nodo es como elegir un celular</h2>
           <p>Primero pensá para qué lo querés. Para llevarlo encima te conviene uno chico, con batería y, si vas a la montaña, con GPS. Para dejarlo fijo en un techo o en un cerro importa más que consuma poco y aguante la intemperie. Y para aprender, alcanza con una placa económica y su antena.</p>
@@ -228,6 +242,7 @@
             <span class="marca__nombre">Mendoza <span>Mesh</span></span>
           </a>
           <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+          <p class="pie__senal" aria-hidden="true">32°53′ S · 68°50′ O · 915–928 MHz</p>
         </div>
         <nav aria-label="Aprender">
           <h2>Aprender</h2>
@@ -252,6 +267,10 @@
       <div class="pie__legal">
         <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
         <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+        <a class="pie__arriba" href="#contenido">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Volver arriba
+        </a>
       </div>
     </div>
   </footer>

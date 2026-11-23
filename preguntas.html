@@ -27,6 +27,7 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <script src="assets/js/tema.js"></script>
   <script src="assets/js/nav.js" defer></script>
+  <script src="assets/js/interfaz.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -72,10 +73,15 @@
   <!-- cabecera:fin -->
 
   <main id="contenido" tabindex="-1">
-    <div class="contenedor encabezado-pagina">
-      <p class="antetitulo">Dudas de quienes empiezan</p>
-      <h1>Preguntas frecuentes</h1>
-      <p class="entradilla">Las dudas más comunes de quienes empiezan, respondidas sin vueltas. Tocá una pregunta para ver la respuesta.</p>
+    <div class="banda-pagina">
+      <div class="banda-pagina__fondo" aria-hidden="true">
+        <span class="banda-pagina__coordenadas">32°53′ S · 68°50′ O · 915–928 MHz</span>
+      </div>
+      <div class="contenedor banda-pagina__texto">
+        <p class="antetitulo">Dudas de quienes empiezan</p>
+        <h1>Preguntas frecuentes</h1>
+        <p class="entradilla">Las dudas más comunes de quienes empiezan, respondidas sin vueltas. Tocá una pregunta para ver la respuesta.</p>
+      </div>
     </div>
 
     <div class="contenedor pagina">
@@ -183,6 +189,7 @@
             <span class="marca__nombre">Mendoza <span>Mesh</span></span>
           </a>
           <p>Comunidad para aprender LoRa y Meshtastic® en Mendoza, San Juan y San Luis.</p>
+          <p class="pie__senal" aria-hidden="true">32°53′ S · 68°50′ O · 915–928 MHz</p>
         </div>
         <nav aria-label="Aprender">
           <h2>Aprender</h2>
@@ -207,6 +214,10 @@
       <div class="pie__legal">
         <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
         <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
+        <a class="pie__arriba" href="#contenido">
+          <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M12 19V5M6 11l6-6 6 6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          Volver arriba
+        </a>
       </div>
     </div>
   </footer>

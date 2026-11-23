@@ -1,0 +1,445 @@
+/* ==========================================================================
+   Mendoza Mesh: estilos exclusivos de la portada (index.html)
+   Hero con escena 3D (o su ilustración SVG de respaldo), «¿Qué es?»,
+   ruta de aprendizaje, usos y banda de llamada a la acción.
+   ========================================================================== */
+
+/* --- Portada -------------------------------------------------------------- */
+.portada {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--cielo-alto) 0%, var(--cielo-bajo) 78%);
+  /* Espacio para el paisaje: el texto queda siempre sobre el cielo */
+  padding-bottom: clamp(150px, 22vw, 330px);
+}
+/* Curvas de nivel de fondo, como en una carta topográfica */
+.portada::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  background-color: var(--azul);
+  opacity: 0.11;
+  -webkit-mask: url("../img/curvas.svg") center top / cover no-repeat;
+  mask: url("../img/curvas.svg") center top / cover no-repeat;
+}
+
+/* Contenedor de la escena: la ilustración SVG es el respaldo; la escena 3D
+   (assets/js/escena/) dibuja un canvas encima y la reemplaza al estar lista. */
+.escena {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+}
+.escena__lienzo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.escena-lista .escena__lienzo { opacity: 1; }
+.escena-lista .escena__respaldo { opacity: 0; visibility: hidden; }
+@media (prefers-reduced-motion: no-preference) {
+  .escena__lienzo { transition: opacity 1.2s var(--curva-salida); }
+  .escena__respaldo { transition: opacity 1.2s var(--curva-salida), visibility 0s 1.2s; }
+}
+
+.portada__paisaje {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: clamp(220px, 32vw, 460px);
+}
+
+.portada__rejilla {
+  position: relative;
+  display: grid;
+  gap: var(--esp-6);
+  align-items: center;
+}
+.portada__texto { padding-top: clamp(2.5rem, 6vw, 5.5rem); }
+
+/* Chip con un nodo que «late» */
+.portada__chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.65rem;
+  max-width: 100%;
+  padding: 0.4rem 0.95rem 0.4rem 0.75rem;
+  background: var(--superficie);
+  border: 1px solid var(--linea-suave);
+  border-radius: 999px;
+  box-shadow: var(--sombra);
+  font-size: 0.875rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 1.3;
+  color: var(--texto);
+}
+.portada__punto {
+  position: relative;
+  flex: none;
+  width: 0.6rem;
+  height: 0.6rem;
+  border-radius: 50%;
+  background: var(--vino);
+}
+.portada__punto::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 2px solid var(--vino);
+  opacity: 0;
+}
+
+.portada h1 {
+  margin-top: var(--esp-5);
+  font-size: var(--paso-5);
+  line-height: 0.95;
+  letter-spacing: -0.035em;
+}
+.portada h1 span { color: var(--vino); }
+.portada__bajada {
+  margin-top: var(--esp-5);
+  max-width: 32ch;
+  font-size: clamp(1.25rem, 1.05rem + 0.8vw, 1.6rem);
+  line-height: 1.4;
+  color: var(--texto);
+}
+.portada__acciones {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--esp-3);
+  margin-top: var(--esp-6);
+}
+.portada__dato {
+  margin-top: var(--esp-5);
+  font-size: 1rem;
+  color: var(--texto-suave);
+}
+
+/* Pantalla ilustrativa (equipo con pantalla OLED) */
+.pantalla { display: none; margin: 0; }
+@media (min-width: 60rem) {
+  .portada__rejilla { grid-template-columns: 1.55fr 1fr; }
+  .pantalla {
+    display: block;
+    justify-self: end;
+    width: min(100%, 21rem);
+    padding-top: clamp(4rem, 8vw, 7rem);
+  }
+}
+/* El equipo se ve siempre «apagado y oscuro», como una pantalla OLED real,
+   en ambos temas. Colores fijos con contraste ≥ 7:1 sobre #0A0F14. */
+.pantalla__equipo {
+  position: relative;
+  background: linear-gradient(160deg, #2E3946 0%, #161C24 100%);
+  border-radius: 22px;
+  padding: 18px 18px 30px;
+  box-shadow: var(--sombra-alta), inset 0 1px 0 rgb(255 255 255 / 0.08);
+  transform: rotate(2.5deg);
+}
+.pantalla__equipo::before {
+  content: "";
+  position: absolute;
+  top: -74px;
+  right: 36px;
+  width: 11px;
+  height: 86px;
+  border-radius: 6px 6px 3px 3px;
+  background: linear-gradient(90deg, #1E252F, #3A4552 55%, #1E252F);
+  z-index: -1;
+}
+.pantalla__equipo::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 10px;
+  width: 42px;
+  height: 6px;
+  margin-left: -21px;
+  border-radius: 3px;
+  background: #0A0F14;
+}
+.pantalla__vidrio {
+  background: #0A0F14;
+  border: 1px solid #000;
+  border-radius: 10px;
+  padding: 14px 16px 16px;
+  font-family: var(--fuente-mono);
+  font-size: 0.95rem;
+  line-height: 1.45;
+  color: #D7E3EC;
+}
+.pantalla__vidrio p { margin: 0; }
+.pantalla__barra {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  color: #93C4E8;
+  border-bottom: 1px solid #2A3644;
+  padding-bottom: 6px;
+  margin-bottom: 10px !important;
+}
+.pantalla__senal { display: inline-flex; align-items: flex-end; gap: 2px; height: 12px; }
+.pantalla__senal i { display: block; width: 4px; background: #A3CE86; border-radius: 1px; }
+.pantalla__senal i:nth-child(1) { height: 5px; }
+.pantalla__senal i:nth-child(2) { height: 8px; }
+.pantalla__senal i:nth-child(3) { height: 12px; }
+.pantalla__de { font-size: 0.8rem; color: #E7AE62; }
+.pantalla__msg { margin-top: 4px !important; color: #F3ECE2; }
+.pantalla__saltos { margin-top: 10px !important; font-size: 0.8rem; color: #C7BBAC; }
+.pantalla__saltos b { color: #F2A7BE; }
+.pantalla figcaption {
+  margin-top: var(--esp-5);
+  padding: var(--esp-2) var(--esp-3);
+  font-size: 0.9375rem;
+  color: var(--texto-suave);
+  background: var(--superficie);
+  border: 1px solid var(--linea-suave);
+  border-radius: var(--radio-chico);
+}
+
+/* Capas de la ilustración */
+.p-astro { fill: var(--astro); }
+.p-lejano { fill: var(--cerro-lejano); }
+.p-medio { fill: var(--cerro-medio); }
+.p-cerca { fill: var(--cerro-cerca); }
+.p-nieve { fill: var(--nieve); }
+.p-tierra { fill: var(--tierra); }
+.p-vid-a { stroke: var(--vinedo-oscuro); }
+.p-vid-b { stroke: var(--vinedo-claro); }
+.p-enlace {
+  stroke: var(--enlace-radio);
+  stroke-width: 2.5;
+  stroke-dasharray: 2 9;
+  stroke-linecap: round;
+  fill: none;
+}
+.p-mastil { stroke: var(--nodo); stroke-width: 2.5; stroke-linecap: round; }
+.p-nodo { fill: var(--nodo); stroke: var(--nodo-borde); stroke-width: 3; }
+.p-onda { fill: none; stroke: var(--enlace-radio); stroke-width: 2; opacity: 0; }
+.p-estrella { fill: var(--astro); opacity: 0; }
+:root[data-tema="oscuro"] .p-estrella { opacity: 0.7; }
+@media (prefers-color-scheme: dark) {
+  :root:not([data-tema="claro"]) .p-estrella { opacity: 0.7; }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .p-enlace { animation: flujo 1.6s linear infinite; }
+  .p-onda {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: onda 3.6s ease-out infinite;
+  }
+  .p-onda--2 { animation-delay: 1.2s; }
+  .p-onda--3 { animation-delay: 2.4s; }
+  .portada__punto::after { animation: latido 2.4s var(--curva-salida) infinite; }
+  .portada__texto > * { animation: aparecer var(--dur-3) var(--curva-salida) both; }
+  .portada__texto > *:nth-child(2) { animation-delay: 0.08s; }
+  .portada__texto > *:nth-child(3) { animation-delay: 0.16s; }
+  .portada__texto > *:nth-child(4) { animation-delay: 0.24s; }
+  .portada__texto > *:nth-child(5) { animation-delay: 0.32s; }
+  .pantalla { animation: aparecer 0.9s 0.3s var(--curva-salida) both; }
+  .pantalla__msg { animation: aparecer 0.6s 0.9s var(--curva-salida) both; }
+  .pantalla__saltos { animation: aparecer 0.6s 1.3s var(--curva-salida) both; }
+}
+@keyframes flujo { to { stroke-dashoffset: -22; } }
+@keyframes onda {
+  0% { transform: scale(0.3); opacity: 0.85; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+@keyframes latido {
+  0% { transform: scale(1); opacity: 0.9; }
+  100% { transform: scale(3.2); opacity: 0; }
+}
+
+/* --- Bloque «¿Qué es?» con nota de analogía -------------------------------- */
+.que-es {
+  display: grid;
+  gap: var(--esp-6);
+  align-items: start;
+}
+@media (min-width: 60rem) {
+  .que-es { grid-template-columns: 1.25fr 1fr; gap: var(--esp-8); }
+  .que-es .nota-campo { position: sticky; top: calc(var(--alto-cabecera) + var(--esp-6)); transform: rotate(-0.6deg); }
+}
+.detalle-tecnico {
+  margin-top: var(--esp-5);
+  padding-top: var(--esp-4);
+  border-top: 1px dashed var(--borde);
+}
+.detalle-tecnico h3 {
+  font-size: 0.875rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--azul);
+  margin-bottom: var(--esp-2);
+}
+
+/* --- Ruta de aprendizaje: hitos unidos por un enlace de radio ---------------- */
+.ruta {
+  list-style: none;
+  padding: 0;
+  counter-reset: hito;
+  display: grid;
+  gap: var(--esp-5);
+}
+.ruta li {
+  counter-increment: hito;
+  position: relative;
+  padding-left: 4.75rem;
+  min-height: 3.5rem;
+}
+.ruta li::before {
+  content: counter(hito);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 3.5rem;
+  height: 3.5rem;
+  display: grid;
+  place-items: center;
+  font-family: var(--fuente-titulos);
+  font-weight: 600;
+  font-size: 1.6rem;
+  color: var(--vino);
+  background: var(--superficie);
+  border: 2px solid var(--vino);
+  border-radius: 50%;
+  box-shadow: 0 0 0 6px var(--fondo);
+  z-index: 1;
+  transition: background-color var(--dur-2) ease, color var(--dur-2) ease;
+}
+.ruta li:hover::before,
+.ruta li:focus-within::before {
+  background: var(--vino);
+  color: var(--sobre-vino);
+}
+/* El tramo entre hitos se dibuja como el enlace de radio de la ilustración */
+.ruta li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: calc(1.75rem - 1.5px);
+  top: 3.5rem;
+  bottom: calc(-1 * var(--esp-5));
+  width: 3px;
+  background: repeating-linear-gradient(180deg, var(--enlace-radio) 0 3px, transparent 3px 11px);
+  opacity: 0.7;
+}
+.ruta a {
+  font-weight: 700;
+  font-size: var(--paso-1);
+}
+.ruta p { color: var(--texto-suave); margin-top: var(--esp-1); }
+
+@media (min-width: 60rem) {
+  .ruta {
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--esp-5);
+  }
+  .ruta li { padding-left: 0; padding-top: 5rem; }
+  .ruta li:not(:last-child)::after {
+    left: 3.5rem;
+    right: calc(-1 * var(--esp-5));
+    top: calc(1.75rem - 1.5px);
+    bottom: auto;
+    width: auto;
+    height: 3px;
+    background: repeating-linear-gradient(90deg, var(--enlace-radio) 0 3px, transparent 3px 11px);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .ruta li:not(:last-child)::after { animation: tramo-vertical 1.4s linear infinite; }
+  @media (min-width: 60rem) {
+    .ruta li:not(:last-child)::after { animation-name: tramo-horizontal; }
+  }
+}
+@keyframes tramo-vertical { from { background-position: 0 0; } to { background-position: 0 11px; } }
+@keyframes tramo-horizontal { from { background-position: 0 0; } to { background-position: 11px 0; } }
+
+/* --- Usos de la malla ------------------------------------------------------- */
+.usos {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: var(--esp-5) var(--esp-6);
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 19rem), 1fr));
+  margin-bottom: var(--esp-6);
+}
+.usos li {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: var(--esp-4);
+  align-items: start;
+}
+.usos svg {
+  width: 3rem;
+  height: 3rem;
+  padding: 0.6rem;
+  color: var(--verde);
+  background: var(--superficie);
+  border: 1px solid var(--linea-suave);
+  border-radius: 50%;
+}
+.usos strong { display: block; }
+.usos span { color: var(--texto-suave); }
+
+/* --- Banda de llamada a la acción ------------------------------------------- */
+.banda {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: var(--banda);
+  color: var(--sobre-banda);
+  padding-block: clamp(3rem, 2rem + 4vw, 5rem);
+}
+.banda::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-color: var(--sobre-banda);
+  opacity: 0.07;
+  -webkit-mask: url("../img/curvas.svg") center / cover no-repeat;
+  mask: url("../img/curvas.svg") center / cover no-repeat;
+}
+.banda__fila {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--esp-5);
+}
+.banda h2 { font-size: clamp(1.5rem, 1.25rem + 1.2vw, 2.2rem); }
+.banda p { margin-top: var(--esp-2); max-width: 46ch; }
+.banda .boton {
+  background: var(--sobre-banda);
+  color: var(--banda);
+  border-color: var(--sobre-banda);
+  box-shadow: none;
+}
+.banda .boton:hover {
+  background: var(--sobre-banda);
+  color: var(--banda);
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
+}
+.banda :focus-visible { outline-color: var(--sobre-banda); }
+
+@media print {
+  .escena, .banda { display: none !important; }
+  .portada { padding-bottom: 0; background: none; }
+}
+@media (forced-colors: active) {
+  .escena__lienzo { display: none; }
+  .escena-lista .escena__respaldo { opacity: 1; visibility: visible; }
+}
