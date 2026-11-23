@@ -6,7 +6,9 @@ Revisa en cada página HTML de la raíz:
   * metadatos obligatorios (title, description, canonical, Open Graph);
   * un solo <h1> y que los títulos no salteen niveles (h2 → h4);
   * imágenes sin texto alternativo e ids duplicados;
-  * etiquetas que no cierran bien.
+  * etiquetas que no cierran bien;
+  * las rutas de los módulos de la escena 3D (import … from "…") y la ruta
+    con la que assets/js/interfaz.js carga la escena.
 
 Opciones:
   --externos   además, consulta cada enlace externo (necesita internet)
@@ -136,6 +138,21 @@ def revisar(paginas):
     return problemas, externos
 
 
+def revisar_modulos():
+    """Comprueba que existan los archivos que importan los módulos JavaScript."""
+    problemas = []
+    for js in sorted((RAIZ / "assets" / "js").rglob("*.js")):
+        texto = js.read_text(encoding="utf-8")
+        for ruta in re.findall(r'(?:from|import)\s*\(?\s*"(\.{1,2}/[^"]+)"', texto):
+            if not (js.parent / ruta).resolve().exists():
+                problemas.append(f"{js.relative_to(RAIZ)}: importa un archivo que no existe → {ruta}")
+        # Rutas relativas a la raíz del sitio que se cargan desde las páginas
+        for ruta in re.findall(r'RUTA_[A-Z_]+\s*=\s*"([^"]+)"', texto):
+            if not (RAIZ / ruta).exists():
+                problemas.append(f"{js.relative_to(RAIZ)}: carga un archivo que no existe → {ruta}")
+    return problemas
+
+
 def revisar_externos(urls):
     problemas = []
     for url in sorted(urls):
@@ -169,6 +186,7 @@ def listar_verificar(paginas):
 def main():
     paginas = leer_paginas()
     problemas, externos = revisar(paginas)
+    problemas += revisar_modulos()
     if "--externos" in sys.argv:
         print(f"Revisando {len(externos)} enlaces externos…")
         problemas += revisar_externos(externos)

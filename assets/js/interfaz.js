@@ -3,7 +3,8 @@
    - Cabecera con sombra al hacer scroll.
    - Índice «En esta página» que marca la sección que estás leyendo.
    - Aparición suave de los bloques al hacer scroll (solo si no pediste reducir
-     el movimiento). */
+     el movimiento).
+   - Carga diferida de la escena 3D (assets/js/escena/escena.js). */
 (function () {
   "use strict";
 
@@ -66,6 +67,43 @@
         actual = elegido;
       });
     }
+  }
+
+  /* --- Escena 3D ------------------------------------------------------------------
+     Se pide solo si: hay un contenedor [data-escena], no se pidió reducir el
+     movimiento, el navegador soporta módulos y WebGL 2, no está activado el ahorro
+     de datos y (en las cabeceras internas) la pantalla es ancha. Espera a que la
+     página termine de cargar, a un momento libre y a que el contenedor se vea:
+     así no compite con el texto ni con las tipografías. */
+  var RUTA_ESCENA = "assets/js/escena/escena.js";
+  var contenedorEscena = document.querySelector("[data-escena]");
+  var ahorroDatos = !!(navigator.connection && navigator.connection.saveData);
+  var soportaModulos = "noModule" in document.createElement("script");
+  var anchaSiCabecera = !contenedorEscena || contenedorEscena.getAttribute("data-escena") !== "cabecera" ||
+    (window.matchMedia && window.matchMedia("(min-width: 40rem)").matches);
+  if (contenedorEscena && !reducirMovimiento() && soportaModulos && typeof window.WebGL2RenderingContext !== "undefined" &&
+      !ahorroDatos && anchaSiCabecera) {
+    var cargarEscena = function () {
+      var script = document.createElement("script");
+      script.type = "module";
+      script.src = RUTA_ESCENA;
+      document.head.appendChild(script);
+    };
+    var cuandoSeVea = function () {
+      if (!("IntersectionObserver" in window)) { cargarEscena(); return; }
+      var vigia = new IntersectionObserver(function (entradas) {
+        if (!entradas[entradas.length - 1].isIntersecting) return;
+        vigia.disconnect();
+        cargarEscena();
+      }, { rootMargin: "200px 0px" });
+      vigia.observe(contenedorEscena);
+    };
+    var enUnMomentoLibre = function () {
+      if ("requestIdleCallback" in window) window.requestIdleCallback(cuandoSeVea, { timeout: 2000 });
+      else window.setTimeout(cuandoSeVea, 300);
+    };
+    if (document.readyState === "complete") enUnMomentoLibre();
+    else window.addEventListener("load", enUnMomentoLibre);
   }
 
   /* --- Aparición al hacer scroll ------------------------------------------------ */

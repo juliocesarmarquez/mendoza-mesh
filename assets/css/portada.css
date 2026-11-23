@@ -40,6 +40,14 @@
   height: 100%;
   opacity: 0;
 }
+/* En la portada, el lienzo ocupa la misma franja que la ilustración */
+.escena--portada .escena__lienzo {
+  top: auto;
+  height: clamp(220px, 32vw, 460px);
+  /* Borde inferior suave, que se funde con la sección siguiente */
+  -webkit-mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
+}
 .escena-lista .escena__lienzo { opacity: 1; }
 .escena-lista .escena__respaldo { opacity: 0; visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
