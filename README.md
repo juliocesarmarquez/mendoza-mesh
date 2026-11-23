@@ -20,10 +20,10 @@ meshtastic.html       Meshtastic y la malla (con diagrama SVG)
 configurar.html       Cómo configurar un nodo (6 pasos)
 glosario.html         Glosario (48 términos, con buscador)
 equipos.html          Equipos recomendados
-mapa.html             Mapa de nodos de Cuyo (Leaflet)
 laboratorio.html      Simulador, calculadora, quiz
 preguntas.html        Preguntas frecuentes (8, desplegables)
-comunidad.html        Agenda, formulario «Sumá tu nodo» y canales
+comunidad.html        Agenda y canales de la comunidad
+contacto.html         Formulario de contacto (arma un correo, no envía datos a ningún servidor)
 404.html              Página no encontrada
 robots.txt · sitemap.xml · .nojekyll
 assets/css/tokens.css Paleta, tipografías y variables (modo claro y oscuro)
@@ -31,16 +31,10 @@ assets/css/base.css   Estilos y componentes
 assets/js/tema.js     Tema claro/oscuro (se carga en <head>)
 assets/js/nav.js      Menú desplegable para pantallas angostas
 assets/js/glosario.js Buscador del glosario (ignora tildes y mayúsculas)
-assets/js/mapa.js     Mapa de Cuyo (lee data/nodes.json)
 assets/js/{simulador,calculadora,quiz}.js  Elementos del laboratorio
-assets/js/comunidad.js  Formulario de Comunidad (arma un correo, no envía datos a ningún servidor)
-assets/css/{mapa,laboratorio}.css          Estilos de esas dos páginas
-vendor/leaflet/       Leaflet 1.9.4 (copia local, licencia BSD-2)
-data/nodes.json       Datos del mapa (hoy: 4 nodos de EJEMPLO)
-data/excluidos.json   Nodos que pidieron no aparecer
-data/provincias-cuyo.geojson  Límites provinciales simplificados (IGN)
-ingesta/              Script de ingesta MQTT, configuración, pruebas y servicio systemd
-.github/workflows/actualizar-mapa.yml  Actualiza el mapa y publica el sitio
+assets/js/formulario.js  Formularios que arman un correo (mailto:), con validación accesible
+assets/css/laboratorio.css  Estilos del laboratorio
+.github/workflows/publicar.yml  Revisa el sitio y lo publica con cada push a main
 assets/img/           Logo, favicon, imagen Open Graph, curvas de nivel decorativas
 assets/fonts/         Atkinson Hyperlegible y Fraunces (woff2) con sus licencias OFL
 herramientas/         Scripts de mantenimiento (ver abajo)
@@ -64,8 +58,8 @@ python3 -m http.server 8000
    git push -u origin main
    ```
 2. En *Settings → Pages → Build and deployment*, elegí **Source: GitHub Actions**. El workflow
-   `.github/workflows/actualizar-mapa.yml` publica el sitio con cada push a `main` y, cada 10
-   minutos, actualiza el mapa (ver [Mapa de Cuyo](#mapa-de-cuyo-cómo-se-actualiza)).
+   `.github/workflows/publicar.yml` publica el sitio con cada push a `main`. Antes de publicar
+   corre `revisar_enlaces.py` y `contraste.py`: si alguno falla, queda publicada la versión anterior.
 3. Reemplazá la URL provisoria por la definitiva y subí el cambio:
    ```sh
    python3 herramientas/cambiar_url.py https://<tu-usuario>.github.io/mendoza-mesh/
@@ -77,7 +71,7 @@ El sitio usa rutas relativas, así que funciona igual en `usuario.github.io/mend
 
 ## Antes de publicar
 
-- [ ] Resolver los pendientes de [`VERIFICAR.md`](VERIFICAR.md): normativa de ENACOM, versiones de las placas, presets de la región, licencia del IGN, etc.
+- [ ] Resolver los pendientes de [`VERIFICAR.md`](VERIFICAR.md): normativa de ENACOM, versiones de las placas, presets de la región, etc.
 - [ ] Poner la dirección de contacto real (ver [Editar contenido](#editar-contenido)).
 - [ ] Reemplazar la agenda de ejemplo y completar los canales de la comunidad.
 - [ ] Reemplazar la URL provisoria con `herramientas/cambiar_url.py`.
@@ -86,9 +80,13 @@ El sitio usa rutas relativas, así que funciona igual en `usuario.github.io/mend
 ## Editar contenido
 
 - **Cabecera y pie:** editalos solo en `index.html` y corré `python3 herramientas/sincronizar_plantilla.py`.
-- **Dirección de contacto del formulario:** en `comunidad.html`, cambiá `mendozamesh@example.org` en
-  el atributo `data-correo` y en el `action="mailto:…"` del formulario, y en los dos textos
-  `<span class="correo-contacto">`.
+- **Dirección de contacto del formulario:** en `contacto.html`, cambiá `mendozamesh@example.org` en
+  el atributo `data-correo` y en el `action="mailto:…"` del formulario, en el enlace «Abrir el
+  correo de nuevo» y en los dos textos `<span class="correo-contacto">`.
+- **Campos del formulario:** `assets/js/formulario.js` se configura con atributos, sin tocar el
+  JavaScript. Cada campo que va al correo lleva `data-etiqueta`; los obligatorios, `required` y
+  `data-error-requerido`; el mensaje, `data-limite` y un `#<id>-contador`. Los motivos se
+  preseleccionan con `contacto.html?motivo=<data-clave>` (por ejemplo, `?motivo=nodo`).
 - **Agenda:** en `comunidad.html`, cada actividad es un `<article class="evento">` dentro de la lista
   `.agenda`. Copiá uno, cambiá la fecha (también en `<time datetime="…">`), el tipo
   (`evento__tipo--encuentro`, `--instalacion` o `--taller`), el título y la descripción. Borrá el
@@ -111,96 +109,17 @@ La cabecera y el pie están repetidos en cada HTML a propósito: así el sitio f
 JavaScript y sin paso de compilación. **Editalos solo en `index.html`** y después corré el
 script de sincronización.
 
-## Mapa de Cuyo: cómo se actualiza
+## Recuperar el mapa
 
-```
-nodo LoRa → pasarela con internet → broker MQTT → ingesta/ingesta.py → data/nodes.json → mapa.html
-```
-
-El script de ingesta se suscribe al broker (por defecto, el público de Meshtastic, tema `msh/ANZ/#`).
-Después hace esto:
-
-1. Descifra con la clave pública predeterminada y descarta lo cifrado con otras claves.
-2. Respeta «OK to MQTT» y el permiso de ubicación de los reportes de mapa.
-3. Se queda con las posiciones dentro del recorte de Cuyo.
-4. Redondea a 2 decimales **antes** de guardar.
-5. Aplica `data/excluidos.json`.
-6. Escribe `data/nodes.json`.
-
-No hay base de datos: cada ejecución retoma el archivo anterior y lo actualiza. Los nodos sin noticias en 7 días se borran.
-
-### Opción A (recomendada): GitHub Actions
-
-1. Publicá el repositorio como **público**. En un repositorio privado, 144 ejecuciones diarias agotan los minutos gratuitos.
-2. En *Settings → Pages → Build and deployment*, elegí **Source: GitHub Actions**.
-3. Listo: `.github/workflows/actualizar-mapa.yml` corre cada 10 minutos (en los minutos 3, 13, 23…). En cada corrida:
-   - descarga el `nodes.json` publicado;
-   - escucha el MQTT durante 7 minutos;
-   - vuelve a publicar el sitio.
-
-   No hace commits. También corre con cada push a `main` (escucha 1 minuto) y a mano desde la pestaña *Actions*.
-4. La primera corrida reemplaza los 4 nodos de ejemplo por los datos reales.
-
-Para usar un broker propio, cargá en *Settings → Secrets and variables → Actions* los secrets `MQTT_HOST`, `MQTT_USUARIO` y `MQTT_CLAVE`, y la variable `MQTT_TEMAS` (temas separados por comas).
-
-Límites de GitHub, según su documentación:
-
-- El intervalo mínimo es de 5 minutos.
-- Las ejecuciones programadas pueden demorarse o descartarse en horas de mucha carga.
-- En un repositorio público, se desactivan tras 60 días sin actividad. Si pasa, reactivalas desde *Actions*.
-
-### Opción B: servidor propio (por ejemplo, una Raspberry Pi)
+La sección Mapa (mapa de nodos de Cuyo con Leaflet, ingesta MQTT y su workflow) se retiró el
+23/11/2026 para rehacerla más adelante. Su último estado quedó en la etiqueta git `mapa-v1`:
 
 ```sh
-git clone <url-del-repositorio> mendoza-mesh && cd mendoza-mesh
-python3 -m venv .venv
-.venv/bin/pip install -r ingesta/requirements.txt
-.venv/bin/python ingesta/ingesta.py --duracion 60     # prueba de un minuto
+git checkout mapa-v1 -- mapa.html assets/js/mapa.js assets/css/mapa.css vendor/leaflet data ingesta .github/workflows/actualizar-mapa.yml
 ```
 
-Después elegí una de estas dos formas:
-
-- **cron** (escucha 9 minutos cada 10): `crontab -e` y agregá
-  `*/10 * * * * cd /home/pi/mendoza-mesh && .venv/bin/python ingesta/ingesta.py --duracion 540 >> ingesta.log 2>&1`
-- **systemd** (proceso continuo que escribe cada 10 minutos): seguí las instrucciones de
-  `ingesta/mendoza-mesh-ingesta.service`.
-
-En esta opción, `data/nodes.json` queda en el servidor, así que el sitio tiene que publicarse desde ahí (por ejemplo, con nginx o Caddy). No uses las opciones A y B a la vez: se pisarían los datos.
-
-### Configuración (`ingesta/config.json`)
-
-| Clave | Para qué sirve |
-|---|---|
-| `broker` | Servidor, puerto, usuario, clave y TLS. Las variables `MQTT_HOST`, `MQTT_PUERTO`, `MQTT_USUARIO` y `MQTT_CLAVE` lo reemplazan. |
-| `temas` | Temas MQTT a escuchar (`MQTT_TEMAS` lo reemplaza). |
-| `recorte` | Latitudes y longitudes mínimas y máximas de la zona del mapa. |
-| `decimales` | Redondeo de las posiciones (2 ≈ 1 km). |
-| `intervalo_escritura_min` | Cada cuánto escribe el modo `--daemon`. |
-| `inactivo_tras_horas` | Tiempo sin contacto para mostrar un nodo como inactivo. |
-| `olvidar_tras_dias` | Tiempo sin contacto para borrar un nodo. |
-| `respetar_ok_to_mqtt` | Descarta paquetes de otros nodos sin «OK to MQTT» (dejalo en `true`). |
-| `conservar_ejemplos` | `false`: la primera ingesta borra los nodos de ejemplo. |
-
-### Pedidos de exclusión (`data/excluidos.json`)
-
-Si el titular de un nodo pide que no aparezca, agregá su ID (el que empieza con `!`) a la lista:
-
-```json
-{ "nodos": [ { "id": "!a1b2c3d4", "pedido": "2026-11-20", "nota": "Pedido por correo" } ] }
-```
-
-Con GitHub Actions, hacé commit del cambio: el push dispara una corrida que lo aplica y vuelve a publicar.
-El nodo desaparece del mapa y también de los vecinos y traceroutes de otros nodos.
-
-### Pruebas y depuración
-
-```sh
-python3 -m unittest discover -s ingesta/pruebas -v               # 17 pruebas, sin red
-python3 ingesta/ingesta.py --duracion 300 --grabar mensajes.jsonl  # graba lo recibido
-python3 ingesta/ingesta.py --reproducir mensajes.jsonl             # lo procesa sin conectarse
-```
-
-Al terminar, cada ejecución informa cuántos mensajes recibió y por qué descartó los demás (`cifrado_ajeno`, `sin_ok_to_mqtt`, `fuera_de_recorte`, etc.).
+Ese workflow también publicaba el sitio: si lo recuperás, borrá `publicar.yml` para que no haya dos
+publicaciones a la vez, y volvé a agregar el ítem «Mapa» en la navegación de `index.html`.
 
 ## Cómo agregar un término al glosario
 
@@ -234,10 +153,9 @@ El buscador lo encuentra solo, sin tocar el JavaScript.
   - Enlace «Saltar al contenido», foco visible, menú con `aria-expanded` y cierre con Esc.
   - Un solo `h1` por página y títulos sin saltos de nivel.
   - Formularios con etiquetas, ayudas y un resumen de errores que recibe el foco.
-  - Mapa con alternativa en forma de lista y leyenda con forma además de color.
   - Animaciones desactivadas con `prefers-reduced-motion`.
-- **Sin dependencias externas en tiempo de ejecución,** salvo las teselas de OpenStreetMap en el
-  mapa. Leaflet y las tipografías están en el repositorio.
+- **Sin dependencias externas en tiempo de ejecución:** las tipografías y todo el código están en
+  el repositorio. El sitio no hace pedidos a otros servidores.
 
 <details>
 <summary><strong>Tabla de contraste (WCAG 2.x, generada con <code>contraste.py --md</code>)</strong></summary>
@@ -292,11 +210,6 @@ El buscador lo encuentra solo, sin tocar el JavaScript.
 
 - **Textos:** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es) (ver `LICENSE-contenido.md`).
 - **Código:** MIT (ver `LICENSE`).
-- **Mapa:** la sección Mapa toma como modelo funcional el
-  [Meshtastic Map de Liam Cottle](https://github.com/liamcottle/meshtastic-map) (MIT) y el mapa de la
-  comunidad española [mapa.meshtastic.es](https://mapa.meshtastic.es/). Es una implementación propia y no copia código de ninguno de los dos.
-- **Leaflet** 1.9.4 (BSD-2) y teselas de **OpenStreetMap** (© colaboradores de OpenStreetMap, ODbL). Respetá su [política de uso de teselas](https://operations.osmfoundation.org/policies/tiles/).
-- **Límites provinciales:** Instituto Geográfico Nacional (IGN), simplificados.
 - **Tipografías:** Atkinson Hyperlegible (Braille Institute) y Fraunces (The Fraunces Project Authors), SIL OFL 1.1.
 - **Marcas:** LoRa® es una marca registrada de Semtech Corporation. Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de
   Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece

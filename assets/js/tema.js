@@ -40,7 +40,7 @@
     sincronizar();
   }
 
-  // API mínima para otras páginas (por ejemplo, los ajustes del mapa).
+  // API mínima para otros scripts (por ejemplo, la escena 3D de la portada).
   window.MendozaMesh = window.MendozaMesh || {};
   window.MendozaMesh.tema = { efectivo: temaEfectivo, fijar: fijar };
 

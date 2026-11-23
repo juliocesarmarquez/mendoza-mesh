@@ -125,6 +125,7 @@ def revisar(paginas):
             if enlace.startswith(("mailto:", "tel:", "data:", "javascript:")):
                 continue
             ruta, _, ancla = enlace.partition("#")
+            ruta = ruta.partition("?")[0]  # contacto.html?motivo=nodo → contacto.html
             destino = archivo if not ruta else (archivo.parent / ruta)
             if not destino.exists():
                 mal(f"línea {linea}: enlace roto → {enlace}")

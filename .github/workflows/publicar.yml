@@ -1,0 +1,51 @@
+# Publica el sitio en GitHub Pages con cada push a main.
+#
+# Antes de publicar corre dos controles de calidad del repositorio: enlaces
+# internos y metadatos (herramientas/revisar_enlaces.py) y contraste de colores
+# (herramientas/contraste.py). Si alguno falla, el sitio no se publica y queda
+# la versión anterior.
+#
+# Requisito (ver README.md): Settings → Pages → Source: «GitHub Actions».
+name: Publicar sitio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.publicar.outputs.page_url }}
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v7
+
+      - name: Configurar Pages
+        uses: actions/configure-pages@v6
+
+      - name: Revisar enlaces, metadatos y contraste
+        run: |
+          python3 herramientas/revisar_enlaces.py
+          python3 herramientas/contraste.py
+
+      - name: Empaquetar el sitio
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: .
+
+      - name: Publicar en GitHub Pages
+        id: publicar
+        uses: actions/deploy-pages@v5

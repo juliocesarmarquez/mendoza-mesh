@@ -4,13 +4,13 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Comunidad · Mendoza Mesh</title>
-  <meta name="description" content="Encuentros, instalaciones de nodos y canales de la comunidad Mendoza Mesh. Sumá tu nodo al mapa de Cuyo.">
+  <meta name="description" content="Encuentros, instalaciones de nodos y canales de la comunidad Mendoza Mesh. Sumate a la red comunitaria LoRa de Cuyo.">
   <link rel="canonical" href="https://juliocesarmarquez.github.io/mendoza-mesh/comunidad.html">
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="Mendoza Mesh">
   <meta property="og:locale" content="es_AR">
   <meta property="og:title" content="Comunidad · Mendoza Mesh">
-  <meta property="og:description" content="Encuentros, instalaciones de nodos y canales de la comunidad Mendoza Mesh. Sumá tu nodo al mapa de Cuyo.">
+  <meta property="og:description" content="Encuentros, instalaciones de nodos y canales de la comunidad Mendoza Mesh. Sumate a la red comunitaria LoRa de Cuyo.">
   <meta property="og:url" content="https://juliocesarmarquez.github.io/mendoza-mesh/comunidad.html">
   <meta property="og:image" content="https://juliocesarmarquez.github.io/mendoza-mesh/assets/img/og-mendoza-mesh.png">
   <meta property="og:image:width" content="1200">
@@ -27,7 +27,6 @@
   <link rel="stylesheet" href="assets/css/base.css">
   <script src="assets/js/tema.js"></script>
   <script src="assets/js/nav.js" defer></script>
-  <script src="assets/js/comunidad.js" defer></script>
 </head>
 <body>
   <a class="saltar" href="#contenido">Saltar al contenido</a>
@@ -57,11 +56,11 @@
           <li><a href="meshtastic.html">Meshtastic</a></li>
           <li><a href="configurar.html">Configurar</a></li>
           <li><a href="equipos.html">Equipos</a></li>
-          <li><a href="mapa.html">Mapa</a></li>
           <li><a href="laboratorio.html">Laboratorio</a></li>
           <li><a href="glosario.html">Glosario</a></li>
           <li><a href="preguntas.html">Preguntas</a></li>
           <li><a href="comunidad.html" aria-current="page">Comunidad</a></li>
+          <li class="nav-principal__accion"><a href="contacto.html">Contacto</a></li>
         </ul>
       </nav>
       <button class="boton-tema" type="button" data-accion="tema" aria-pressed="false" hidden>
@@ -135,122 +134,9 @@
 
       <div class="prosa">
         <h2 id="suma-tu-nodo">Sumá tu nodo</h2>
-        <p>El <a href="mapa.html">mapa</a> se arma solo con los datos que llegan por MQTT. Este formulario sirve para tres cosas: contarle a la comunidad que tenés un nodo, aunque no use MQTT; pedir ayuda para que aparezca en el mapa; o pedir que lo quitemos.</p>
-
-        <div class="aviso" role="note" id="aviso-privacidad">
-          <svg class="aviso__icono" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><g fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></g></svg>
-          <div>
-            <h3>Aviso de privacidad</h3>
-            <ul>
-              <li>El formulario <strong>no publica nada</strong>: prepara un correo que mandás vos, desde tu propio programa de correo, a <span class="correo-contacto">mendozamesh@example.org</span> <span class="verificar">[verificar dirección de contacto]</span>.</li>
-              <li>Usamos esos datos solo para coordinar la red de la comunidad. Podés pedir que los borremos escribiendo a la misma dirección.</li>
-              <li><strong>No pongas tu dirección ni coordenadas exactas</strong>: alcanza con la localidad o el barrio.</li>
-              <li>En el mapa público, las posiciones siempre se muestran redondeadas (unos 1&nbsp;km). Si pedís la exclusión, tu nodo deja de aparecer, también en los vecinos y traceroutes de otros nodos.</li>
-            </ul>
-          </div>
-        </div>
-
-        <form id="form-nodo" class="formulario" action="mailto:mendozamesh@example.org" method="post" enctype="text/plain" data-correo="mendozamesh@example.org">
-          <div id="form-errores" class="resumen-errores" role="alert" tabindex="-1" hidden></div>
-
-          <fieldset class="campo">
-            <legend>¿Para qué escribís? <span class="obligatorio">(obligatorio)</span></legend>
-            <label class="opcion"><input type="radio" name="motivo" value="Sumar mi nodo al registro de la comunidad" checked> Sumar mi nodo al registro de la comunidad</label>
-            <label class="opcion"><input type="radio" name="motivo" value="Pedir ayuda para que aparezca en el mapa"> Pedir ayuda para que aparezca en el mapa</label>
-            <label class="opcion"><input type="radio" name="motivo" value="Pedir que mi nodo no aparezca en el mapa"> Pedir que mi nodo no aparezca en el mapa</label>
-            <label class="opcion"><input type="radio" name="motivo" value="Corregir datos de mi nodo"> Corregir datos de mi nodo</label>
-          </fieldset>
-
-          <div class="form-rejilla">
-            <div class="campo">
-              <label for="f-id">ID del nodo <span class="obligatorio">(obligatorio)</span></label>
-              <input type="text" id="f-id" name="id" required pattern="!?[0-9a-fA-F]{8}" autocomplete="off" spellcheck="false" aria-describedby="f-id-ayuda f-id-error">
-              <p class="campo__ayuda" id="f-id-ayuda">Lo ves en la app: empieza con ! y tiene 8 letras o números, por ejemplo !a1b2c3d4.</p>
-              <p class="campo__error" id="f-id-error" hidden></p>
-            </div>
-            <div class="campo">
-              <label for="f-nombre-largo">Nombre largo del nodo</label>
-              <input type="text" id="f-nombre-largo" name="nombre_largo" maxlength="39" autocomplete="off">
-            </div>
-            <div class="campo">
-              <label for="f-nombre-corto">Nombre corto</label>
-              <input type="text" id="f-nombre-corto" name="nombre_corto" maxlength="4" autocomplete="off" aria-describedby="f-nombre-corto-ayuda">
-              <p class="campo__ayuda" id="f-nombre-corto-ayuda">Hasta 4 caracteres.</p>
-            </div>
-            <div class="campo">
-              <label for="f-provincia">Provincia <span class="obligatorio">(obligatorio)</span></label>
-              <select id="f-provincia" name="provincia" required aria-describedby="f-provincia-error">
-                <option value="">Elegí una opción</option>
-                <option>Mendoza</option>
-                <option>San Juan</option>
-                <option>San Luis</option>
-                <option>Otra</option>
-              </select>
-              <p class="campo__error" id="f-provincia-error" hidden></p>
-            </div>
-            <div class="campo">
-              <label for="f-localidad">Localidad o barrio <span class="obligatorio">(obligatorio)</span></label>
-              <input type="text" id="f-localidad" name="localidad" required maxlength="80" autocomplete="address-level2" aria-describedby="f-localidad-ayuda f-localidad-error">
-              <p class="campo__ayuda" id="f-localidad-ayuda">Por ejemplo, Godoy Cruz o Rivadavia. No pongas tu dirección.</p>
-              <p class="campo__error" id="f-localidad-error" hidden></p>
-            </div>
-            <div class="campo">
-              <label for="f-rol">Rol del nodo</label>
-              <select id="f-rol" name="rol">
-                <option>No sé</option>
-                <option>CLIENT</option>
-                <option>CLIENT_MUTE</option>
-                <option>CLIENT_BASE</option>
-                <option>ROUTER</option>
-                <option>ROUTER_LATE</option>
-                <option>TRACKER</option>
-                <option>SENSOR</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="f-ubicacion">¿Dónde está el nodo?</label>
-              <select id="f-ubicacion" name="ubicacion">
-                <option>Lo llevo encima</option>
-                <option>En casa, adentro</option>
-                <option>En un techo o mástil</option>
-                <option>En un cerro o lugar alto</option>
-              </select>
-            </div>
-            <div class="campo">
-              <label for="f-mqtt">¿Usa MQTT?</label>
-              <select id="f-mqtt" name="mqtt">
-                <option>No sé</option>
-                <option>Sí, con «OK to MQTT» activado</option>
-                <option>Sí, sin «OK to MQTT»</option>
-                <option>No</option>
-              </select>
-            </div>
-          </div>
-
-          <div class="campo">
-            <label for="f-comentarios">Comentarios</label>
-            <textarea id="f-comentarios" name="comentarios" rows="4" maxlength="1500"></textarea>
-          </div>
-          <div class="campo">
-            <label for="f-firma">Nombre o apodo para responderte</label>
-            <input type="text" id="f-firma" name="firma" maxlength="60" autocomplete="nickname">
-          </div>
-
-          <div class="campo">
-            <label class="opcion"><input type="checkbox" id="f-acepto" name="acepto" value="Sí" required aria-describedby="f-acepto-error"> Leí el aviso de privacidad y acepto que la comunidad use estos datos para coordinar la red. <span class="obligatorio">(obligatorio)</span></label>
-            <p class="campo__error" id="f-acepto-error" hidden></p>
-          </div>
-
-          <button type="submit" class="boton boton--primario">Preparar el correo</button>
-        </form>
-
-        <div id="form-listo" class="form-listo" hidden tabindex="-1">
-          <h3>Tu correo está listo</h3>
-          <p>Se debería abrir tu programa de correo con el mensaje armado. Si no se abre, copiá este texto y mandalo a <span class="correo-contacto">mendozamesh@example.org</span>.</p>
-          <label for="f-vista">Texto del mensaje</label>
-          <textarea id="f-vista" rows="10" readonly></textarea>
-          <p><button type="button" id="f-copiar" class="boton boton--secundario">Copiar el texto</button> <span id="f-copiado" role="status"></span></p>
-        </div>
+        <p>¿Ya tenés un nodo andando o estás por armar uno? Contanos en qué localidad o barrio está y qué equipo usás: nos sirve para saber dónde crece la red, coordinar instalaciones en lugares altos y avisarte de los encuentros cerca tuyo.</p>
+        <p>También podés escribirnos si querés ayudar a instalar un nodo, prestar un lugar alto o proponer una charla.</p>
+        <p><a class="boton boton--primario" href="contacto.html?motivo=nodo">Escribinos para sumar tu nodo</a></p>
 
         <h2 id="canales">Canales de la comunidad</h2>
         <h3>En la malla</h3>
@@ -269,7 +155,7 @@
         <ul>
           <li>Registrá tus pruebas de alcance con la <a href="configurar.html#planilla">planilla de Configurar</a> y compartilas.</li>
           <li>Proponé lugares altos donde un nodo ayudaría a cubrir la región.</li>
-          <li>¿Falta un término en el <a href="glosario.html">Glosario</a> o encontraste un error? Escribinos con el formulario.</li>
+          <li>¿Falta un término en el <a href="glosario.html">Glosario</a> o encontraste un error? Escribinos desde la página de <a href="contacto.html">Contacto</a>.</li>
         </ul>
 
         <section class="para-saber-mas" aria-labelledby="titulo-psm">
@@ -283,7 +169,7 @@
 
         <nav class="paginador" aria-label="Ruta de aprendizaje">
           <a href="configurar.html"><span>Anterior</span><strong>Cómo configurar un nodo</strong></a>
-          <a class="paginador__siguiente" href="mapa.html"><span>Siguiente</span><strong>Mapa de nodos de Cuyo</strong></a>
+          <a class="paginador__siguiente" href="contacto.html"><span>Siguiente</span><strong>Escribinos</strong></a>
         </nav>
       </div>
     </div>
@@ -320,14 +206,13 @@
           <h2>Participar</h2>
           <ul>
             <li><a href="equipos.html">Equipos recomendados</a></li>
-            <li><a href="mapa.html">Mapa de nodos de Cuyo</a></li>
             <li><a href="laboratorio.html">Laboratorio</a></li>
             <li><a href="comunidad.html">Comunidad</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
           </ul>
         </nav>
       </div>
       <div class="pie__legal">
-        <p><strong>Créditos del mapa.</strong> La sección <a href="mapa.html">Mapa</a> toma como modelo funcional el <a href="https://github.com/liamcottle/meshtastic-map">Meshtastic Map de Liam Cottle</a> (licencia MIT) y el mapa de la comunidad española <a href="https://mapa.meshtastic.es/">mapa.meshtastic.es</a>. El código de este sitio es una implementación propia.</p>
         <p><strong>Marca.</strong> Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el proyecto Meshtastic (<span lang="en">This site is not affiliated with or endorsed by the Meshtastic project</span>). Sitio oficial: <a href="https://meshtastic.org/">meshtastic.org</a>. LoRa® es una marca registrada de Semtech Corporation.</p>
         <p><strong>Licencia.</strong> Textos bajo <a href="https://creativecommons.org/licenses/by-sa/4.0/deed.es">CC BY-SA 4.0</a>; código bajo <a href="https://opensource.org/license/mit">licencia MIT</a>. Tipografías Atkinson Hyperlegible y Fraunces bajo licencia SIL OFL 1.1.</p>
       </div>

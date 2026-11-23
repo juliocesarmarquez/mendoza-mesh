@@ -2,8 +2,7 @@
 __pycache__/
 *.pyc
 .venv/
-# Grabaciones de mensajes MQTT para depurar (pueden contener datos de terceros)
-*.jsonl
-ingesta.log
+# Dependencias temporales (por ejemplo, al regenerar vendor/three)
+node_modules/
 # Sistema
 .DS_Store

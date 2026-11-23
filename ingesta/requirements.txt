@@ -1,4 +1,0 @@
-# Dependencias de la ingesta del mapa (Python 3.10 o superior)
-meshtastic>=2.7,<3   # protobufs oficiales de Meshtastic
-paho-mqtt>=2.0,<3    # cliente MQTT
-cryptography>=42     # AES-CTR para descifrar con la clave pública predeterminada

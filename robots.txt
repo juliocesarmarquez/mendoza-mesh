@@ -1,6 +1,5 @@
 User-agent: *
 Allow: /
-Disallow: /ingesta/
 Disallow: /herramientas/
 
 Sitemap: https://juliocesarmarquez.github.io/mendoza-mesh/sitemap.xml

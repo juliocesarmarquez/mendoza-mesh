@@ -300,7 +300,7 @@ a:hover {
   .boton:hover svg { transform: translateX(2px); transition: transform 0.15s ease; }
 }
 
-/* Botón chico y botón con aspecto de enlace (mapa, laboratorio) */
+/* Botón chico (laboratorio) y botón con aspecto de enlace (contacto) */
 .enlace-boton {
   padding: 0;
   background: none;
@@ -1157,7 +1157,7 @@ fieldset.campo legend { font-weight: 700; padding: 0; margin-bottom: var(--esp-2
   border-radius: var(--radio-chico);
   background: var(--fondo);
 }
-.resumen-errores h3 { font-size: 1.1rem; margin: 0 0 var(--esp-2); }
+.resumen-errores h2 { font-size: 1.1rem; margin: 0 0 var(--esp-2); }
 .resumen-errores ul { margin: 0; }
 .form-listo {
   margin-top: var(--esp-5);
@@ -1166,7 +1166,7 @@ fieldset.campo legend { font-weight: 700; padding: 0; margin-bottom: var(--esp-2
   border-radius: var(--radio);
   background: var(--superficie);
 }
-.form-listo h3 { margin-top: 0 !important; }
+.form-listo h2 { margin-top: 0 !important; font-size: 1.4rem; }
 .form-listo label { display: block; font-weight: 700; margin: var(--esp-3) 0 var(--esp-1); }
 .form-listo textarea {
   width: 100%;
@@ -1179,6 +1179,23 @@ fieldset.campo legend { font-weight: 700; padding: 0; margin-bottom: var(--esp-2
   border-radius: var(--radio-chico);
 }
 .correo-contacto { font-family: var(--fuente-mono); font-size: 0.95em; overflow-wrap: anywhere; }
+.campo__contador { margin-top: var(--esp-1); font-size: 0.875rem; color: var(--texto-suave); font-variant-numeric: tabular-nums; }
+.campo__contador--excedido { color: var(--vino); font-weight: 700; }
+.form-listo__acciones { display: flex; flex-wrap: wrap; align-items: center; gap: var(--esp-3) var(--esp-4); margin-top: var(--esp-4); }
+.form-listo__estado:empty { display: none; }
+
+/* --- Contacto ------------------------------------------------------------------------ */
+.contacto { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--esp-6); align-items: start; }
+.contacto .formulario { margin-top: 0; }
+.contacto__lateral { display: grid; gap: var(--esp-5); }
+.contacto__lateral .nota-campo h2 { font-size: 1.35rem; margin: 0 0 var(--esp-3); }
+.contacto__lateral .aviso { max-width: none; }
+.contacto__lateral ul { padding-left: 1.2em; }
+.contacto__lateral li + li { margin-top: var(--esp-2); }
+@media (min-width: 60rem) {
+  .contacto { grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); }
+  .contacto__lateral { position: sticky; top: var(--esp-5); }
+}
 
 /* --- Agenda --------------------------------------------------------------------------- */
 .agenda { display: grid; gap: var(--esp-4); max-width: var(--medida); margin: var(--esp-5) 0 var(--esp-6); }
