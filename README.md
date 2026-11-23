@@ -8,7 +8,9 @@ radioaficionados de Cuyo (Mendoza, San Juan y San Luis), Argentina.
 Es un sitio estático (HTML, CSS y JavaScript sin frameworks) publicado en GitHub Pages:
 **https://juliocesarmarquez.github.io/mendoza-mesh/**
 
-> **Estado:** las cuatro fases están terminadas. Antes de publicar, revisá la lista de
+> **Estado:** sitio completo, con el rediseño de noviembre de 2026: interfaz renovada, escena 3D
+> con three.js y página de Contacto. La sección Mapa se retiró para rehacerla más adelante (ver
+> [Recuperar el mapa](#recuperar-el-mapa)). Antes de publicar, revisá la lista de
 > [pendientes](#antes-de-publicar) y [`VERIFICAR.md`](VERIFICAR.md).
 
 ## Estructura
@@ -26,16 +28,20 @@ comunidad.html        Agenda y canales de la comunidad
 contacto.html         Formulario de contacto (arma un correo, no envía datos a ningún servidor)
 404.html              Página no encontrada
 robots.txt · sitemap.xml · .nojekyll
-assets/css/tokens.css Paleta, tipografías y variables (modo claro y oscuro)
-assets/css/base.css   Estilos y componentes
+assets/css/tokens.css Paleta, tipografías, escala tipográfica y movimiento (modo claro y oscuro)
+assets/css/base.css   Estilos y componentes compartidos
+assets/css/portada.css  Estilos exclusivos de Inicio
 assets/js/tema.js     Tema claro/oscuro (se carga en <head>)
 assets/js/nav.js      Menú desplegable para pantallas angostas
+assets/js/interfaz.js Cabecera, índice con la sección actual, aparición al hacer scroll y carga de la escena 3D
+assets/js/escena/     Escena 3D (módulos ES): escena.js, terreno.js y malla.js
 assets/js/glosario.js Buscador del glosario (ignora tildes y mayúsculas)
 assets/js/{simulador,calculadora,quiz}.js  Elementos del laboratorio
 assets/js/formulario.js  Formularios que arman un correo (mailto:), con validación accesible
 assets/css/laboratorio.css  Estilos del laboratorio
 .github/workflows/publicar.yml  Revisa el sitio y lo publica con cada push a main
-assets/img/           Logo, favicon, imagen Open Graph, curvas de nivel decorativas
+assets/img/           Logo, favicon, imagen Open Graph, curvas de nivel y silueta de la cordillera
+vendor/three/         Subconjunto de three.js 0.186.1 (MIT), generado con herramientas/empaquetar_three.sh
 assets/fonts/         Atkinson Hyperlegible y Fraunces (woff2) con sus licencias OFL
 herramientas/         Scripts de mantenimiento (ver abajo)
 VERIFICAR.md          Todo lo que falta confirmar
@@ -104,10 +110,57 @@ El sitio usa rutas relativas, así que funciona igual en `usuario.github.io/mend
 | `python3 herramientas/contraste.py` | Comprueba el contraste WCAG de cada par de colores en modo claro y oscuro. `--md` imprime la tabla de abajo. |
 | `python3 herramientas/sincronizar_plantilla.py` | Copia la cabecera y el pie de `index.html` a todas las páginas y marca la página actual en el menú. Usalo cada vez que cambies el menú o el pie. |
 | `python3 herramientas/generar_imagenes.py` | Regenera la imagen Open Graph (1200×630) y el ícono de iOS con Chrome sin interfaz. |
+| `sh herramientas/empaquetar_three.sh` | Regenera `vendor/three/three.min.js` (ver [Escena 3D](#escena-3d)). Necesita Node.js y npm. |
 
 La cabecera y el pie están repetidos en cada HTML a propósito: así el sitio funciona sin
 JavaScript y sin paso de compilación. **Editalos solo en `index.html`** y después corré el
 script de sincronización.
+
+## Escena 3D
+
+Inicio y la banda de cabecera de las páginas internas muestran una cordillera low poly con una
+malla de nodos: los mensajes saltan de nodo en nodo con límite de saltos, como en el simulador del
+Laboratorio. Es **decorativa** (`aria-hidden`) y no representa nodos reales.
+
+- **Cuándo se carga.** `assets/js/interfaz.js` pide `assets/js/escena/escena.js` solo si el
+  navegador soporta módulos y WebGL 2, no pediste reducir el movimiento, no está activado el ahorro
+  de datos y (en las cabeceras) la pantalla mide 40rem o más. Espera a que la página termine de
+  cargar, a un momento libre y a que el contenedor se vea. No afecta la primera pintura.
+- **Respaldo.** Mientras tanto, y si algo falla, se ve la ilustración SVG (Inicio) o las crestas de
+  CSS (cabeceras). El lienzo aparece encima solo cuando el primer cuadro está listo.
+- **El texto siempre sobre el cielo.** La cámara se encuadra midiendo la página: la cumbre más alta
+  queda debajo del último renglón del texto, en cualquier ancho. El puntero y el scroll solo
+  pueden bajar la cordillera, nunca subirla.
+- **Rendimiento.** Una llamada de dibujo por tipo de objeto, sin crear objetos dentro del bucle,
+  resolución limitada (2× en computadoras, 1,5× en celulares) y 30 cuadros por segundo en
+  celulares y cabeceras. Se pausa fuera de pantalla y con la pestaña oculta. Se destruye si se
+  activa la reducción de movimiento o se pierde el contexto WebGL.
+- **Colores.** Se leen de los tokens de `tokens.css` y se actualizan al cambiar el tema.
+- **Convención de código.** Los módulos de `assets/js/escena/` usan JavaScript moderno (`const`,
+  funciones flecha, `import`): es la única excepción a la regla ES5 del sitio, porque solo los
+  cargan navegadores con módulos y WebGL 2.
+
+### Regenerar three.js
+
+`vendor/three/three.min.js` es un subconjunto de three.js 0.186.1 empaquetado con esbuild (unos
+540 KB, 137 KB con gzip). Contiene solo las clases que lista `herramientas/three/entrada.js`. Si la
+escena necesita otra clase, agregala ahí y corré:
+
+```sh
+sh herramientas/empaquetar_three.sh
+```
+
+El script descarga three.js y esbuild (versiones fijas) en una carpeta temporal, fuera del
+repositorio. El sitio sigue sin paso de compilación: el archivo generado se sube al repositorio.
+
+## Formulario de contacto
+
+`contacto.html` arma un correo (`mailto:`) que la persona manda desde su propio programa de correo:
+no hay servidor ni servicios de terceros. Si el programa de correo no se abre (por ejemplo, con
+Gmail u Outlook en el navegador), el panel «Tu correo está listo» permite copiar el texto y la
+dirección. El mensaje se limita a 1500 caracteres, porque algunos programas cortan los enlaces
+`mailto:` muy largos. Sin JavaScript, el formulario se envía igual con
+`enctype="text/plain"` y valida el navegador.
 
 ## Recuperar el mapa
 
@@ -149,11 +202,19 @@ El buscador lo encuentra solo, sin tocar el JavaScript.
   a servidores externos.
 - **Tema:** respeta la preferencia del sistema; el botón de la cabecera la cambia y la elección se
   recuerda en ese navegador.
+- **Lenguaje visual:** un «cuaderno de campo de radio andino». Hay curvas de nivel de fondo, crestas
+  de la cordillera como separadores (`assets/img/cordillera.svg`, usado como máscara CSS) y
+  coordenadas y frecuencias en tipografía monoespaciada. También hay un grano de papel muy sutil.
+  En cada página interna, la banda de cabecera muestra el cielo y la cordillera, y las páginas de
+  la ruta suman una mini ruta con el paso actual.
 - **Accesibilidad:**
   - Enlace «Saltar al contenido», foco visible, menú con `aria-expanded` y cierre con Esc.
   - Un solo `h1` por página y títulos sin saltos de nivel.
   - Formularios con etiquetas, ayudas y un resumen de errores que recibe el foco.
-  - Animaciones desactivadas con `prefers-reduced-motion`.
+  - Animaciones (incluida la escena 3D, la aparición al hacer scroll y la barra de lectura)
+    desactivadas con `prefers-reduced-motion`.
+  - Cabecera fija que nunca tapa el foco ni las anclas (`scroll-padding-top`), e índice
+    «En esta página» que marca la sección actual con `aria-current`.
 - **Sin dependencias externas en tiempo de ejecución:** las tipografías y todo el código están en
   el repositorio. El sitio no hace pedidos a otros servidores.
 
@@ -166,30 +227,37 @@ El buscador lo encuentra solo, sin tocar el JavaScript.
 | `--texto` | `--superficie` | texto | 16.04:1 ✅ | 13.65:1 ✅ | 4.5:1 |
 | `--texto` | `--superficie-2` | texto | 13.21:1 ✅ | 12.03:1 ✅ | 4.5:1 |
 | `--texto` | `--cielo-alto` | texto | 13.18:1 ✅ | 16.26:1 ✅ | 4.5:1 |
+| `--texto` | `--vino-tenue` | texto | 13.28:1 ✅ | 13.31:1 ✅ | 4.5:1 |
 | `--texto-suave` | `--fondo` | texto | 7.69:1 ✅ | 9.53:1 ✅ | 4.5:1 |
 | `--texto-suave` | `--superficie` | texto | 8.29:1 ✅ | 8.49:1 ✅ | 4.5:1 |
 | `--texto-suave` | `--superficie-2` | texto | 6.83:1 ✅ | 7.48:1 ✅ | 4.5:1 |
 | `--texto-suave` | `--cielo-alto` | texto | 6.81:1 ✅ | 10.11:1 ✅ | 4.5:1 |
+| `--texto-suave` | `--vino-tenue` | texto | 6.86:1 ✅ | 8.27:1 ✅ | 4.5:1 |
 | `--vino` | `--fondo` | texto | 9.32:1 ✅ | 9.46:1 ✅ | 4.5:1 |
 | `--vino` | `--superficie` | texto | 10.04:1 ✅ | 8.42:1 ✅ | 4.5:1 |
 | `--vino` | `--superficie-2` | texto | 8.27:1 ✅ | 7.42:1 ✅ | 4.5:1 |
 | `--vino` | `--cielo-alto` | texto | 8.25:1 ✅ | 10.03:1 ✅ | 4.5:1 |
+| `--vino` | `--vino-tenue` | texto | 8.32:1 ✅ | 8.21:1 ✅ | 4.5:1 |
 | `--vino-hover` | `--fondo` | texto | 11.82:1 ✅ | 12.01:1 ✅ | 4.5:1 |
 | `--vino-hover` | `--superficie` | texto | 12.73:1 ✅ | 10.70:1 ✅ | 4.5:1 |
 | `--vino-hover` | `--superficie-2` | texto | 10.49:1 ✅ | 9.42:1 ✅ | 4.5:1 |
 | `--vino-hover` | `--cielo-alto` | texto | 10.46:1 ✅ | 12.74:1 ✅ | 4.5:1 |
+| `--vino-hover` | `--vino-tenue` | texto | 10.54:1 ✅ | 10.43:1 ✅ | 4.5:1 |
 | `--ocre` | `--fondo` | texto | 5.91:1 ✅ | 9.10:1 ✅ | 4.5:1 |
 | `--ocre` | `--superficie` | texto | 6.37:1 ✅ | 8.10:1 ✅ | 4.5:1 |
 | `--ocre` | `--superficie-2` | texto | 5.25:1 ✅ | 7.14:1 ✅ | 4.5:1 |
 | `--ocre` | `--cielo-alto` | texto | 5.24:1 ✅ | 9.65:1 ✅ | 4.5:1 |
+| `--ocre` | `--vino-tenue` | texto | 5.28:1 ✅ | 7.90:1 ✅ | 4.5:1 |
 | `--verde` | `--fondo` | texto | 5.91:1 ✅ | 10.04:1 ✅ | 4.5:1 |
 | `--verde` | `--superficie` | texto | 6.37:1 ✅ | 8.94:1 ✅ | 4.5:1 |
 | `--verde` | `--superficie-2` | texto | 5.25:1 ✅ | 7.88:1 ✅ | 4.5:1 |
 | `--verde` | `--cielo-alto` | texto | 5.24:1 ✅ | 10.65:1 ✅ | 4.5:1 |
+| `--verde` | `--vino-tenue` | texto | 5.28:1 ✅ | 8.72:1 ✅ | 4.5:1 |
 | `--azul` | `--fondo` | texto | 7.22:1 ✅ | 9.68:1 ✅ | 4.5:1 |
 | `--azul` | `--superficie` | texto | 7.78:1 ✅ | 8.62:1 ✅ | 4.5:1 |
 | `--azul` | `--superficie-2` | texto | 6.41:1 ✅ | 7.59:1 ✅ | 4.5:1 |
 | `--azul` | `--cielo-alto` | texto | 6.39:1 ✅ | 10.26:1 ✅ | 4.5:1 |
+| `--azul` | `--vino-tenue` | texto | 6.44:1 ✅ | 8.40:1 ✅ | 4.5:1 |
 | `--sobre-vino` | `--vino` | botón primario | 10.04:1 ✅ | 9.46:1 ✅ | 4.5:1 |
 | `--sobre-vino` | `--vino-hover` | botón primario (hover) | 12.73:1 ✅ | 12.01:1 ✅ | 4.5:1 |
 | `--sobre-ocre` | `--ocre-fondo` | marcador [verificar] | 7.64:1 ✅ | 9.10:1 ✅ | 4.5:1 |
@@ -200,6 +268,7 @@ El buscador lo encuentra solo, sin tocar el JavaScript.
 | `--borde` | `--fondo` | borde de control | 3.82:1 ✅ | 4.10:1 ✅ | 3:1 |
 | `--borde` | `--superficie` | borde de control | 4.12:1 ✅ | 3.65:1 ✅ | 3:1 |
 | `--borde` | `--superficie-2` | borde de control | 3.39:1 ✅ | 3.22:1 ✅ | 3:1 |
+| `--borde` | `--vino-tenue` | borde de control | 3.41:1 ✅ | 3.56:1 ✅ | 3:1 |
 | `--foco` | `--fondo` | anillo de foco | 5.98:1 ✅ | 12.63:1 ✅ | 3:1 |
 | `--foco` | `--superficie` | anillo de foco | 6.44:1 ✅ | 11.25:1 ✅ | 3:1 |
 | `--foco` | `--superficie-2` | anillo de foco | 5.30:1 ✅ | 9.91:1 ✅ | 3:1 |
@@ -211,6 +280,9 @@ El buscador lo encuentra solo, sin tocar el JavaScript.
 - **Textos:** [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.es) (ver `LICENSE-contenido.md`).
 - **Código:** MIT (ver `LICENSE`).
 - **Tipografías:** Atkinson Hyperlegible (Braille Institute) y Fraunces (The Fraunces Project Authors), SIL OFL 1.1.
+- **three.js** 0.186.1 (MIT, © three.js authors), en un subconjunto empaquetado en `vendor/three/`.
+- **Escena 3D:** las prácticas de three.js r186 siguen las skills de
+  [cloudai-x/threejs-skills](https://github.com/cloudai-x/threejs-skills) (MIT).
 - **Marcas:** LoRa® es una marca registrada de Semtech Corporation. Meshtastic® es una marca registrada de Meshtastic LLC. Los componentes de software de
   Meshtastic se publican bajo diversas licencias; consultá GitHub para más detalles. No se ofrece
   ninguna garantía: el uso es bajo tu propio riesgo. Este sitio no está afiliado ni respaldado por el

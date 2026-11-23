@@ -10,12 +10,14 @@ import { crearTerreno, colorearTerreno, crearVinedo, colorearVinedo, aleatorio }
 import { crearMalla } from "./malla.js";
 
 const PRESETS = {
-  portada: { segX: 84, segZ: 28, nodos: 14, saltos: 3, estrellas: 180, dpr: 2, fps: 60, puntero: true, scroll: true, vinedo: true },
-  movil: { segX: 52, segZ: 18, nodos: 9, saltos: 3, estrellas: 100, dpr: 1.5, fps: 30, puntero: false, scroll: true, vinedo: true },
-  cabecera: { segX: 40, segZ: 12, nodos: 7, saltos: 2, estrellas: 60, dpr: 1.5, fps: 30, puntero: false, scroll: false, vinedo: false },
+  portada: { ancho: 360, segX: 84, segZ: 28, nodos: 14, saltos: 3, estrellas: 180, dpr: 2, fps: 60, puntero: true, scroll: true, vinedo: true },
+  movil: { ancho: 300, segX: 52, segZ: 18, nodos: 9, saltos: 3, estrellas: 100, dpr: 1.5, fps: 30, puntero: false, scroll: true, vinedo: true },
+  cabecera: { ancho: 620, segX: 76, segZ: 14, nodos: 7, saltos: 2, estrellas: 60, dpr: 1.5, fps: 30, puntero: false, scroll: false, vinedo: false },
 };
 
 const raiz = document.documentElement;
+// Cede el hilo principal entre etapas: la página sigue respondiendo mientras arranca la escena.
+const ceder = () => new Promise((listo) => setTimeout(listo, 0));
 const consultaReducir = window.matchMedia("(prefers-reduced-motion: reduce)");
 
 function leerColores() {
@@ -71,6 +73,7 @@ async function iniciar(contenedor) {
     throw new Error("WebGL 2 no está disponible");
   }
   const renderer = new THREE.WebGLRenderer({ canvas: lienzo, context: contexto, ...atributos });
+  await ceder();
   renderer.setClearColor(0x000000, 0);
   const pixeles = Math.min(window.devicePixelRatio || 1, cfg.dpr);
   renderer.setPixelRatio(pixeles);
@@ -84,7 +87,7 @@ async function iniciar(contenedor) {
   let objetivo = 0.32;
 
   // --- Contenido --------------------------------------------------------------
-  const { malla: terreno, grilla } = crearTerreno(cfg.segX, cfg.segZ);
+  const { malla: terreno, grilla } = crearTerreno(cfg.segX, cfg.segZ, cfg.ancho);
   escena.add(terreno);
   const vinedo = cfg.vinedo ? crearVinedo() : null;
   if (vinedo) escena.add(vinedo);
@@ -241,6 +244,8 @@ async function iniciar(contenedor) {
     if (!enMarcha && !destruida) renderer.render(escena, camara);
   }
 
+  await ceder();
+
   // --- Tamaño ---------------------------------------------------------------------
   let ancho = lienzo.clientWidth || 1;
   let alto = lienzo.clientHeight || 1;
@@ -375,6 +380,7 @@ async function iniciar(contenedor) {
   // --- Primer cuadro ---------------------------------------------------------------------
   aplicarColores();
   await renderer.compileAsync(escena, camara); // compila los shaders sin trabar la página
+  if (consultaReducir.matches) destruir(); // por si se pidió reducir el movimiento mientras cargaba
   if (destruida) return;
   malla.actualizar(0, 0, puntero, ancho, alto);
   renderer.render(escena, camara);

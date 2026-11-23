@@ -486,6 +486,38 @@ a:hover {
   max-width: var(--medida);
 }
 
+/* Escena 3D (assets/js/escena/): el lienzo aparece sobre su respaldo cuando
+   el primer cuadro está listo. Es decorativo y no recibe el puntero. */
+.escena__lienzo {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  pointer-events: none;
+}
+.escena-lista .escena__lienzo { opacity: 1; }
+/* En las páginas internas, una franja de cordillera 3D reemplaza a las crestas de CSS */
+.escena--cabecera .escena__lienzo {
+  height: clamp(150px, 19vw, 260px);
+  -webkit-mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 90%, transparent 100%);
+}
+.banda-pagina:has(.escena-lista)::before,
+.banda-pagina:has(.escena-lista)::after { opacity: 0; }
+@media (prefers-reduced-motion: no-preference) {
+  .escena__lienzo { transition: opacity 0.8s var(--curva-salida); }
+  .banda-pagina::before,
+  .banda-pagina::after { transition: opacity 1.2s var(--curva-salida); }
+}
+@media (forced-colors: active) {
+  .escena__lienzo { display: none; }
+  .banda-pagina:has(.escena-lista)::before,
+  .banda-pagina:has(.escena-lista)::after { opacity: 1; }
+}
+
 /* Mini ruta: los 5 pasos de la ruta de aprendizaje */
 .mini-ruta { margin-top: var(--esp-6); }
 .mini-ruta ol {
@@ -1292,6 +1324,7 @@ fieldset.campo--opciones { display: grid; gap: var(--esp-2); }
   background: var(--superficie);
 }
 .indice-letras a:hover { background: var(--superficie-2); }
+.prosa .indice-letras li + li { margin-top: 0; }
 .glosario { max-width: var(--medida); }
 .prosa .glosario__letra {
   font-size: 2rem;
@@ -1363,7 +1396,7 @@ fieldset.campo--opciones { display: grid; gap: var(--esp-2); }
 
 @media print {
   .cabecera nav, .boton-menu, .boton-tema, .saltar, .portada__paisaje, .banda, .mini-ruta,
-  .banda-pagina__fondo, .pie__arriba, body::before { display: none !important; }
+  .banda-pagina__fondo, .pie__arriba, body::before, .escena__lienzo { display: none !important; }
   .cabecera { position: static; }
   .revelar { opacity: 1 !important; transform: none !important; }
   body { background: #fff; color: #000; }

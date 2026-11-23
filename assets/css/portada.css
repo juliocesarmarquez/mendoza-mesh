@@ -33,14 +33,8 @@
   z-index: -1;
   pointer-events: none;
 }
-.escena__lienzo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  opacity: 0;
-}
-/* En la portada, el lienzo ocupa la misma franja que la ilustración */
+/* (Los estilos comunes del lienzo están en base.css.)
+   En la portada, el lienzo ocupa la misma franja que la ilustración */
 .escena--portada .escena__lienzo {
   top: auto;
   height: clamp(220px, 32vw, 460px);
@@ -48,11 +42,9 @@
   -webkit-mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
   mask-image: linear-gradient(180deg, #000 92%, transparent 100%);
 }
-.escena-lista .escena__lienzo { opacity: 1; }
 .escena-lista .escena__respaldo { opacity: 0; visibility: hidden; }
 @media (prefers-reduced-motion: no-preference) {
-  .escena__lienzo { transition: opacity 1.2s var(--curva-salida); }
-  .escena__respaldo { transition: opacity 1.2s var(--curva-salida), visibility 0s 1.2s; }
+  .escena__respaldo { transition: opacity 0.5s ease-out, visibility 0s 0.5s; }
 }
 
 .portada__paisaje {
@@ -448,6 +440,5 @@
   .portada { padding-bottom: 0; background: none; }
 }
 @media (forced-colors: active) {
-  .escena__lienzo { display: none; }
   .escena-lista .escena__respaldo { opacity: 1; visibility: visible; }
 }

@@ -64,6 +64,9 @@ Para ver los marcadores que quedan en las páginas:
 | URL definitiva del sitio | https://juliocesarmarquez.github.io/mendoza-mesh/ (repositorio público juliocesarmarquez/mendoza-mesh), aplicada con `herramientas/cambiar_url.py` | Decisión tuya, 20/11/2026 |
 | Ítems 4, 11 y 12 (créditos de mapa.meshtastic.es, raíz MQTT de Cuyo y licencia de los límites del IGN) | Descartados por ahora: el mapa se retiró del sitio el 23/11/2026 para rehacerlo más adelante. Si se recupera desde la etiqueta git `mapa-v1`, vuelven a quedar abiertos | Decisión tuya, 23/11/2026 |
 | «OK to MQTT» desde el firmware 2.5 | El campo `Data.bitfield` (bit 0 = ok_to_mqtt) existe desde la 2.5.0, según los comentarios del protobuf oficial. Además, el firmware no sube a un broker público paquetes de otros nodos sin ese bit | https://github.com/meshtastic/protobufs/blob/master/meshtastic/mesh.proto y src/mqtt/MQTT.cpp del firmware |
+| Versión de three.js | 0.186.1, la versión para la que están escritas las skills de cloudai-x/threejs-skills (r186). La última publicada al 23/11/2026 es la 0.187.0; para actualizar, cambiar `THREE_VERSION` en `herramientas/empaquetar_three.sh` y revisar la escena | npm (`npm view three`) y https://github.com/cloudai-x/threejs-skills |
+| Versión de esbuild para empaquetar three.js | 0.28.2 (última al 23/11/2026), fijada en `herramientas/empaquetar_three.sh` | npm (`npm view esbuild`) |
+| Coordenadas decorativas de las bandas y el pie (32°53′ S · 68°50′ O) | Ciudad de Mendoza: −32,8897, −68,8444 | Wikipedia en español, artículo «Mendoza (Argentina)» (API de coordenadas) |
 
 ### Archivo: investigación del mapa (para cuando se retome)
 

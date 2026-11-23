@@ -72,15 +72,15 @@ export function alturaEn(x, z) {
 }
 
 // Crea la malla del terreno: facetada (low poly) y con colores por vértice.
-export function crearTerreno(segX, segZ) {
+export function crearTerreno(segX, segZ, ancho = TERRENO.ancho) {
   const profundidad = TERRENO.frente - TERRENO.fondo;
-  const plano = new THREE.PlaneGeometry(TERRENO.ancho, profundidad, segX, segZ);
+  const plano = new THREE.PlaneGeometry(ancho, profundidad, segX, segZ);
   plano.rotateX(-Math.PI / 2);
   plano.translate(0, 0, (TERRENO.frente + TERRENO.fondo) / 2);
   const pos = plano.attributes.position;
   // Pequeño desorden horizontal para que la grilla no se note.
   const azar = aleatorio(1810);
-  const celdaX = TERRENO.ancho / segX, celdaZ = profundidad / segZ;
+  const celdaX = ancho / segX, celdaZ = profundidad / segZ;
   for (let i = 0; i < pos.count; i++) {
     const x = pos.getX(i) + (azar() - 0.5) * celdaX * 0.45;
     const z = pos.getZ(i) + (azar() - 0.5) * celdaZ * 0.45;
